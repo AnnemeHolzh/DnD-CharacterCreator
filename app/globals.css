@@ -1,0 +1,150 @@
+/* Remove the Google Fonts import */
+/* @import url("https://fonts.googleapis.com/css2?family=Almendra+SC&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap"); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 250 30% 5%;
+    --foreground: 35 40% 90%;
+    --card: 250 30% 8%;
+    --card-foreground: 35 40% 90%;
+    --popover: 250 30% 8%;
+    --popover-foreground: 35 40% 90%;
+    --primary: 280 50% 40%;
+    --primary-foreground: 35 40% 95%;
+    --secondary: 220 70% 30%;
+    --secondary-foreground: 35 40% 95%;
+    --muted: 250 30% 15%;
+    --muted-foreground: 35 15% 65%;
+    --accent: 43 60% 45%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 35 40% 90%;
+    --border: 280, 50%, 25%;
+    --input: 250 30% 20%;
+    --ring: 280 70% 40%;
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  /* Default cursor */
+  html, body {
+    @apply bg-background text-foreground bg-[url('/images/bg3-background.jpg')] bg-cover bg-fixed bg-center;
+    cursor: url('/images/bg3-cursor.png'), auto;
+  }
+
+  /* Interactive elements: buttons, links, etc */
+  a, button, 
+  [role="button"],
+  select, 
+  summary,
+  .interactive,
+  .clickable,
+  input[type="submit"],
+  input[type="reset"],
+  input[type="button"] {
+    cursor: url('/images/bg3-cursor-select.png'), pointer;
+  }
+  
+  /* Text selection */
+  input, textarea {
+    cursor: url('/images/bg3-cursor-text.png'), text;
+  }
+  
+  /* Custom scrollbar for BG3 style */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(20, 15, 35, 0.7);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(120, 80, 190, 0.6);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(150, 100, 230, 0.8);
+  }
+}
+
+@font-face {
+  font-family: 'CinzelDecorativeRegular';
+  src: url('/fonts/CinzelDecorative-Regular.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* BG3 Animated Glyphs */
+@keyframes glyphPulse {
+  0% { opacity: 0.4; transform: scale(0.98); filter: brightness(0.8); }
+  50% { opacity: 0.8; transform: scale(1.02); filter: brightness(1.2); }
+  100% { opacity: 0.4; transform: scale(0.98); filter: brightness(0.8); }
+}
+
+@keyframes borderGlow {
+  0% { box-shadow: 0 0 5px rgba(150, 100, 230, 0.3); }
+  50% { box-shadow: 0 0 15px rgba(150, 100, 230, 0.5); }
+  100% { box-shadow: 0 0 5px rgba(150, 100, 230, 0.3); }
+}
+
+/* BG3 Focus Style */
+.bg3-focus:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(150, 100, 230, 0.7);
+  transition: box-shadow 0.2s ease;
+}
+
+/* BG3 Magic circle rotation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* BG3 Mist animation */
+@keyframes bg3-mist {
+  0% {
+    opacity: 0.2;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.15;
+    transform: translateY(-10px) scale(1.05);
+  }
+  100% {
+    opacity: 0.2;
+    transform: translateY(-5px) scale(1.02);
+  }
+}
+
+/* Form Transitions */
+@keyframes bg3-form-in {
+  0% { 
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Rune highlight flash - for save/submit actions */
+@keyframes runeFlash {
+  0% { filter: brightness(1) drop-shadow(0 0 0px rgba(150, 100, 230, 0)); }
+  15% { filter: brightness(1.7) drop-shadow(0 0 10px rgba(150, 100, 230, 0.7)); }
+  100% { filter: brightness(1) drop-shadow(0 0 0px rgba(150, 100, 230, 0)); }
+}
