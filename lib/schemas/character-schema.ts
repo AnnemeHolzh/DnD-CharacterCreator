@@ -45,8 +45,11 @@ export const CharacterSchema = z.object({
     .optional(),
 
   // Mechanics section
-  class: z.string().optional(),
-  subclass: z.string().optional(),
+  classes: z.array(z.object({
+    class: z.string().optional(),
+    subclass: z.string().optional(),
+    level: z.number().optional(),
+  })).optional(),
   race: z.string().optional(),
   subrace: z.string().optional(),
   level: z.number().optional(),
