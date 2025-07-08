@@ -146,9 +146,10 @@ export function NarrativeSection() {
                 <FormItem>
                   <FormLabel className="font-display text-lg">Personality Traits</FormLabel>
                   <FormControl>
-                    <Textarea
+                    <WordLimitedTextarea
                       placeholder="What traits define your character's personality?"
                       className="min-h-[120px] border-amber-800/30 bg-black/20 backdrop-blur-sm"
+                      maxWords={250}
                       {...field}
                     />
                   </FormControl>
@@ -166,9 +167,10 @@ export function NarrativeSection() {
                 <FormItem>
                   <FormLabel className="font-display text-lg">Ideals</FormLabel>
                   <FormControl>
-                    <Textarea
+                    <WordLimitedTextarea
                       placeholder="What principles does your character believe in?"
                       className="min-h-[120px] border-amber-800/30 bg-black/20 backdrop-blur-sm"
+                      maxWords={250}
                       {...field}
                     />
                   </FormControl>
@@ -186,9 +188,10 @@ export function NarrativeSection() {
                 <FormItem>
                   <FormLabel className="font-display text-lg">Bonds</FormLabel>
                   <FormControl>
-                    <Textarea
+                    <WordLimitedTextarea
                       placeholder="What connections tie your character to the world?"
                       className="min-h-[120px] border-amber-800/30 bg-black/20 backdrop-blur-sm"
+                      maxWords={250}
                       {...field}
                     />
                   </FormControl>
@@ -206,9 +209,10 @@ export function NarrativeSection() {
                 <FormItem>
                   <FormLabel className="font-display text-lg">Flaws</FormLabel>
                   <FormControl>
-                    <Textarea
+                    <WordLimitedTextarea
                       placeholder="What weaknesses or shortcomings does your character have?"
                       className="min-h-[120px] border-amber-800/30 bg-black/20 backdrop-blur-sm"
+                      maxWords={250}
                       {...field}
                     />
                   </FormControl>
