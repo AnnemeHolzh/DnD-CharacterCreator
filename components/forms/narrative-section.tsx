@@ -24,11 +24,17 @@ export function NarrativeSection() {
               <FormItem>
                 <FormLabel className="font-display text-lg">Character Name</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Enter your character's name"
-                    {...field}
-                    className="border-amber-800/30 bg-black/20 backdrop-blur-sm"
-                  />
+                  <div className="relative">
+                    <Input
+                      placeholder="Enter your character's name"
+                      maxLength={100}
+                      {...field}
+                      className="border-amber-800/30 bg-black/20 backdrop-blur-sm pr-16"
+                    />
+                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-muted-foreground">
+                      {field.value?.length || 0}/100
+                    </div>
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>

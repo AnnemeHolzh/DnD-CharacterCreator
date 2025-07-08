@@ -1,20 +1,42 @@
 import { z } from "zod"
+import { sanitizeCharacterName, sanitizeText } from "@/lib/utils/input-validation"
 
 export const CharacterSchema = z.object({
   // Narrative section
-  name: z.string().optional(),
+  name: z.string()
+    .max(100, "Character name must be 100 characters or less")
+    .refine((val) => !val || val.trim().length > 0, {
+      message: "Character name cannot be empty if provided"
+    })
+    .refine((val) => !val || !/^[0-9\s]+$/.test(val), {
+      message: "Character name cannot consist only of numbers and spaces"
+    })
+    .transform((val) => val ? sanitizeCharacterName(val) : val)
+    .optional(),
   background: z.string().optional(),
   backgroundSkillProficiencies: z.array(z.string()).optional(),
   backgroundToolProficiencies: z.array(z.string()).optional(),
   backgroundLanguages: z.number().optional(),
   backgroundEquipment: z.array(z.string()).optional(),
   alignment: z.string().optional(),
-  appearance: z.string().optional(),
-  backstory: z.string().optional(),
-  personalityTraits: z.string().optional(),
-  ideals: z.string().optional(),
-  bonds: z.string().optional(),
-  flaws: z.string().optional(),
+  appearance: z.string()
+    .transform((val) => val ? sanitizeText(val) : val)
+    .optional(),
+  backstory: z.string()
+    .transform((val) => val ? sanitizeText(val) : val)
+    .optional(),
+  personalityTraits: z.string()
+    .transform((val) => val ? sanitizeText(val) : val)
+    .optional(),
+  ideals: z.string()
+    .transform((val) => val ? sanitizeText(val) : val)
+    .optional(),
+  bonds: z.string()
+    .transform((val) => val ? sanitizeText(val) : val)
+    .optional(),
+  flaws: z.string()
+    .transform((val) => val ? sanitizeText(val) : val)
+    .optional(),
 
   // Mechanics section
   class: z.string().optional(),

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Sparkles, Save } from "lucide-react"
@@ -19,6 +20,7 @@ export default function CharacterCreationForm() {
   const [isSaving, setIsSaving] = useState(false)
 
   const methods = useForm<CharacterFormData>({
+    resolver: zodResolver(CharacterSchema),
     defaultValues: {
       name: "",
       background: "",
