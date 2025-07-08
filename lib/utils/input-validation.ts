@@ -85,3 +85,36 @@ export function sanitizeText(text: string): string {
     // Replace multiple spaces with single space
     .replace(/\s+/g, ' ');
 }
+
+/**
+ * Counts words in a text string
+ */
+export function countWords(text: string): number {
+  if (!text || typeof text !== 'string') {
+    return 0;
+  }
+  
+  // Split by whitespace and filter out empty strings
+  const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+  return words.length;
+}
+
+/**
+ * Validates word count for text fields
+ */
+export function validateWordCount(text: string, maxWords: number): { isValid: boolean; error?: string } {
+  if (!text || text.trim().length === 0) {
+    return { isValid: true }; // Empty text is allowed (optional field)
+  }
+
+  const wordCount = countWords(text);
+  
+  if (wordCount > maxWords) {
+    return { 
+      isValid: false, 
+      error: `Text must be ${maxWords} words or less (currently ${wordCount} words)` 
+    };
+  }
+
+  return { isValid: true };
+}

@@ -3,6 +3,7 @@
 import { useFormContext } from "react-hook-form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { WordLimitedTextarea } from "@/components/ui/word-limited-textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -88,9 +89,10 @@ export function NarrativeSection() {
             <FormItem>
               <FormLabel className="font-display text-lg">Appearance</FormLabel>
               <FormControl>
-                <Textarea
+                <WordLimitedTextarea
                   placeholder="Describe your character's physical appearance..."
                   className="min-h-[100px] border-amber-800/30 bg-black/20 backdrop-blur-sm"
+                  maxWords={200}
                   {...field}
                 />
               </FormControl>
@@ -106,9 +108,10 @@ export function NarrativeSection() {
             <FormItem>
               <FormLabel className="font-display text-lg">Backstory</FormLabel>
               <FormControl>
-                <Textarea
+                <WordLimitedTextarea
                   placeholder="Share your character's history and origins..."
                   className="min-h-[150px] border-amber-800/30 bg-black/20 backdrop-blur-sm"
+                  maxWords={500}
                   {...field}
                 />
               </FormControl>
