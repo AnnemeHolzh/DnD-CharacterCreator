@@ -293,7 +293,7 @@ export const classes = [
     name: "Artificer",
     hitDie: 8,
     primaryAbility: "intelligence",
-    featLevels: [4, 8, 12, 16, 19],
+    FeatLevel: [4, 8, 12, 16, 19],
     savingThrows: ["constitution", "intelligence"],
     armorProficiencies: ["light", "medium", "shield"],
     weaponProficiencies: ["simple"],

@@ -2,6 +2,7 @@ import { z } from "zod"
 import { sanitizeCharacterName, sanitizeText, countWords, sanitizeRaceSelection, sanitizeClassSelection, sanitizeSubclassSelection } from "@/lib/utils/input-validation"
 import { races, validateRaceSubraceCombination } from "@/lib/data/races"
 import { classes, getSubclassesForClass, getMinLevelUnlock, isSubclassAvailableAtLevel } from "@/lib/data/classes"
+import { getAvailableFeats, getEligibleFeats } from "@/lib/data/feats"
 
 export const CharacterSchema = z.object({
   // Narrative section
