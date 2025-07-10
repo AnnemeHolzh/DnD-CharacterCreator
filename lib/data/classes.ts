@@ -4,6 +4,7 @@ export const classes = [
     name: "Barbarian",
     hitDie: 12,
     primaryAbility: "strength",
+    FeatLevel: [4, 8, 12, 16, 19],
     savingThrows: ["strength", "constitution"],
     armorProficiencies: ["light", "medium", "shields"],
     weaponProficiencies: ["simple", "martial"],
@@ -20,6 +21,7 @@ export const classes = [
     name: "Bard",
     hitDie: 8,
     primaryAbility: "charisma",
+    FeatLevel: [4, 8, 12, 16, 19],
     savingThrows: ["dexterity", "charisma"],
     armorProficiencies: ["light"],
     weaponProficiencies: ["simple", "hand-crossbow", "longsword", "rapier", "shortsword"],
@@ -55,6 +57,7 @@ export const classes = [
     name: "Cleric",
     hitDie: 8,
     primaryAbility: "wisdom",
+    FeatLevel: [4, 8, 12, 16, 19],
     savingThrows: ["wisdom", "charisma"],
     armorProficiencies: ["light", "medium", "shields"],
     weaponProficiencies: ["simple"],
@@ -76,6 +79,7 @@ export const classes = [
     name: "Druid",
     hitDie: 8,
     primaryAbility: "wisdom",
+    FeatLevel: [4, 8, 12, 16, 19],
     savingThrows: ["intelligence", "wisdom"],
     armorProficiencies: ["light", "medium", "shields"],
     weaponProficiencies: [
@@ -112,6 +116,7 @@ export const classes = [
     name: "Fighter",
     hitDie: 10,
     primaryAbility: "strength",
+    FeatLevel: [4, 6, 8, 12, 14, 16, 19],
     savingThrows: ["strength", "constitution"],
     armorProficiencies: ["light", "medium", "heavy", "shields"],
     weaponProficiencies: ["simple", "martial"],
@@ -138,6 +143,7 @@ export const classes = [
     name: "Monk",
     hitDie: 8,
     primaryAbility: "dexterity",
+    FeatLevel: [4, 8, 12, 16, 19],
     savingThrows: ["strength", "dexterity"],
     armorProficiencies: [],
     weaponProficiencies: ["simple", "shortsword"],
@@ -155,6 +161,7 @@ export const classes = [
     name: "Paladin",
     hitDie: 10,
     primaryAbility: "strength",
+    FeatLevel: [4, 8, 12, 16, 19],
     savingThrows: ["wisdom", "charisma"],
     armorProficiencies: ["light", "medium", "heavy", "shields"],
     weaponProficiencies: ["simple", "martial"],
@@ -172,6 +179,7 @@ export const classes = [
     name: "Ranger",
     hitDie: 10,
     primaryAbility: "dexterity",
+    FeatLevel: [4, 8, 12, 16, 19],
     savingThrows: ["strength", "dexterity"],
     armorProficiencies: ["light", "medium", "shields"],
     weaponProficiencies: ["simple", "martial"],
@@ -197,6 +205,7 @@ export const classes = [
     name: "Rogue",
     hitDie: 8,
     primaryAbility: "dexterity",
+    FeatLevel: [4, 8, 10, 12, 16, 19],
     savingThrows: ["dexterity", "intelligence"],
     armorProficiencies: ["light"],
     weaponProficiencies: ["simple", "hand-crossbow", "longsword", "rapier", "shortsword"],
@@ -226,6 +235,7 @@ export const classes = [
     name: "Sorcerer",
     hitDie: 6,
     primaryAbility: "charisma",
+    FeatLevel: [4, 8, 12, 16, 19],
     savingThrows: ["constitution", "charisma"],
     armorProficiencies: [],
     weaponProficiencies: ["dagger", "dart", "sling", "quarterstaff", "light-crossbow"],
@@ -242,6 +252,7 @@ export const classes = [
     name: "Warlock",
     hitDie: 8,
     primaryAbility: "charisma",
+    FeatLevel: [4, 8, 12, 16, 19],
     savingThrows: ["wisdom", "charisma"],
     armorProficiencies: ["light"],
     weaponProficiencies: ["simple"],
@@ -259,6 +270,7 @@ export const classes = [
     name: "Wizard",
     hitDie: 6,
     primaryAbility: "intelligence",
+    FeatLevel: [4, 8, 12, 16, 19],
     savingThrows: ["intelligence", "wisdom"],
     armorProficiencies: [],
     weaponProficiencies: ["dagger", "dart", "sling", "quarterstaff", "light-crossbow"],
@@ -274,6 +286,34 @@ export const classes = [
       { id: "illusion", name: "School of Illusion" },
       { id: "necromancy", name: "School of Necromancy" },
       { id: "transmutation", name: "School of Transmutation" },
+    ],
+  },
+  {
+    id: "artificer",
+    name: "Artificer",
+    hitDie: 8,
+    primaryAbility: "intelligence",
+    featLevels: [4, 8, 12, 16, 19],
+    savingThrows: ["constitution", "intelligence"],
+    armorProficiencies: ["light", "medium", "shield"],
+    weaponProficiencies: ["simple"],
+    toolProficiencies: ["thieves’ tools", "tinker’s tools", "artisan’s tools"],
+    skillChoices: 2,
+    skillProficiencies: [
+      "arcana",
+      "history",
+      "investigation",
+      "medicine",
+      "nature",
+      "perception",
+      "sleight-of-hand"
+    ],
+    spellcasting: true,
+    subclasses: [
+      { id: "alchemist", name: "Alchemist" },
+      { id: "artillerist", name: "Artillerist" },
+      { id: "battlesmith", name: "Battle Smith" },
+      { id: "armorer", name: "Armorer" }
     ],
   },
 ]
@@ -589,7 +629,65 @@ const dndClassesData: SubclassData[] = [
     ],
     "level_unlocks": [2,2,6,10,14],
     "cited_source": "PHB p.117"
-  }
+  },
+  {
+    "subclass_name": "Alchemist",
+    "class": "Artificer",
+    "sourcebook": "TCoE / ERftLW",
+    "class_features": [
+      "Alchemist Spells (3rd): gain bonus spells such as *Cure Wounds* and *Healing Spirit*",
+      "Experimental Elixir (3rd): create random elixirs daily with varied effects",
+      "Restorative Reagents (5th): your elixirs now restore hit points to others; better at higher levels",
+      "Chemical Mastery (9th): gain resistance to acid and poison, immune to poison condition",
+      "Alchemical Savant (15th): add twice proficiency bonus to spell healing or damage using alchemist spells"
+    ],
+    "level_unlocks": [3,3,5,9,15],
+    "cited_source": "TCoE p.14, Eberron: Rising from the Last War p.58; class officially recognizes four specialists per WotC including Alchemist:contentReference[oaicite:1]{index=1}"
+  },
+  {
+    "subclass_name": "Armorer",
+    "class": "Artificer",
+    "sourcebook": "TCoE / ERftLW",
+    "class_features": [
+      "Armor Model (3rd): customize your armor—Guardian (defensive) or Infiltrator (stealth) with integrated magic weapons",
+      "Arcane Armor (3rd): integrate magic into armor that can be used as a spellcasting focus",
+      "Armor Modifications (5th): gain advanced modifications through infusions",
+      "Extra Attack (9th): make two attacks with your armor’s built-in weapons",
+      "Perfected Armor (15th): your armor grows in power with additional benefits per model"
+    ],
+     "level_unlocks": [3,3,5,9,15],
+     "cited_source": "TCoE p.15, Eberron: Rising from the Last War p.58:contentReference[oaicite:2]{index=2}"
+   },
+   {
+     "subclass_name": "Artillerist",
+     "class": "Artificer",
+     "sourcebook": "TCoE / ERftLW",
+     "class_features": [
+       "Arcane Firearm (3rd): enhance a wand, staff, or rod to deal extra damage",
+       "Eldritch Cannon (3rd): build a magical cannon that can aid or deal damage",
+       "Explosive Cannon Bonus Action (5th): empower cannon attacks with added effects",
+       "Protective Field (9th): cannon grants resistance or healing to nearby creatures",
+       "Fortified Position (15th): cannon becomes sturdier with more hit points and resistance"
+     ],
+     "level_unlocks": [3,3,5,9,15],
+     "cited_source": "TCoE p.17, recognized as core Artificer specialist:contentReference[oaicite:3]{index=3}"
+   },
+   {
+     "subclass_name": "Battle Smith",
+     "class": "Artificer",
+     "sourcebook": "TCoE / ERftLW",
+     "class_features": [
+       "Battle‑Ready (3rd): gain proficiency with martial weapons and use Intelligence for attacks",
+       "Steel Defender (3rd): create a construct companion that aids you in combat",
+       "Extra Attack (5th): you can attack twice when taking the Attack action",
+       "Arcane Jolt (9th): heal or damage when you hit an ally or enemy with your magic weapon",
+       "Improved Defender (15th): your Steel Defender grants you or allies bonuses to AC or saving throws when adjacent"
+     ],
+     "level_unlocks": [3,3,5,9,15],
+     "cited_source": "TCoE p.18, part of official four specialists:contentReference[oaicite:4]{index=4}"
+   }
+ 
+ 
 ];
 
 // Function to get subclasses for a specific class

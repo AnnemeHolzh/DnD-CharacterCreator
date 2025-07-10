@@ -113,6 +113,8 @@ export const CharacterSchema = z.object({
     .optional(),
   level: z.number().optional(),
   abilityScoreMethod: z.string().optional(),
+  abilityScoreAssignmentMode: z.enum(["standard", "custom"]).optional(),
+  customAbilityScoreAssignments: z.record(z.string()).optional(),
   abilityScores: z.object({
     strength: z.number().optional(),
     dexterity: z.number().optional(),
