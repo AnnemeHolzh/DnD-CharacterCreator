@@ -104,6 +104,92 @@ export function validateRaceSelection(selection: string): { isValid: boolean; er
 }
 
 /**
+ * Sanitizes class selections
+ */
+export function sanitizeClassSelection(selection: string): string {
+  if (!selection || typeof selection !== 'string') {
+    return '';
+  }
+  
+  return selection
+    .trim()
+    .toLowerCase()
+    // Remove any non-alphanumeric characters except hyphens
+    .replace(/[^a-z0-9-]/g, '')
+    // Remove multiple consecutive hyphens
+    .replace(/-+/g, '-')
+    // Remove leading and trailing hyphens
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * Validates class selections
+ */
+export function validateClassSelection(selection: string): { isValid: boolean; error?: string } {
+  if (!selection || selection.trim().length === 0) {
+    return { isValid: true }; // Empty selections are allowed (optional field)
+  }
+
+  const sanitized = sanitizeClassSelection(selection);
+  
+  if (sanitized.length < 1) {
+    return { isValid: false, error: "Invalid class selection" };
+  }
+
+  // Check for potentially problematic patterns
+  if (/^[0-9-]+$/.test(sanitized)) {
+    return { isValid: false, error: "Invalid class selection format" };
+  }
+
+  return { isValid: true };
+}
+
+/**
+ * Sanitizes subclass selections
+ */
+export function sanitizeSubclassSelection(selection: string): string {
+  if (!selection || typeof selection !== 'string') {
+    return '';
+  }
+  
+  return selection
+    .trim()
+    // Remove HTML tags and entities
+    .replace(/<[^>]*>/g, '')
+    .replace(/&[a-zA-Z0-9#]+;/g, '')
+    // Remove script tags
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    // Remove dangerous protocols
+    .replace(/javascript:/gi, '')
+    .replace(/data:/gi, '')
+    .replace(/vbscript:/gi, '')
+    // Replace multiple spaces with single space
+    .replace(/\s+/g, ' ');
+}
+
+/**
+ * Validates subclass selections
+ */
+export function validateSubclassSelection(selection: string): { isValid: boolean; error?: string } {
+  if (!selection || selection.trim().length === 0) {
+    return { isValid: true }; // Empty selections are allowed (optional field)
+  }
+
+  const sanitized = sanitizeSubclassSelection(selection);
+  
+  if (sanitized.length < 1) {
+    return { isValid: false, error: "Invalid subclass selection" };
+  }
+
+  // Check for potentially problematic patterns
+  if (/^[0-9\s]+$/.test(sanitized)) {
+    return { isValid: false, error: "Invalid subclass selection format" };
+  }
+
+  return { isValid: true };
+}
+
+/**
  * General text sanitization for other form fields
  */
 export function sanitizeText(text: string): string {

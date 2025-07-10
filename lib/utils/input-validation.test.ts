@@ -1,4 +1,16 @@
-import { sanitizeCharacterName, validateCharacterName, sanitizeText, countWords, validateWordCount, sanitizeRaceSelection, validateRaceSelection } from './input-validation';
+import { 
+  sanitizeCharacterName, 
+  validateCharacterName, 
+  sanitizeText, 
+  countWords, 
+  validateWordCount, 
+  sanitizeRaceSelection, 
+  validateRaceSelection, 
+  sanitizeClassSelection, 
+  validateClassSelection, 
+  sanitizeSubclassSelection, 
+  validateSubclassSelection 
+} from './input-validation';
 
 // Simple test function to verify our validation works
 export function testInputValidation() {
@@ -127,3 +139,92 @@ if (typeof window !== 'undefined') {
   // Browser environment - can be called from console
   (window as any).testInputValidation = testInputValidation;
 }
+
+describe('Class and Subclass Validation', () => {
+  describe('sanitizeClassSelection', () => {
+    it('should sanitize valid class names', () => {
+      expect(sanitizeClassSelection('barbarian')).toBe('barbarian')
+      expect(sanitizeClassSelection('  fighter  ')).toBe('fighter')
+      expect(sanitizeClassSelection('wizard')).toBe('wizard')
+    })
+
+    it('should handle empty or null inputs', () => {
+      expect(sanitizeClassSelection('')).toBe('')
+      expect(sanitizeClassSelection(null as any)).toBe('')
+      expect(sanitizeClassSelection(undefined as any)).toBe('')
+    })
+
+    it('should remove special characters', () => {
+      expect(sanitizeClassSelection('barbarian!')).toBe('barbarian')
+      expect(sanitizeClassSelection('fighter@')).toBe('fighter')
+      expect(sanitizeClassSelection('wizard#')).toBe('wizard')
+    })
+  })
+
+  describe('validateClassSelection', () => {
+    it('should validate correct class names', () => {
+      expect(validateClassSelection('barbarian')).toEqual({ isValid: true })
+      expect(validateClassSelection('fighter')).toEqual({ isValid: true })
+      expect(validateClassSelection('wizard')).toEqual({ isValid: true })
+    })
+
+    it('should allow empty selections', () => {
+      expect(validateClassSelection('')).toEqual({ isValid: true })
+      expect(validateClassSelection('   ')).toEqual({ isValid: true })
+    })
+
+    it('should reject invalid formats', () => {
+      expect(validateClassSelection('123')).toEqual({ 
+        isValid: false, 
+        error: 'Invalid class selection format' 
+      })
+      expect(validateClassSelection('123-456')).toEqual({ 
+        isValid: false, 
+        error: 'Invalid class selection format' 
+      })
+    })
+  })
+
+  describe('sanitizeSubclassSelection', () => {
+    it('should sanitize valid subclass names', () => {
+      expect(sanitizeSubclassSelection('Path of the Berserker')).toBe('Path of the Berserker')
+      expect(sanitizeSubclassSelection('  College of Lore  ')).toBe('College of Lore')
+      expect(sanitizeSubclassSelection('Knowledge Domain')).toBe('Knowledge Domain')
+    })
+
+    it('should handle empty or null inputs', () => {
+      expect(sanitizeSubclassSelection('')).toBe('')
+      expect(sanitizeSubclassSelection(null as any)).toBe('')
+      expect(sanitizeSubclassSelection(undefined as any)).toBe('')
+    })
+
+    it('should remove HTML tags and scripts', () => {
+      expect(sanitizeSubclassSelection('<script>alert("xss")</script>Path of the Berserker')).toBe('Path of the Berserker')
+      expect(sanitizeSubclassSelection('College of Lore<script>')).toBe('College of Lore')
+    })
+  })
+
+  describe('validateSubclassSelection', () => {
+    it('should validate correct subclass names', () => {
+      expect(validateSubclassSelection('Path of the Berserker')).toEqual({ isValid: true })
+      expect(validateSubclassSelection('College of Lore')).toEqual({ isValid: true })
+      expect(validateSubclassSelection('Knowledge Domain')).toEqual({ isValid: true })
+    })
+
+    it('should allow empty selections', () => {
+      expect(validateSubclassSelection('')).toEqual({ isValid: true })
+      expect(validateSubclassSelection('   ')).toEqual({ isValid: true })
+    })
+
+    it('should reject invalid formats', () => {
+      expect(validateSubclassSelection('123')).toEqual({ 
+        isValid: false, 
+        error: 'Invalid subclass selection format' 
+      })
+      expect(validateSubclassSelection('123 456')).toEqual({ 
+        isValid: false, 
+        error: 'Invalid subclass selection format' 
+      })
+    })
+  })
+})

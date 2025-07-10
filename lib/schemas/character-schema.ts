@@ -1,6 +1,7 @@
 import { z } from "zod"
-import { sanitizeCharacterName, sanitizeText, countWords, sanitizeRaceSelection } from "@/lib/utils/input-validation"
+import { sanitizeCharacterName, sanitizeText, countWords, sanitizeRaceSelection, sanitizeClassSelection, sanitizeSubclassSelection } from "@/lib/utils/input-validation"
 import { races, validateRaceSubraceCombination } from "@/lib/data/races"
+import { classes, getSubclassesForClass, getMinLevelUnlock, isSubclassAvailableAtLevel } from "@/lib/data/classes"
 
 export const CharacterSchema = z.object({
   // Narrative section
@@ -47,10 +48,47 @@ export const CharacterSchema = z.object({
 
   // Mechanics section
   classes: z.array(z.object({
-    class: z.string().optional(),
-    subclass: z.string().optional(),
-    level: z.number().optional(),
-  })).optional(),
+    class: z.string()
+      .transform((val) => val ? sanitizeClassSelection(val) : val)
+      .refine((val) => !val || val !== "", {
+        message: "Please select a class"
+      })
+      .refine((val) => !val || classes.some(c => c.id === val), {
+        message: "Please select a valid class"
+      })
+      .optional(),
+    subclass: z.string()
+      .transform((val) => val ? sanitizeSubclassSelection(val) : val)
+      .refine((val) => !val || val !== "", {
+        message: "Please select a subclass"
+      })
+      .refine((val) => {
+        if (!val) return true;
+        // This validation will be handled in the form component
+        return true;
+      }, {
+        message: "Please select a valid subclass for the chosen class and level"
+      })
+      .optional(),
+    level: z.number()
+      .min(1, "Level must be at least 1")
+      .max(20, "Level cannot exceed 20")
+      .optional(),
+  }))
+  .refine((classesArray) => {
+    if (!classesArray || classesArray.length === 0) return true;
+    
+    // Calculate total level across all classes
+    const totalLevel = classesArray.reduce((sum, classEntry) => {
+      return sum + (classEntry.level || 0);
+    }, 0);
+    
+    return totalLevel <= 20;
+  }, {
+    message: "Total level across all classes cannot exceed 20",
+    path: ["classes"]
+  })
+  .optional(),
   race: z.string()
     .transform((val) => val ? sanitizeRaceSelection(val) : val)
     .refine((val) => !val || val !== "", {
