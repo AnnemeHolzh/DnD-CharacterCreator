@@ -86,7 +86,9 @@ export function SkillSelector() {
 
         <TabsContent value="skills" className="space-y-4">
           {Object.entries(skillsByAbility).map(([ability, abilitySkills]) => 
-            renderSkillSection(ability, abilitySkills)
+            <div key={ability}>
+              {renderSkillSection(ability, abilitySkills)}
+            </div>
           )}
         </TabsContent>
 

@@ -1,149 +1,115 @@
-# Character Name Input Validation Implementation
+# Race and Subrace Validation Implementation
 
 ## Overview
-This document describes the input validation and sanitization implementation for the character name field in the D&D Character Creator form.
+
+This document describes the input validation features implemented for the Race section of the character creation form.
 
 ## Features Implemented
 
-### 1. Character Length Validation
-- **Maximum Length**: 100 characters
-- **Visual Feedback**: Character counter displayed in the input field (X/100)
-- **HTML Attribute**: `maxLength={100}` prevents typing beyond the limit
+### 1. Dynamic Subrace Population
+- The subrace selector is now dynamically populated based on the selected race
+- Only valid subraces for the chosen race are displayed
+- The subrace selector is disabled until a race is selected
 
-### 2. Input Sanitization
-The character name field includes comprehensive sanitization to prevent security issues:
+### 2. Placeholder Values
+- Both race and subrace selectors have placeholder options that require user interaction
+- Race selector shows "-- Select a race --" as the first option
+- Subrace selector shows "-- Select a subrace --" as the first option
+- These placeholder values are disabled and cannot be selected
 
-#### Security Measures
-- **HTML Tag Removal**: Strips all HTML tags (`<script>`, `<div>`, etc.)
-- **HTML Entity Removal**: Removes HTML entities (`&amp;`, `&lt;`, etc.)
-- **Control Character Removal**: Removes null bytes and other control characters
-- **Protocol Blocking**: Prevents `javascript:`, `data:`, and `vbscript:` protocols
-- **Whitespace Normalization**: Replaces multiple spaces with single spaces
-- **Leading/Trailing Whitespace**: Automatically trims whitespace
+### 3. Input Sanitization
+- Race and subrace selections are sanitized using `sanitizeRaceSelection()`
+- Removes potentially harmful characters while preserving valid race/subrace identifiers
+- Converts to lowercase and replaces spaces with hyphens
+- Removes multiple consecutive hyphens and leading/trailing hyphens
 
-#### Content Validation
-- **Empty String Check**: Prevents names that are only whitespace
-- **Numeric-Only Check**: Prevents names consisting only of numbers and spaces
-- **Special Character Ratio**: Limits special characters to 50% of the name length
+### 4. Validation Rules
+- Race must be selected from the available options
+- Subrace must be selected from the available options for the chosen race
+- Empty selections are allowed (optional fields)
+- Invalid race-subrace combinations are automatically cleared
 
-### 3. Form Integration
-- **Zod Schema**: Uses Zod for type-safe validation
-- **React Hook Form**: Integrated with `zodResolver` for seamless form validation
-- **Real-time Validation**: Validation occurs on form submission and field blur
-- **Error Messages**: User-friendly error messages displayed below the input
+### 5. Comprehensive Race Data
+- Updated races data to include all subraces from DnDRacesMaster.md
+- Added detailed information for each subrace including:
+  - Ability score increases
+  - Racial traits and features
+  - Weapon and tool proficiencies
+  - Languages
+  - Special abilities (like breath weapons for dragonborn)
 
-## Technical Implementation
+## Data Structure
 
-### Files Modified
-
-1. **`lib/schemas/character-schema.ts`**
-   - Added validation rules for the name field
-   - Integrated sanitization functions
-   - Added validation for other narrative fields
-
-2. **`lib/utils/input-validation.ts`**
-   - Created sanitization functions
-   - Added validation logic
-   - Implemented security measures
-
-3. **`components/forms/character-creation-form.tsx`**
-   - Added `zodResolver` integration
-   - Configured form validation
-
-4. **`components/forms/narrative-section.tsx`**
-   - Added character counter display
-   - Added `maxLength` attribute
-   - Enhanced UI with visual feedback
-
-### Validation Rules
-
+### Race Object
 ```typescript
-name: z.string()
-  .max(100, "Character name must be 100 characters or less")
-  .refine((val) => !val || val.trim().length > 0, {
-    message: "Character name cannot be empty if provided"
-  })
-  .refine((val) => !val || !/^[0-9\s]+$/.test(val), {
-    message: "Character name cannot consist only of numbers and spaces"
-  })
-  .transform((val) => val ? sanitizeCharacterName(val) : val)
-  .optional()
-```
-
-### Sanitization Function
-
-```typescript
-export function sanitizeCharacterName(name: string): string {
-  if (!name || typeof name !== 'string') {
-    return '';
-  }
-  
-  return name
-    .trim()
-    .replace(/[\x00-\x1F\x7F]/g, '') // Control characters
-    .replace(/<[^>]*>/g, '') // HTML tags
-    .replace(/&[a-zA-Z0-9#]+;/g, '') // HTML entities
-    .replace(/javascript:/gi, '') // Dangerous protocols
-    .replace(/data:/gi, '')
-    .replace(/vbscript:/gi, '')
-    .replace(/\s+/g, ' ') // Multiple spaces
-    .slice(0, 100); // Length limit
+{
+  id: string,
+  name: string,
+  abilityScoreIncrease: Record<string, number>,
+  age: string,
+  size: string,
+  speed: number,
+  darkvision?: boolean,
+  traits: string[],
+  languages: string[],
+  subraces: Subrace[]
 }
 ```
 
-## User Experience
+### Subrace Object
+```typescript
+{
+  id: string,
+  name: string,
+  abilityScoreIncrease: Record<string, number>,
+  traits: string[],
+  proficiencies?: string[],
+  tools?: string[],
+  languages?: string[],
+  breathWeapon?: {
+    type: string,
+    shape: string,
+    range: number,
+    save: string
+  }
+}
+```
 
-### Visual Feedback
-- **Character Counter**: Shows current character count (X/100)
-- **Error Messages**: Clear, descriptive error messages
-- **Real-time Validation**: Immediate feedback on invalid input
+## Helper Functions
 
-### Error Messages
-- "Character name must be 100 characters or less"
-- "Character name cannot be empty if provided"
-- "Character name cannot consist only of numbers and spaces"
-- "Character name contains too many special characters"
+### `getSubracesForRace(raceId: string)`
+Returns an array of subraces available for the specified race.
 
-## Security Considerations
+### `validateRaceSubraceCombination(raceId: string, subraceId: string)`
+Validates that a subrace is valid for the specified race.
 
-### XSS Prevention
-- HTML tag removal prevents script injection
-- Protocol blocking prevents code execution
-- Entity removal prevents encoding bypasses
+### `sanitizeRaceSelection(selection: string)`
+Sanitizes race/subrace input by removing harmful characters and normalizing format.
 
-### Input Validation
-- Type checking ensures proper data types
-- Length limits prevent buffer overflow attacks
-- Content validation prevents malicious patterns
+### `validateRaceSelection(selection: string)`
+Validates that a race/subrace selection is in the correct format.
 
-### Sanitization
-- All user input is sanitized before processing
-- Consistent sanitization across all text fields
-- Defensive programming approach
+## Form Behavior
+
+1. **Race Selection**: User must select a race from the dropdown
+2. **Subrace Population**: Available subraces are automatically populated based on race selection
+3. **Subrace Selection**: User must select a subrace from the available options
+4. **Validation**: Invalid combinations are automatically cleared
+5. **Sanitization**: All inputs are sanitized before processing
+
+## Error Handling
+
+- Form validation prevents submission with invalid race/subrace combinations
+- Error messages are displayed for invalid selections
+- Automatic clearing of invalid subrace selections when race changes
+- Graceful handling of empty or null values
 
 ## Testing
 
-A test file (`lib/utils/input-validation.test.ts`) is included with test cases for:
-- Sanitization function behavior
-- Validation logic
-- Edge cases and security scenarios
+A comprehensive test suite is included in `lib/utils/input-validation.test.ts` that can be run in the browser console using:
 
-To run tests in the browser console:
 ```javascript
 testInputValidation()
 ```
 
-## Future Enhancements
-
-Potential improvements for future iterations:
-1. **Internationalization**: Support for non-Latin characters
-2. **Custom Validation**: Allow users to set custom validation rules
-3. **Auto-save**: Save partial input to prevent data loss
-4. **Suggestion System**: Suggest character names based on race/class
-5. **Duplicate Detection**: Check for existing character names
-
-## Dependencies
-
-- `zod`: Schema validation
-- `@hookform/resolvers`: Form validation integration
-- `react-hook-form`: Form state management
+This will test all validation and sanitization functions with various input scenarios.

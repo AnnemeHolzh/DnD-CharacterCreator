@@ -1,5 +1,6 @@
 import { z } from "zod"
-import { sanitizeCharacterName, sanitizeText, countWords } from "@/lib/utils/input-validation"
+import { sanitizeCharacterName, sanitizeText, countWords, sanitizeRaceSelection } from "@/lib/utils/input-validation"
+import { races, validateRaceSubraceCombination } from "@/lib/data/races"
 
 export const CharacterSchema = z.object({
   // Narrative section
@@ -50,8 +51,28 @@ export const CharacterSchema = z.object({
     subclass: z.string().optional(),
     level: z.number().optional(),
   })).optional(),
-  race: z.string().optional(),
-  subrace: z.string().optional(),
+  race: z.string()
+    .transform((val) => val ? sanitizeRaceSelection(val) : val)
+    .refine((val) => !val || val !== "", {
+      message: "Please select a race"
+    })
+    .refine((val) => !val || races.some(r => r.id === val), {
+      message: "Please select a valid race"
+    })
+    .optional(),
+  subrace: z.string()
+    .transform((val) => val ? sanitizeRaceSelection(val) : val)
+    .refine((val) => !val || val !== "", {
+      message: "Please select a subrace"
+    })
+    .refine((val) => {
+      if (!val) return true
+      // This validation will be handled in the form component
+      return true
+    }, {
+      message: "Please select a valid subrace for the chosen race"
+    })
+    .optional(),
   level: z.number().optional(),
   abilityScoreMethod: z.string().optional(),
   abilityScores: z.object({

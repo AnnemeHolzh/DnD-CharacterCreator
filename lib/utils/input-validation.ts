@@ -63,6 +63,47 @@ export function validateCharacterName(name: string): { isValid: boolean; error?:
 }
 
 /**
+ * Sanitizes race and subrace selections
+ */
+export function sanitizeRaceSelection(selection: string): string {
+  if (!selection || typeof selection !== 'string') {
+    return '';
+  }
+  
+  return selection
+    .trim()
+    .toLowerCase()
+    // Remove any non-alphanumeric characters except hyphens
+    .replace(/[^a-z0-9-]/g, '')
+    // Remove multiple consecutive hyphens
+    .replace(/-+/g, '-')
+    // Remove leading and trailing hyphens
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * Validates race and subrace selections
+ */
+export function validateRaceSelection(selection: string): { isValid: boolean; error?: string } {
+  if (!selection || selection.trim().length === 0) {
+    return { isValid: true }; // Empty selections are allowed (optional field)
+  }
+
+  const sanitized = sanitizeRaceSelection(selection);
+  
+  if (sanitized.length < 1) {
+    return { isValid: false, error: "Invalid race selection" };
+  }
+
+  // Check for potentially problematic patterns
+  if (/^[0-9-]+$/.test(sanitized)) {
+    return { isValid: false, error: "Invalid race selection format" };
+  }
+
+  return { isValid: true };
+}
+
+/**
  * General text sanitization for other form fields
  */
 export function sanitizeText(text: string): string {
