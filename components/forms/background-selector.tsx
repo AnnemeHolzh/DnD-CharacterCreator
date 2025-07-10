@@ -6,7 +6,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { getBackgrounds, getBackgroundDetails } from "@/lib/dnd5e-api"
 import { backgrounds } from "@/lib/data/backgrounds"
 
 interface BackgroundFeature {
@@ -16,68 +15,55 @@ interface BackgroundFeature {
 
 interface BackgroundDetails {
   name: string
-  skillProficiencies: string[]
-  toolProficiencies?: string[]
-  languages: number
-  equipment: string[]
-  feature: BackgroundFeature
+  skills: string[]
+  tools?: string[]
+  languages: string
+  features: BackgroundFeature[]
+  source: string
+  abilityScoreOptions?: string[]
+  originFeat?: string
 }
 
 export function BackgroundSelector() {
   const { control, setValue } = useFormContext()
-  const [apiBackgrounds, setApiBackgrounds] = useState<any[]>([])
   const [selectedBackground, setSelectedBackground] = useState<BackgroundDetails | null>(null)
-  const [loadingBackgrounds, setLoadingBackgrounds] = useState(true)
-  const [loadingDetails, setLoadingDetails] = useState(false)
 
   // Watch for background changes
   const watchedBackground = useWatch({ control, name: "background" })
 
-  // Fetch backgrounds from API
-  useEffect(() => {
-    setLoadingBackgrounds(true)
-    getBackgrounds().then((data) => {
-      setApiBackgrounds(data.results)
-      setLoadingBackgrounds(false)
-    })
-  }, [])
-
-  // Fetch background details when selected
+  // Update selected background when background changes
   useEffect(() => {
     if (!watchedBackground) {
       setSelectedBackground(null)
       return
     }
 
-    setLoadingDetails(true)
-    getBackgroundDetails(watchedBackground).then((data) => {
+    const background = backgrounds.find(bg => bg.id === watchedBackground)
+    if (background) {
       setSelectedBackground({
-        name: data.name,
-        skillProficiencies: data.skill_proficiencies?.map((p: any) => p.name) || [],
-        toolProficiencies: data.tool_proficiencies?.map((p: any) => p.name),
-        languages: data.language_options?.choose || 0,
-        equipment: data.starting_equipment?.map((e: any) => e.equipment.name) || [],
-        feature: {
-          name: data.feature?.name || "",
-          description: data.feature?.desc || "",
-        },
+        name: background.name,
+        skills: background.skills,
+        tools: background.tools,
+        languages: background.languages,
+        features: background.features,
+        source: background.source,
+        abilityScoreOptions: background.abilityScoreOptions,
+        originFeat: background.originFeat
       })
-      setLoadingDetails(false)
 
-      // Update form values for proficiencies and equipment
-      if (data.skill_proficiencies) {
-        setValue("backgroundSkillProficiencies", data.skill_proficiencies.map((p: any) => p.index))
-      }
-      if (data.tool_proficiencies) {
-        setValue("backgroundToolProficiencies", data.tool_proficiencies.map((p: any) => p.index))
-      }
-      if (data.language_options) {
-        setValue("backgroundLanguages", data.language_options.choose)
-      }
-      if (data.starting_equipment) {
-        setValue("backgroundEquipment", data.starting_equipment.map((e: any) => e.equipment.index))
-      }
-    })
+      // Update form values for metadata
+      setValue("backgroundMetadata", {
+        id: background.id,
+        name: background.name,
+        source: background.source,
+        skills: background.skills,
+        tools: background.tools,
+        languages: background.languages,
+        features: background.features,
+        abilityScoreOptions: background.abilityScoreOptions,
+        originFeat: background.originFeat
+      })
+    }
   }, [watchedBackground, setValue])
 
   return (
@@ -92,23 +78,18 @@ export function BackgroundSelector() {
             <Select
               value={field.value || ""}
               onValueChange={field.onChange}
-              disabled={loadingBackgrounds}
             >
               <FormControl>
                 <SelectTrigger className="border-amber-800/30 bg-black/20 backdrop-blur-sm">
-                  <SelectValue placeholder={loadingBackgrounds ? "Loading backgrounds..." : "Select a background"} />
+                  <SelectValue placeholder="Select a background" />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                {loadingBackgrounds ? (
-                  <SelectItem value="loading" disabled>Loading...</SelectItem>
-                ) : (
-                  apiBackgrounds.map((background) => (
-                    <SelectItem key={background.index} value={background.index}>
-                      {background.name}
-                    </SelectItem>
-                  ))
-                )}
+                {backgrounds.map((background) => (
+                  <SelectItem key={background.id} value={background.id}>
+                    {background.name}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
             <FormMessage />
@@ -126,11 +107,11 @@ export function BackgroundSelector() {
           </CardHeader>
           <CardContent className="space-y-4">
             {/* Skill Proficiencies */}
-            {selectedBackground.skillProficiencies.length > 0 && (
+            {selectedBackground.skills.length > 0 && (
               <div>
                 <h4 className="font-display text-sm mb-2">Skill Proficiencies</h4>
                 <div className="flex flex-wrap gap-2">
-                  {selectedBackground.skillProficiencies.map((skill) => (
+                  {selectedBackground.skills.map((skill) => (
                     <Badge key={skill} variant="secondary" className="bg-amber-900/40 text-amber-200">
                       {skill}
                     </Badge>
@@ -140,11 +121,11 @@ export function BackgroundSelector() {
             )}
 
             {/* Tool Proficiencies */}
-            {selectedBackground.toolProficiencies && selectedBackground.toolProficiencies.length > 0 && (
+            {selectedBackground.tools && selectedBackground.tools.length > 0 && (
               <div>
                 <h4 className="font-display text-sm mb-2">Tool Proficiencies</h4>
                 <div className="flex flex-wrap gap-2">
-                  {selectedBackground.toolProficiencies.map((tool) => (
+                  {selectedBackground.tools.map((tool) => (
                     <Badge key={tool} variant="secondary" className="bg-amber-900/40 text-amber-200">
                       {tool}
                     </Badge>
@@ -154,36 +135,35 @@ export function BackgroundSelector() {
             )}
 
             {/* Languages */}
-            {selectedBackground.languages > 0 && (
+            {selectedBackground.languages && selectedBackground.languages !== "None" && (
               <div>
                 <h4 className="font-display text-sm mb-2">Languages</h4>
                 <p className="text-sm text-muted-foreground">
-                  Choose {selectedBackground.languages} additional language{selectedBackground.languages > 1 ? "s" : ""}
+                  {selectedBackground.languages}
                 </p>
               </div>
             )}
 
-            {/* Equipment */}
-            {selectedBackground.equipment.length > 0 && (
+            {/* Features */}
+            {selectedBackground.features && selectedBackground.features.length > 0 && (
               <div>
-                <h4 className="font-display text-sm mb-2">Starting Equipment</h4>
-                <div className="flex flex-wrap gap-2">
-                  {selectedBackground.equipment.map((item) => (
-                    <Badge key={item} variant="secondary" className="bg-amber-900/40 text-amber-200">
-                      {item}
-                    </Badge>
-                  ))}
-                </div>
+                <h4 className="font-display text-sm mb-2">Features</h4>
+                {selectedBackground.features.map((feature, index) => (
+                  <div key={index} className="mb-2">
+                    <h5 className="text-sm font-semibold text-amber-400">{feature.name}</h5>
+                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  </div>
+                ))}
               </div>
             )}
 
-            {/* Feature */}
-            {selectedBackground.feature.name && (
-              <div>
-                <h4 className="font-display text-sm mb-2">Feature: {selectedBackground.feature.name}</h4>
-                <p className="text-sm text-muted-foreground">{selectedBackground.feature.description}</p>
-              </div>
-            )}
+            {/* Source */}
+            <div>
+              <h4 className="font-display text-sm mb-2">Source</h4>
+              <Badge variant="outline" className="text-xs">
+                {selectedBackground.source}
+              </Badge>
+            </div>
           </CardContent>
         </Card>
       )}
