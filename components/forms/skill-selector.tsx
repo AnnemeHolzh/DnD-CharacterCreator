@@ -14,11 +14,7 @@ import { useMemo, useState, useEffect } from "react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertTriangle, CheckCircle, Lock, BookOpen, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
-
-// Mock data for tools and languages
-const tools = [
-  "Artisan's Tools",
-]
+import { ToolSelector } from "./tool-selector"
 
 const languages = [
   "Common",
@@ -434,31 +430,7 @@ export function SkillSelector() {
         </TabsContent>
 
         <TabsContent value="tools">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg font-display">Tool Proficiencies</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                {tools.map((tool) => (
-                  <div key={tool} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={tool}
-                      onCheckedChange={(checked) => {
-                        // Handle tool proficiency change
-                      }}
-                    />
-                    <label
-                      htmlFor={tool}
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      {tool}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <ToolSelector />
         </TabsContent>
 
         <TabsContent value="languages">

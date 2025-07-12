@@ -126,6 +126,7 @@ export const CharacterSchema = z.object({
   }).optional(),
   savingThrowProficiencies: z.array(z.string()).optional(),
   skills: z.array(z.string()).optional(),
+  tools: z.array(z.string()).optional(),
   proficiencies: z.array(z.string()).optional(),
   equipment: z.array(z.any()).optional(),
   spells: z.array(z.string()).optional(),
