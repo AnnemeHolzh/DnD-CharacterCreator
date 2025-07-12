@@ -3,6 +3,7 @@ export interface Feat {
   source: string;
   prereqs: string;
   benefits: string;
+  asi?: string[]; // Ability Score Increases - array of ability scores that get +1
 }
 
 export const feats: Feat[] = [
@@ -10,115 +11,134 @@ export const feats: Feat[] = [
     name: "Actor",
     source: "Player's Handbook",
     prereqs: "Charisma 13",
-    benefits: "Increase Charisma by 1 (max 20); advantage on Deception and Performance checks to impersonate; mimic speech or sounds"
+    benefits: "Increase Charisma by 1 (max 20); advantage on Deception and Performance checks to impersonate; mimic speech or sounds",
+    asi: ["charisma"]
   },
   {
     name: "Alert",
     source: "Player's Handbook",
     prereqs: "None",
-    benefits: "Cannot be surprised while conscious; +5 bonus to initiative; enemies never get advantage on attacks from being hidden"
+    benefits: "Cannot be surprised while conscious; +5 bonus to initiative; enemies never get advantage on attacks from being hidden",
+    asi: []
   },
   {
     name: "Athlete",
     source: "Player's Handbook",
     prereqs: "None",
-    benefits: "Increase Strength or Dexterity by 1; standing up from prone costs only 5 ft; climbing costs no extra movement; long jumps and high jumps with 5 ft running start"
+    benefits: "Increase Strength or Dexterity by 1; standing up from prone costs only 5 ft; climbing costs no extra movement; long jumps and high jumps with 5 ft running start",
+    asi: ["strength", "dexterity"] // Player chooses one
   },
   {
     name: "Charger",
     source: "Player's Handbook",
     prereqs: "None",
-    benefits: "If you Dash and then Attack, you can bonus-action attack or shove; if you moved ≥10 ft straight, you deal +5 damage or push target 10 ft"
+    benefits: "If you Dash and then Attack, you can bonus-action attack or shove; if you moved ≥10 ft straight, you deal +5 damage or push target 10 ft",
+    asi: []
   },
   {
     name: "Crossbow Expert",
     source: "Player's Handbook",
     prereqs: "None",
-    benefits: "Ignore the loading property of crossbows you use; no disadvantage on ranged attacks within 5 ft; if you attack with a one-handed weapon, bonus-action attack with hand crossbow"
+    benefits: "Ignore the loading property of crossbows you use; no disadvantage on ranged attacks within 5 ft; if you attack with a one-handed weapon, bonus-action attack with hand crossbow",
+    asi: []
   },
   {
     name: "Defensive Duelist",
     source: "Player's Handbook",
     prereqs: "Dexterity 13",
-    benefits: "When wielding a finesse weapon and hit by a melee attack, use reaction to add proficiency bonus to AC against that attack"
+    benefits: "When wielding a finesse weapon and hit by a melee attack, use reaction to add proficiency bonus to AC against that attack",
+    asi: []
   },
   {
     name: "Dual Wielder",
     source: "Player's Handbook",
     prereqs: "None",
-    benefits: "You gain +1 bonus to AC if holding separate melee weapons in each hand; fight with two weapons even if they're not light; draw or stow two one-handed weapons at once"
+    benefits: "You gain +1 bonus to AC if holding separate melee weapons in each hand; fight with two weapons even if they're not light; draw or stow two one-handed weapons at once",
+    asi: []
   },
   {
     name: "Dungeon Delver",
     source: "Player's Handbook",
     prereqs: "None",
-    benefits: "Advantage on Perception/Investigation to notice secret doors; advantage on saving throws against traps; resistance to trap damage; no speed penalty to passive Perception"
+    benefits: "Advantage on Perception/Investigation to notice secret doors; advantage on saving throws against traps; resistance to trap damage; no speed penalty to passive Perception",
+    asi: []
   },
   {
     name: "Durable",
     source: "Player's Handbook",
     prereqs: "None",
-    benefits: "Increase Constitution by 1; when you roll a Hit Die, you regain at least 2 HP (twice your Con modifier)"
+    benefits: "Increase Constitution by 1; when you roll a Hit Die, you regain at least 2 HP (twice your Con modifier)",
+    asi: ["constitution"]
   },
   {
     name: "Elemental Adept",
     source: "Player's Handbook",
     prereqs: "Spellcasting ability",
-    benefits: "Choose acid, cold, fire, lightning, or thunder. Spells of that type ignore resistance; on damage rolls, treat any 1 as 2"
+    benefits: "Choose acid, cold, fire, lightning, or thunder. Spells of that type ignore resistance; on damage rolls, treat any 1 as 2",
+    asi: []
   },
   {
     name: "Grappler",
     source: "Player's Handbook",
     prereqs: "Strength 13",
-    benefits: "Advantage on attack rolls against a creature you grapple; as an action, you can pin a grappled creature, restraining both on success"
+    benefits: "Advantage on attack rolls against a creature you grapple; as an action, you can pin a grappled creature, restraining both on success",
+    asi: []
   },
   {
     name: "Great Weapon Master",
     source: "Player's Handbook",
     prereqs: "Strength 13",
-    benefits: "On a crit or kill with a melee weapon, you may bonus-action attack; before attacking with a heavy weapon, take -5 to hit for +10 damage if you hit"
+    benefits: "On a crit or kill with a melee weapon, you may bonus-action attack; before attacking with a heavy weapon, take -5 to hit for +10 damage if you hit",
+    asi: []
   },
   {
     name: "Healer",
     source: "Player's Handbook",
     prereqs: "None",
-    benefits: "Using a healer's kit: stabilize a dying creature and grant 1 HP; as action, expend kit to restore 1d6+4 HP plus additional HP based on target's Hit Dice"
+    benefits: "Using a healer's kit: stabilize a dying creature and grant 1 HP; as action, expend kit to restore 1d6+4 HP plus additional HP based on target's Hit Dice",
+    asi: []
   },
   {
     name: "Heavily Armored",
     source: "Player's Handbook",
     prereqs: "Medium armor proficiency",
-    benefits: "Increase Strength by 1; gain proficiency with heavy armor"
+    benefits: "Increase Strength by 1; gain proficiency with heavy armor",
+    asi: ["strength"]
   },
   {
     name: "Heavy Armor Master",
     source: "Player's Handbook",
     prereqs: "Heavy armor proficiency",
-    benefits: "Increase Strength by 1; while wearing heavy armor, reduce bludgeoning/piercing/slashing damage from nonmagical attacks by 3"
+    benefits: "Increase Strength by 1; while wearing heavy armor, reduce bludgeoning/piercing/slashing damage from nonmagical attacks by 3",
+    asi: ["strength"]
   },
   {
     name: "Inspiring Leader",
     source: "Player's Handbook",
     prereqs: "Charisma 13",
-    benefits: "Spend 10 minutes inspiring up to six creatures (including yourself). Each gains temporary HP equal to your level + Charisma modifier"
+    benefits: "Spend 10 minutes inspiring up to six creatures (including yourself). Each gains temporary HP equal to your level + Charisma modifier",
+    asi: []
   },
   {
     name: "Keen Mind",
     source: "Player's Handbook",
     prereqs: "None",
-    benefits: "Increase Intelligence by 1; always know which way is north and how many hours till next sunrise/sunset; remember anything seen or heard in the past month"
+    benefits: "Increase Intelligence by 1; always know which way is north and how many hours till next sunrise/sunset; remember anything seen or heard in the past month",
+    asi: ["intelligence"]
   },
   {
     name: "Lightly Armored",
     source: "Player's Handbook",
     prereqs: "None",
-    benefits: "Increase Strength or Dexterity by 1; gain proficiency with light armor"
+    benefits: "Increase Strength or Dexterity by 1; gain proficiency with light armor",
+    asi: ["strength", "dexterity"] // Player chooses one
   },
   {
     name: "Linguist",
     source: "Player's Handbook",
     prereqs: "None",
-    benefits: "Increase Intelligence by 1; learn three languages; create ciphers others cannot decode without your key"
+    benefits: "Increase Intelligence by 1; learn three languages; create ciphers others cannot decode without your key",
+    asi: ["intelligence"]
   }
 ];
 
@@ -184,4 +204,59 @@ export function getFeatLevelsForClass(className: string): number[] {
 // Function to get all available feats that meet prerequisites
 export function getEligibleFeats(abilityScores: Record<string, number>, characterClasses: any[], proficiencies: string[]): Feat[] {
   return feats.filter(feat => meetsFeatPrerequisites(feat, abilityScores, characterClasses, proficiencies));
+}
+
+// Function to get ASI from selected feats with specific choices
+export function getFeatASIs(selectedFeatNames: string[], featASIChoices?: Record<string, string>): Record<string, number> {
+  const asiBonuses: Record<string, number> = {
+    strength: 0,
+    dexterity: 0,
+    constitution: 0,
+    intelligence: 0,
+    wisdom: 0,
+    charisma: 0
+  };
+  
+  selectedFeatNames.forEach(featName => {
+    const feat = feats.find(f => f.name === featName);
+    if (feat && feat.asi) {
+      if (feat.asi.length === 1) {
+        // Single ASI option - always apply
+        const ability = feat.asi[0];
+        if (ability in asiBonuses) {
+          asiBonuses[ability]++;
+        }
+      } else if (feat.asi.length > 1 && featASIChoices) {
+        // Multiple ASI options - use the chosen one
+        const chosenAbility = featASIChoices[featName];
+        if (chosenAbility && chosenAbility in asiBonuses) {
+          asiBonuses[chosenAbility]++;
+        }
+      }
+    }
+  });
+  
+  return asiBonuses;
+}
+
+// Function to get feats that provide ASI for a specific ability
+export function getFeatsWithASI(ability: string): Feat[] {
+  return feats.filter(feat => feat.asi && feat.asi.includes(ability));
+}
+
+// Function to check if a feat provides ASI
+export function hasASI(feat: Feat): boolean {
+  return !!(feat.asi && feat.asi.length > 0);
+}
+
+// Function to get total ASI from all selected feats
+export function getTotalFeatASIs(selectedFeatNames: string[]): number {
+  let total = 0;
+  selectedFeatNames.forEach(featName => {
+    const feat = feats.find(f => f.name === featName);
+    if (feat && feat.asi) {
+      total += feat.asi.length;
+    }
+  });
+  return total;
 } 

@@ -51,6 +51,7 @@ export default function CharacterCreationForm() {
       equipment: [],
       spells: [],
       feats: [],
+      featASIChoices: {},
       hp: 0,
       xp: 0,
       levelProgression: [],

@@ -130,6 +130,7 @@ export const CharacterSchema = z.object({
   equipment: z.array(z.any()).optional(),
   spells: z.array(z.string()).optional(),
   feats: z.array(z.string()).optional(),
+  featASIChoices: z.record(z.string()).optional(),
   hp: z.number().optional(),
   xp: z.number().optional(),
 

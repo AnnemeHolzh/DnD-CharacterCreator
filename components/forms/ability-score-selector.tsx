@@ -12,11 +12,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch"
 import { calculateModifier, calculateTotalAbilityScoreIncreases, hasFlexibleAbilityScoreAssignment, getFlexibleBonusCount, validateCustomAbilityScoreAssignment } from "@/lib/utils/character-utils"
 import { Dice6, Shuffle, Calculator, Settings, Plus, Minus } from "lucide-react"
+import { getFeatASIs, getAvailableFeats } from "@/lib/data/feats"
+import { ASISelectionDialog } from "./asi-selection-dialog"
+import { ASIChoiceDialog } from "./asi-choice-dialog"
 
 export function AbilityScoreSelector() {
   const { control, setValue, getValues } = useFormContext()
   const [rolledScores, setRolledScores] = useState<number[]>([])
   const [isRolling, setIsRolling] = useState(false)
+  const [asiDialogOpen, setAsiDialogOpen] = useState(false)
+  const [pendingFeatAsi, setPendingFeatAsi] = useState<{ featName: string; asiOptions: string[] } | null>(null)
+  const [asiChoiceDialogOpen, setAsiChoiceDialogOpen] = useState(false)
+  const [asiChoices, setAsiChoices] = useState<Array<{ choice: "single" | "double", abilities: string[] }>>([])
+  const [featASIChoices, setFeatASIChoices] = useState<Record<string, string>>({})
 
   const abilityScoreMethod = useWatch({ control, name: "abilityScoreMethod" }) || "standard-array"
   const abilityScores = useWatch({ control, name: "abilityScores" }) || {}
@@ -24,6 +32,11 @@ export function AbilityScoreSelector() {
   const subrace = useWatch({ control, name: "subrace" })
   const assignmentMode = useWatch({ control, name: "abilityScoreAssignmentMode" }) || "standard"
   const customAssignments = useWatch({ control, name: "customAbilityScoreAssignments" }) || {}
+  const selectedFeats = useWatch({ control, name: "feats" }) || []
+  const characterClasses = useWatch({ control, name: "classes" }) || []
+  const characterLevel = useWatch({ control, name: "level" }) || 1
+  const proficiencies = useWatch({ control, name: "proficiencies" }) || []
+  const formFeatASIChoices = useWatch({ control, name: "featASIChoices" }) || {}
 
   const abilities = [
     { id: "strength", name: "Strength", abbr: "STR" },
@@ -135,6 +148,43 @@ export function AbilityScoreSelector() {
     ? rolledScores.filter((score) => !usedRolledScores.includes(score))
     : []
 
+  // Calculate feat ASI bonuses
+  const featASIs = useMemo(() => {
+    return getFeatASIs(selectedFeats, formFeatASIChoices)
+  }, [selectedFeats, formFeatASIChoices])
+
+  // Calculate available feats for ASI choice
+  const availableFeats = useMemo(() => {
+    return getAvailableFeats(characterLevel, characterClasses, abilityScores, proficiencies)
+  }, [characterLevel, characterClasses, abilityScores, proficiencies])
+
+  // Calculate remaining feats after ASI choices
+  const remainingFeats = availableFeats - asiChoices.length
+
+  // Calculate ASI bonuses from user choices
+  const asiBonuses = useMemo(() => {
+    const bonuses: Record<string, number> = {
+      strength: 0,
+      dexterity: 0,
+      constitution: 0,
+      intelligence: 0,
+      wisdom: 0,
+      charisma: 0
+    }
+    
+    asiChoices.forEach(choice => {
+      choice.abilities.forEach(ability => {
+        if (choice.choice === "single") {
+          bonuses[ability] += 2
+        } else {
+          bonuses[ability] += 1
+        }
+      })
+    })
+    
+    return bonuses
+  }, [asiChoices])
+
   // Calculate total ability scores with bonuses
   const totalAbilityScores = useMemo(() => {
     const baseScores = abilityScores || {}
@@ -155,11 +205,17 @@ export function AbilityScoreSelector() {
         })
       }
       
+      // Add feat ASI bonuses
+      bonus += featASIs[ability.id] || 0
+      
+      // Add user ASI choices
+      bonus += asiBonuses[ability.id] || 0
+      
       totalScores[ability.id] = baseScore + bonus
     })
     
     return totalScores
-  }, [abilityScores, raceSubraceBonuses, assignmentMode, customAssignments])
+  }, [abilityScores, raceSubraceBonuses, assignmentMode, customAssignments, featASIs, asiBonuses])
 
   // Validation logic
   const validateAbility = (value: number, abilityId: string) => {
@@ -446,6 +502,99 @@ export function AbilityScoreSelector() {
         </Card>
       )}
 
+      {/* ASI vs Feat Choice */}
+      {remainingFeats > 0 && (
+        <Card className="border-amber-800/30 bg-black/20 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="font-display text-lg">Ability Score Improvements</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="text-sm text-muted-foreground">
+              You have {remainingFeats} ability score improvement(s) remaining. You can either:
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card className="border-green-800/30 bg-green-900/10">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-sm font-display text-green-400">Option 1: Increase Two Abilities</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-sm text-green-300 mb-3">
+                    Increase one ability score by 2, or increase two ability scores by 1 each.
+                  </div>
+                  <Button
+                    variant="outline"
+                    className="border-green-800/30 bg-green-900/20 hover:bg-green-900/40 text-green-300"
+                    onClick={() => setAsiChoiceDialogOpen(true)}
+                  >
+                    Choose ASI
+                  </Button>
+                </CardContent>
+              </Card>
+              
+              <Card className="border-blue-800/30 bg-blue-900/10">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-sm font-display text-blue-400">Option 2: Take a Feat</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-sm text-blue-300 mb-3">
+                    Choose a feat instead of an ability score improvement.
+                  </div>
+                  <div className="text-xs text-blue-400">
+                    (Feat selection is available in the Feats section)
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* ASI Choices Summary */}
+      {asiChoices.length > 0 && (
+        <Card className="border-purple-800/30 bg-purple-900/10">
+          <CardHeader>
+            <CardTitle className="font-display text-lg text-purple-400">ASI Choices Made</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              {asiChoices.map((choice, index) => (
+                <div key={index} className="text-sm">
+                  <span className="text-purple-300">Choice {index + 1}:</span>
+                  <span className="text-purple-400 ml-2">
+                    {choice.choice === "single" 
+                      ? `+2 to ${choice.abilities[0]}`
+                      : `+1 to ${choice.abilities.join(" and ")}`
+                    }
+                  </span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Feat ASI Summary */}
+      {Object.values(featASIs).some(bonus => bonus > 0) && (
+        <Card className="border-green-800/30 bg-green-900/10">
+          <CardHeader>
+            <CardTitle className="font-display text-lg text-green-400">Feat Ability Score Bonuses</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              {Object.entries(featASIs).map(([ability, bonus]) => 
+                bonus > 0 ? (
+                  <Badge key={ability} variant="outline" className="justify-between border-green-600/50 bg-green-900/20">
+                    <span className="text-green-300 capitalize">{ability}</span>
+                    <span className="text-green-400 font-semibold">+{bonus}</span>
+                  </Badge>
+                ) : null
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Ability Score Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {abilities.map((ability) => (
@@ -471,7 +620,10 @@ export function AbilityScoreSelector() {
                 })
               }
               
-              const totalScore = baseScore + bonus
+              // Add ASI bonuses to the total
+              const featAsiBonus = featASIs[ability.id] || 0
+              const userAsiBonus = asiBonuses[ability.id] || 0
+              const totalScore = baseScore + bonus + featAsiBonus + userAsiBonus
               const modifier = calculateModifier(totalScore)
               const modifierText = modifier >= 0 ? `+${modifier}` : modifier
 
@@ -486,11 +638,11 @@ export function AbilityScoreSelector() {
                       <div className="flex items-center gap-2">
                         {abilityScoreMethod === "roll" ? (
                           <select
-                            value={field.value || 0}
+                            value={field.value || ""}
                             onChange={(e) => field.onChange(Number.parseInt(e.target.value) || 0)}
                             className="flex h-10 w-full rounded-md border border-amber-800/30 bg-black/20 backdrop-blur-sm px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                           >
-                            <option value={0}>Select Rolled Score</option>
+                            <option value="">Select Rolled Score</option>
                             {availableRolledScores.map((score) => (
                               <option key={score} value={score}>
                                 {score}
@@ -499,11 +651,11 @@ export function AbilityScoreSelector() {
                           </select>
                         ) : abilityScoreMethod === "standard-array" ? (
                           <select
-                            value={field.value || 0}
+                            value={field.value || ""}
                             onChange={(e) => field.onChange(Number.parseInt(e.target.value) || 0)}
                             className="flex h-10 w-full rounded-md border border-amber-800/30 bg-black/20 backdrop-blur-sm px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                           >
-                            <option value={0}>Select Value</option>
+                            <option value="">Select Value</option>
                             {availableStandardArrayValues.map((value) => (
                               <option key={value} value={value}>
                                 {value}
@@ -585,10 +737,25 @@ export function AbilityScoreSelector() {
                         </div>
                       </div>
                       
-                      {/* Show bonus if applicable */}
-                      {bonus > 0 && (
+                      {/* Show bonus breakdown if applicable */}
+                      {(raceSubraceBonuses[ability.id] || 0) > 0 && (
                         <div className="text-xs text-amber-400 mt-1">
-                          Base: {baseScore} + Bonus: +{bonus} = {totalScore}
+                          Race/Subrace: +{raceSubraceBonuses[ability.id] || 0}
+                        </div>
+                      )}
+                      {(featASIs[ability.id] || 0) > 0 && (
+                        <div className="text-xs text-green-400 mt-1">
+                          Feat ASI: +{featASIs[ability.id] || 0}
+                        </div>
+                      )}
+                      {(asiBonuses[ability.id] || 0) > 0 && (
+                        <div className="text-xs text-purple-400 mt-1">
+                          ASI Choice: +{asiBonuses[ability.id] || 0}
+                        </div>
+                      )}
+                      {(bonus > 0 || featAsiBonus > 0 || userAsiBonus > 0) && (
+                        <div className="text-xs text-blue-400 mt-1">
+                          Total: {baseScore} + {bonus + featAsiBonus + userAsiBonus} = {totalScore}
                         </div>
                       )}
                     </div>
@@ -603,6 +770,28 @@ export function AbilityScoreSelector() {
           />
         ))}
       </div>
+
+      {/* ASI Selection Dialog */}
+      <ASISelectionDialog
+        isOpen={asiDialogOpen}
+        onClose={() => setAsiDialogOpen(false)}
+        featName={pendingFeatAsi?.featName || ""}
+        asiOptions={pendingFeatAsi?.asiOptions || []}
+        onConfirm={(selectedAbility) => {
+          // TODO: Handle ASI selection
+          console.log("Selected ASI:", selectedAbility)
+        }}
+      />
+
+      {/* ASI Choice Dialog */}
+      <ASIChoiceDialog
+        isOpen={asiChoiceDialogOpen}
+        onClose={() => setAsiChoiceDialogOpen(false)}
+        onConfirm={(choice, abilities) => {
+          setAsiChoices([...asiChoices, { choice, abilities }])
+          setAsiChoiceDialogOpen(false)
+        }}
+      />
     </div>
   )
 }
