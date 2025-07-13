@@ -5,6 +5,10 @@ import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/comp
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { FantasyFormSection } from "@/components/ui/fantasy-form-section"
 import { Textarea } from "@/components/ui/textarea"
+import { WeaponSelector } from "./weapon-selector"
+import { ArmorSelector } from "./armor-selector"
+import { ItemSelector } from "./item-selector"
+import { WealthSelector } from "./wealth-selector"
 
 export function EquipmentSelector() {
   const { control } = useFormContext()
@@ -28,83 +32,19 @@ export function EquipmentSelector() {
         </TabsList>
 
         <TabsContent value="weapons">
-          <FormField
-            control={control}
-            name="weapons"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-display text-lg">Weapons</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="List your character's weapons..."
-                    className="min-h-[120px] border-amber-800/30 bg-black/20 backdrop-blur-sm"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <WeaponSelector />
         </TabsContent>
 
         <TabsContent value="armor">
-          <FormField
-            control={control}
-            name="armor"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-display text-lg">Armor</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="List your character's armor..."
-                    className="min-h-[120px] border-amber-800/30 bg-black/20 backdrop-blur-sm"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <ArmorSelector />
         </TabsContent>
 
         <TabsContent value="items">
-          <FormField
-            control={control}
-            name="items"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-display text-lg">Items</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="List your character's items..."
-                    className="min-h-[120px] border-amber-800/30 bg-black/20 backdrop-blur-sm"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <ItemSelector />
         </TabsContent>
 
         <TabsContent value="wealth">
-          <FormField
-            control={control}
-            name="wealth"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-display text-lg">Wealth</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="List your character's wealth and currency..."
-                    className="min-h-[120px] border-amber-800/30 bg-black/20 backdrop-blur-sm"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <WealthSelector />
         </TabsContent>
       </Tabs>
     </FantasyFormSection>
