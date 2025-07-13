@@ -16,6 +16,8 @@ import { AlertTriangle, CheckCircle, Lock, BookOpen, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ToolSelector } from "./tool-selector"
 import { LanguageSelector } from "./language-selector"
+import { useTools } from "@/hooks/use-tools"
+import { useLanguages } from "@/hooks/use-languages"
 
 export function SkillSelector() {
   const { control, setValue } = useFormContext()
@@ -33,6 +35,16 @@ export function SkillSelector() {
 
   // State for skill selection mode
   const [skillMode, setSkillMode] = useState<"class" | "global">("class")
+
+  // Prefetch tools and languages data
+  const { prefetchTools } = useTools()
+  const { prefetchLanguages } = useLanguages()
+
+  // Prefetch data when component mounts
+  useEffect(() => {
+    prefetchTools()
+    prefetchLanguages()
+  }, [prefetchTools, prefetchLanguages])
 
   const abilities = [
     { id: "strength", name: "Strength", abbr: "STR" },

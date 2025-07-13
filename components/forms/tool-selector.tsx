@@ -6,26 +6,104 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { AlertTriangle, Loader2, RefreshCw } from "lucide-react"
+import { AlertTriangle, Loader2, RefreshCw, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTools } from "@/hooks/use-tools"
-import { useState } from "react"
+import { useState, useEffect, useMemo } from "react"
+import { calculateToolProficiencies, validateToolSelections, ToolProficiencyData, isArtisansTool, filterArtisansTools, calculateToolChoiceAllowances } from "@/lib/utils/character-utils"
 
 export function ToolSelector() {
   const { control, setValue } = useFormContext()
   const selectedTools = useWatch({ control, name: "tools" }) || []
+  const race = useWatch({ control, name: "race" })
+  const subrace = useWatch({ control, name: "subrace" })
+  const background = useWatch({ control, name: "background" })
+  const characterClasses = useWatch({ control, name: "classes" }) || []
   const { tools, toolCategories, loading, error, refreshTools } = useTools()
   const [refreshing, setRefreshing] = useState(false)
 
+  // Calculate tool proficiency data
+  const toolData = useMemo(() => {
+    return calculateToolProficiencies(
+      characterClasses,
+      race || "",
+      subrace || "",
+      background || "",
+      selectedTools
+    )
+  }, [characterClasses, race, subrace, background, selectedTools])
+
+  // Auto-select fixed tools when they change
+  useEffect(() => {
+    if (toolData.fixedTools.length > 0) {
+      const newSelectedTools = [...selectedTools]
+      let hasChanges = false
+      
+      toolData.fixedTools.forEach(toolId => {
+        if (!newSelectedTools.includes(toolId)) {
+          newSelectedTools.push(toolId)
+          hasChanges = true
+        }
+      })
+      
+      if (hasChanges) {
+        setValue("tools", newSelectedTools)
+      }
+    }
+  }, [toolData.fixedTools, selectedTools, setValue])
+
+  // Filter tools to only show artisan's tools
+  const filteredToolCategories = useMemo(() => {
+    const filtered: Record<string, any[]> = {}
+    
+    Object.entries(toolCategories).forEach(([category, categoryTools]) => {
+      const artisansTools = categoryTools.filter(tool => isArtisansTool(tool.name))
+      if (artisansTools.length > 0) {
+        filtered[category] = artisansTools
+      }
+    })
+    
+    return filtered
+  }, [toolCategories])
+
+  // Filter fixed tools to only include artisan's tools
+  const filteredFixedTools = useMemo(() => {
+    return filterArtisansTools(toolData.fixedTools, tools)
+  }, [toolData.fixedTools, tools])
+
+  // Filter selected tools to only include artisan's tools
+  const filteredSelectedTools = useMemo(() => {
+    return filterArtisansTools(selectedTools, tools)
+  }, [selectedTools, tools])
+
+  // Calculate tool choice allowances
+  const toolChoiceAllowances = useMemo(() => {
+    return calculateToolChoiceAllowances(characterClasses, race || "", subrace || "", background || "")
+  }, [characterClasses, race, subrace, background])
+
+  // Validate tool selections
+  const validation = useMemo(() => {
+    return validateToolSelections(toolData, selectedTools, tools, characterClasses, race || "", subrace || "", background || "")
+  }, [toolData, selectedTools, tools, characterClasses, race, subrace, background])
+
   const handleToolToggle = (toolIndex: string, isSelected: boolean) => {
     let newSelectedTools = [...selectedTools]
+    
+    // Only allow artisan's tools
+    const tool = tools.find(t => t.index === toolIndex)
+    if (tool && !isArtisansTool(tool.name)) {
+      return // Don't allow non-artisan's tools
+    }
     
     if (isSelected) {
       if (!newSelectedTools.includes(toolIndex)) {
         newSelectedTools.push(toolIndex)
       }
     } else {
-      newSelectedTools = newSelectedTools.filter(t => t !== toolIndex)
+      // Don't allow removing fixed tools
+      if (!toolData.fixedTools.includes(toolIndex)) {
+        newSelectedTools = newSelectedTools.filter(t => t !== toolIndex)
+      }
     }
     
     setValue("tools", newSelectedTools)
@@ -101,26 +179,62 @@ export function ToolSelector() {
           <CardTitle className="font-display text-lg">Tool Proficiency Summary</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          {selectedTools.length > 0 ? (
+          {/* Fixed Proficiencies */}
+          {filteredFixedTools.length > 0 && (
             <div>
-              <h4 className="font-display text-sm mb-2 text-amber-400">Selected Tools</h4>
+              <h4 className="font-display text-sm mb-2 text-amber-400">Fixed Proficiencies</h4>
               <div className="flex flex-wrap gap-2">
-                {selectedTools.map((toolIndex: string) => (
+                {filteredFixedTools.map((toolId) => (
+                  <Badge key={toolId} variant="secondary" className="bg-amber-900/40 text-amber-200">
+                    {getToolDisplayName(toolId)}
+                    <Lock className="inline ml-1 h-3 w-3" />
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Tool Choice Allowances */}
+          {toolChoiceAllowances > 0 && (
+            <div>
+              <h4 className="font-display text-sm mb-2 text-blue-400">Tool Choice Allowances</h4>
+              <p className="text-sm text-muted-foreground">
+                You can choose {toolChoiceAllowances} additional artisan's tool{toolChoiceAllowances !== 1 ? 's' : ''} from your race, background, or class.
+              </p>
+            </div>
+          )}
+
+          {/* Selected Tools */}
+          {filteredSelectedTools.length > 0 && (
+            <div>
+              <h4 className="font-display text-sm mb-2">Selected Tools</h4>
+              <div className="flex flex-wrap gap-2">
+                {filteredSelectedTools.map((toolIndex: string) => (
                   <Badge key={toolIndex} variant="secondary" className="bg-amber-900/40 text-amber-200">
                     {getToolDisplayName(toolIndex)}
                   </Badge>
                 ))}
               </div>
             </div>
-          ) : (
-            <p className="text-sm text-muted-foreground">No tools selected</p>
+          )}
+
+          {/* Validation Errors */}
+          {!validation.isValid && (
+            <Alert variant="destructive">
+              <AlertTriangle className="h-4 w-4" />
+              <AlertDescription>
+                {validation.errors.map((error, index) => (
+                  <div key={index}>{error}</div>
+                ))}
+              </AlertDescription>
+            </Alert>
           )}
         </CardContent>
       </Card>
 
       {/* Tool Categories */}
       <div className="space-y-4">
-        {Object.entries(toolCategories).map(([category, categoryTools]) => (
+        {Object.entries(filteredToolCategories).map(([category, categoryTools]) => (
           <Card key={category}>
             <CardHeader>
               <CardTitle className="text-lg font-display">{category}</CardTitle>
@@ -129,6 +243,7 @@ export function ToolSelector() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {categoryTools.map((tool) => {
                   const isSelected = selectedTools.includes(tool.index)
+                  const isFixed = toolData.fixedTools.includes(tool.index)
                   
                   return (
                     <TooltipProvider key={tool.index}>
@@ -139,16 +254,25 @@ export function ToolSelector() {
                               id={tool.index}
                               checked={isSelected}
                               onCheckedChange={(checked) => handleToolToggle(tool.index, checked as boolean)}
+                              disabled={isFixed}
                             />
                             <label
                               htmlFor={tool.index}
-                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer flex-1"
+                              className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer flex-1 ${
+                                isFixed ? "text-amber-400" : ""
+                              }`}
                             >
                               {tool.name}
+                              {isFixed && <Lock className="inline ml-1 h-3 w-3" />}
                             </label>
                             {isSelected && (
                               <Badge variant="secondary" className="ml-2 text-xs bg-green-900/40 text-green-200">
                                 Selected
+                              </Badge>
+                            )}
+                            {isFixed && (
+                              <Badge variant="secondary" className="ml-1 text-xs bg-amber-900/40 text-amber-200">
+                                Fixed
                               </Badge>
                             )}
                           </div>
@@ -157,6 +281,9 @@ export function ToolSelector() {
                           <p>Category: {category}</p>
                           {tool.description && (
                             <p className="max-w-xs">{tool.description}</p>
+                          )}
+                          {isFixed && (
+                            <p className="text-amber-400">Fixed proficiency from race or background</p>
                           )}
                         </TooltipContent>
                       </Tooltip>

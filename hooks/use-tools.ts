@@ -9,14 +9,16 @@ export interface UseToolsReturn {
   error: string | null
   fetchToolDetail: (index: string) => Promise<ToolDetail>
   refreshTools: () => Promise<void>
+  prefetchTools: () => Promise<void>
 }
 
 export function useTools(): UseToolsReturn {
   const [tools, setTools] = useState<Tool[]>([])
   const [toolCategories, setToolCategories] = useState<Record<string, Tool[]>>({})
   const [toolDetails, setToolDetails] = useState<Record<string, ToolDetail>>({})
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [hasLoaded, setHasLoaded] = useState(false)
 
   const fetchTools = async () => {
     try {
@@ -27,6 +29,7 @@ export function useTools(): UseToolsReturn {
       
       setTools(fetchedTools)
       setToolCategories(categories)
+      setHasLoaded(true)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch tools')
       console.error('Error in useTools:', err)
@@ -58,8 +61,17 @@ export function useTools(): UseToolsReturn {
     await fetchTools()
   }
 
+  const prefetchTools = async () => {
+    if (!hasLoaded && !loading) {
+      await fetchTools()
+    }
+  }
+
+  // Only fetch on mount if not already loaded
   useEffect(() => {
-    fetchTools()
+    if (!hasLoaded) {
+      fetchTools()
+    }
   }, [])
 
   return {
@@ -69,6 +81,7 @@ export function useTools(): UseToolsReturn {
     loading,
     error,
     fetchToolDetail,
-    refreshTools
+    refreshTools,
+    prefetchTools
   }
 } 

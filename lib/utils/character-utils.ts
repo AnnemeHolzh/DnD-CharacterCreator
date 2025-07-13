@@ -393,3 +393,384 @@ export function testSkillProficiencies() {
   
   console.log("=== Test Complete ===")
 }
+
+// Language and Tool proficiency calculation utilities
+export interface LanguageProficiencyData {
+  fixedLanguages: string[]
+  availableLanguages: string[]
+  selectedLanguages: string[]
+}
+
+export interface ToolProficiencyData {
+  fixedTools: string[]
+  availableTools: string[]
+  selectedTools: string[]
+}
+
+// Map language names from races data to API language indices
+export function mapLanguageNameToIndex(languageName: string): string {
+  const languageNameMap: Record<string, string> = {
+    "common": "common",
+    "draconic": "draconic",
+    "dwarvish": "dwarvish",
+    "undercommon": "undercommon",
+    "elvish": "elvish",
+    "gnomish": "gnomish",
+    "halfling": "halfling",
+    "sylvan": "sylvan",
+    "orc": "orc",
+    "infernal": "infernal",
+    "any-one": "any-one"
+  }
+  
+  return languageNameMap[languageName] || languageName.toLowerCase()
+}
+
+// Get class-based tool proficiencies
+export function getClassToolProficiencies(classId: string): string[] {
+  const classData = classes.find(c => c.id === classId)
+  if (!classData) return []
+
+  return classData.toolProficiencies.map(mapToolNameToIndex)
+}
+
+// Get race-based language proficiencies
+export function getRaceLanguageProficiencies(raceId: string, subraceId: string): string[] {
+  const race = races.find(r => r.id === raceId)
+  if (!race) return []
+
+  // Check for subrace-specific languages
+  if (subraceId) {
+    const subrace = race.subraces?.find(s => s.id === subraceId)
+    if (subrace && 'languages' in subrace && Array.isArray(subrace.languages)) {
+      return subrace.languages.map(mapLanguageNameToIndex)
+    }
+  }
+
+  // Check for race-specific languages
+  if ('languages' in race && Array.isArray(race.languages)) {
+    return race.languages.map(mapLanguageNameToIndex)
+  }
+
+  return []
+}
+
+// Get background-based language proficiencies
+export function getBackgroundLanguageProficiencies(backgroundId: string): string[] {
+  const background = backgrounds.find(bg => bg.id === backgroundId)
+  if (!background) return []
+
+  // Handle "any language" or "choice" scenarios
+  if (background.languages === "Two of your choice" || background.languages === "One of your choice" || background.languages === "Any one of your choice") {
+    return [] // These will be handled as available choices
+  }
+
+  // Handle specific languages
+  if (Array.isArray(background.languages)) {
+    return background.languages.map(mapLanguageNameToIndex)
+  }
+
+  // Handle string-based languages (convert to array)
+  if (typeof background.languages === 'string' && background.languages !== "None") {
+    return [background.languages].map(mapLanguageNameToIndex)
+  }
+
+  return []
+}
+
+// Map tool names from backgrounds data to API tool indices
+export function mapToolNameToIndex(toolName: string): string {
+  const toolNameMap: Record<string, string> = {
+    "Disguise kit": "disguise-kit",
+    "Forgery kit": "forgery-kit",
+    "Gaming set": "gaming-set",
+    "Thieves' tools": "thieves-tools",
+    "thieves' tools": "thieves-tools",
+    "Musical instrument": "musical-instrument",
+    "Artisan's tools": "artisans-tools",
+    "artisan's tools": "artisans-tools",
+    "Herbalism kit": "herbalism-kit",
+    "Navigator's tools": "navigators-tools",
+    "Vehicles (water)": "vehicles-water",
+    "Vehicles (land)": "vehicles-land",
+    "Cartographer's tools": "cartographers-tools",
+    "Poisoner's kit": "poisoners-kit",
+    "Fishing tackle": "fishing-tackle",
+    "Carpenter's tools": "carpenters-tools",
+    "Tinker's tools": "tinkers-tools",
+    "tinker's tools": "tinkers-tools",
+    "Mason's tools": "masons-tools",
+    "mason's tools": "masons-tools",
+    "Brewer's supplies": "brewers-supplies",
+    "brewer's supplies": "brewers-supplies",
+    "Smith's tools": "smiths-tools",
+    "smith's tools": "smiths-tools"
+  }
+  
+  return toolNameMap[toolName] || toolName.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, '').replace(/'/g, '')
+}
+
+// Get background-based tool proficiencies
+export function getBackgroundToolProficiencies(backgroundId: string): string[] {
+  const background = backgrounds.find(bg => bg.id === backgroundId)
+  if (!background) return []
+
+  // Tools are always arrays in the backgrounds data
+  const toolNames = Array.isArray(background.tools) ? background.tools : []
+  
+  // Map tool names to API indices
+  return toolNames.map(mapToolNameToIndex)
+}
+
+// Get race-based tool proficiencies
+export function getRaceToolProficiencies(raceId: string, subraceId: string): string[] {
+  const race = races.find(r => r.id === raceId)
+  if (!race) return []
+
+  // Check for subrace-specific tools
+  if (subraceId) {
+    const subrace = race.subraces?.find(s => s.id === subraceId)
+    if (subrace && 'tools' in subrace && Array.isArray(subrace.tools)) {
+      return subrace.tools.map(mapToolNameToIndex)
+    }
+  }
+
+  // Check for race-specific tools
+  if ('tools' in race && Array.isArray(race.tools)) {
+    return race.tools.map(mapToolNameToIndex)
+  }
+
+  return []
+}
+
+// Get background language choices count
+export function getBackgroundLanguageChoices(backgroundId: string): number {
+  const background = backgrounds.find(bg => bg.id === backgroundId)
+  if (!background) return 0
+
+  if (background.languages === "Two of your choice") {
+    return 2
+  }
+  
+  if (background.languages === "One of your choice" || background.languages === "Any one of your choice") {
+    return 1
+  }
+
+  return 0
+}
+
+// Get race language choices count
+export function getRaceLanguageChoices(raceId: string, subraceId: string): number {
+  const race = races.find(r => r.id === raceId)
+  if (!race) return 0
+
+  // Check for "any-one" in race languages
+  if ('languages' in race && Array.isArray(race.languages) && race.languages.includes('any-one')) {
+    return 1
+  }
+
+  // Check for "any-one" in subrace languages
+  if (subraceId) {
+    const subrace = race.subraces?.find(s => s.id === subraceId)
+    if (subrace && 'languages' in subrace && Array.isArray(subrace.languages) && subrace.languages.includes('any-one')) {
+      return 1
+    }
+  }
+
+  return 0
+}
+
+// Calculate total tool proficiency data
+export function calculateToolProficiencies(
+  characterClasses: Array<{ class: string, level: number }>,
+  raceId: string,
+  subraceId: string,
+  backgroundId: string,
+  selectedTools: string[] = []
+): ToolProficiencyData {
+  // Get fixed tools from race, background, and classes
+  const raceTools = getRaceToolProficiencies(raceId, subraceId)
+  const backgroundTools = getBackgroundToolProficiencies(backgroundId)
+  const classTools = characterClasses.map(c => getClassToolProficiencies(c.class)).flat()
+  const fixedTools = [...raceTools, ...backgroundTools, ...classTools]
+
+  // Get available tools (all tools minus fixed ones)
+  // This will be populated by the API data
+  const availableTools: string[] = []
+
+  // Separate selected tools (excluding fixed)
+  const selectedNonFixedTools = selectedTools.filter(tool => 
+    !fixedTools.includes(tool)
+  )
+
+  return {
+    fixedTools,
+    availableTools,
+    selectedTools: selectedNonFixedTools
+  }
+}
+
+// Calculate total language proficiency data
+export function calculateLanguageProficiencies(
+  characterClasses: Array<{ class: string, level: number }>,
+  raceId: string,
+  subraceId: string,
+  backgroundId: string,
+  selectedLanguages: string[] = []
+): LanguageProficiencyData {
+  // Get fixed languages from race and background (excluding "any-one")
+  const raceLanguages = getRaceLanguageProficiencies(raceId, subraceId).filter(lang => lang !== 'any-one')
+  const backgroundLanguages = getBackgroundLanguageProficiencies(backgroundId)
+  const fixedLanguages = [...raceLanguages, ...backgroundLanguages]
+
+  // Get available languages (all languages minus fixed ones)
+  // This will be populated by the API data
+  const availableLanguages: string[] = []
+
+  // Separate selected languages (excluding fixed)
+  const selectedNonFixedLanguages = selectedLanguages.filter(lang => 
+    !fixedLanguages.includes(lang)
+  )
+
+  return {
+    fixedLanguages,
+    availableLanguages,
+    selectedLanguages: selectedNonFixedLanguages
+  }
+}
+
+// Validate language selections
+export function validateLanguageSelections(
+  languageData: LanguageProficiencyData,
+  selectedLanguages: string[],
+  raceId: string = "",
+  subraceId: string = "",
+  backgroundId: string = ""
+): { isValid: boolean; errors: string[] } {
+  const errors: string[] = []
+  
+  // Check if fixed languages are included
+  languageData.fixedLanguages.forEach(language => {
+    if (!selectedLanguages.includes(language)) {
+      errors.push(`Must select ${language} (fixed language)`)
+    }
+  })
+  
+  // Validate selection limits based on allowances
+  if (raceId && backgroundId) {
+    const totalAllowances = calculateLanguageChoiceAllowances(raceId, subraceId, backgroundId)
+    const selectedNonFixedLanguages = selectedLanguages.filter(lang => !languageData.fixedLanguages.includes(lang))
+    
+    if (selectedNonFixedLanguages.length > totalAllowances) {
+      errors.push(`You can only select ${totalAllowances} additional language${totalAllowances !== 1 ? 's' : ''}. You have selected ${selectedNonFixedLanguages.length}.`)
+    }
+  }
+  
+  return {
+    isValid: errors.length === 0,
+    errors
+  }
+}
+
+// Check if a tool is an artisan's tool (contains "Tools" or "Supplies")
+export function isArtisansTool(toolName: string): boolean {
+  return toolName.toLowerCase().includes('tools') || toolName.toLowerCase().includes('supplies')
+}
+
+// Filter out non-artisan's tools from a list of tool indices
+export function filterArtisansTools(toolIndices: string[], allTools: Array<{ index: string, name: string }>): string[] {
+  return toolIndices.filter(toolIndex => {
+    const tool = allTools.find(t => t.index === toolIndex)
+    return tool ? isArtisansTool(tool.name) : false
+  })
+}
+
+// Calculate total tool choice allowances from all sources
+export function calculateToolChoiceAllowances(
+  characterClasses: Array<{ class: string, level: number }>,
+  raceId: string,
+  subraceId: string,
+  backgroundId: string
+): number {
+  let totalAllowances = 0
+  
+  // Check for "Artisan's tools" in fixed tools (this grants 1 choice)
+  const raceTools = getRaceToolProficiencies(raceId, subraceId)
+  const backgroundTools = getBackgroundToolProficiencies(backgroundId)
+  const classTools = characterClasses.map(c => getClassToolProficiencies(c.class)).flat()
+  const allFixedTools = [...raceTools, ...backgroundTools, ...classTools]
+  
+  // Count how many "artisans-tools" entries we have (each grants 1 choice)
+  const artisansToolCount = allFixedTools.filter(tool => tool === 'artisans-tools').length
+  totalAllowances += artisansToolCount
+  
+  return totalAllowances
+}
+
+// Calculate total language choice allowances from all sources
+export function calculateLanguageChoiceAllowances(
+  raceId: string,
+  subraceId: string,
+  backgroundId: string
+): number {
+  let totalAllowances = 0
+  
+  // Get background language choices
+  totalAllowances += getBackgroundLanguageChoices(backgroundId)
+  
+  // Get race language choices
+  totalAllowances += getRaceLanguageChoices(raceId, subraceId)
+  
+  return totalAllowances
+}
+
+// Validate tool selections
+export function validateToolSelections(
+  toolData: ToolProficiencyData,
+  selectedTools: string[],
+  allTools: Array<{ index: string, name: string }> = [],
+  characterClasses: Array<{ class: string, level: number }> = [],
+  raceId: string = "",
+  subraceId: string = "",
+  backgroundId: string = ""
+): { isValid: boolean; errors: string[] } {
+  const errors: string[] = []
+  
+  // Check if fixed tools are included
+  toolData.fixedTools.forEach(tool => {
+    if (!selectedTools.includes(tool)) {
+      errors.push(`Must select ${tool} (fixed tool)`)
+    }
+  })
+  
+  // Validate that only artisan's tools are selected
+  if (allTools.length > 0) {
+    const nonArtisansTools = selectedTools.filter(toolIndex => {
+      const tool = allTools.find(t => t.index === toolIndex)
+      return tool && !isArtisansTool(tool.name)
+    })
+    
+    if (nonArtisansTools.length > 0) {
+      const toolNames = nonArtisansTools.map(toolIndex => {
+        const tool = allTools.find(t => t.index === toolIndex)
+        return tool ? tool.name : toolIndex
+      })
+      errors.push(`Only artisan's tools can be selected. Invalid selections: ${toolNames.join(', ')}`)
+    }
+  }
+  
+  // Validate selection limits based on allowances
+  if (characterClasses.length > 0 && raceId && backgroundId) {
+    const totalAllowances = calculateToolChoiceAllowances(characterClasses, raceId, subraceId, backgroundId)
+    const selectedNonFixedTools = selectedTools.filter(tool => !toolData.fixedTools.includes(tool))
+    
+    if (selectedNonFixedTools.length > totalAllowances) {
+      errors.push(`You can only select ${totalAllowances} additional artisan's tool${totalAllowances !== 1 ? 's' : ''}. You have selected ${selectedNonFixedTools.length}.`)
+    }
+  }
+  
+  return {
+    isValid: errors.length === 0,
+    errors
+  }
+}
