@@ -15,10 +15,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertTriangle, CheckCircle, Lock, BookOpen, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ToolSelector } from "./tool-selector"
-
-const languages = [
-  "Common",
-]
+import { LanguageSelector } from "./language-selector"
 
 export function SkillSelector() {
   const { control, setValue } = useFormContext()
@@ -434,31 +431,7 @@ export function SkillSelector() {
         </TabsContent>
 
         <TabsContent value="languages">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg font-display">Languages</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                {languages.map((language) => (
-                  <div key={language} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={language}
-                      onCheckedChange={(checked) => {
-                        // Handle language proficiency change
-                      }}
-                    />
-                    <label
-                      htmlFor={language}
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      {language}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <LanguageSelector />
         </TabsContent>
       </Tabs>
     </div>
