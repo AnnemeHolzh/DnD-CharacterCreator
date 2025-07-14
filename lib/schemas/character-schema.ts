@@ -138,7 +138,7 @@ export const CharacterSchema = z.object({
     gold: z.number().min(0).default(0),
     silver: z.number().min(0).default(0),
     bronze: z.number().min(0).default(0),
-  }).optional(),
+  }).optional().default({ platinum: 0, gold: 0, silver: 0, bronze: 0 }),
   equipment: z.array(z.any()).optional(),
   spells: z.array(z.string()).optional(),
   feats: z.array(z.string()).optional(),

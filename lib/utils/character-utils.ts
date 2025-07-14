@@ -774,3 +774,33 @@ export function validateToolSelections(
     errors
   }
 }
+
+// Determine if a character can cast spells based on their classes
+export function canCharacterCastSpells(characterClasses: Array<{ class: string, level: number }>): boolean {
+  if (!characterClasses || characterClasses.length === 0) {
+    return false
+  }
+
+  // Check if any of the character's classes have spellcasting ability
+  return characterClasses.some(classEntry => {
+    if (!classEntry.class || !classEntry.level) {
+      return false
+    }
+
+    // Find the class data
+    const classData = classes.find(c => c.id === classEntry.class)
+    if (!classData) {
+      return false
+    }
+
+    // Check if the class has spellcasting ability
+    if (!classData.spellcasting) {
+      return false
+    }
+
+    // Some classes get spellcasting at higher levels (e.g., Eldritch Knight at level 3)
+    // For now, we'll assume all spellcasting classes get it at level 1
+    // This could be enhanced to check specific subclass requirements
+    return classEntry.level >= 1
+  })
+}

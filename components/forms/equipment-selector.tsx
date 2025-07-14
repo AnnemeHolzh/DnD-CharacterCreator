@@ -9,6 +9,7 @@ import { WeaponSelector } from "./weapon-selector"
 import { ArmorSelector } from "./armor-selector"
 import { ItemSelector } from "./item-selector"
 import { WealthSelector } from "./wealth-selector"
+import { SpellSelector } from "./spell-selector"
 
 export function EquipmentSelector() {
   const { control } = useFormContext()
@@ -16,12 +17,15 @@ export function EquipmentSelector() {
   return (
     <FantasyFormSection title="Equipment & Possessions">
       <Tabs defaultValue="weapons" className="w-full">
-        <TabsList className="grid grid-cols-4 mb-4">
+        <TabsList className="grid grid-cols-5 mb-4">
           <TabsTrigger value="weapons" className="font-display">
             Weapons
           </TabsTrigger>
           <TabsTrigger value="armor" className="font-display">
             Armor
+          </TabsTrigger>
+          <TabsTrigger value="spells" className="font-display">
+            Spells
           </TabsTrigger>
           <TabsTrigger value="items" className="font-display">
             Items
@@ -37,6 +41,10 @@ export function EquipmentSelector() {
 
         <TabsContent value="armor">
           <ArmorSelector />
+        </TabsContent>
+
+        <TabsContent value="spells">
+          <SpellSelector />
         </TabsContent>
 
         <TabsContent value="items">
