@@ -16,9 +16,16 @@ import { getFeatASIs, getAvailableFeats } from "@/lib/data/feats"
 import { ASISelectionDialog } from "./asi-selection-dialog"
 import { ASIChoiceDialog } from "./asi-choice-dialog"
 
+// Type for tracking rolled scores with unique IDs
+type RolledScoreWithId = {
+  id: string
+  value: number
+  used: boolean
+}
+
 export function AbilityScoreSelector() {
   const { control, setValue, getValues } = useFormContext()
-  const [rolledScores, setRolledScores] = useState<number[]>([])
+  const [rolledScoresWithIds, setRolledScoresWithIds] = useState<RolledScoreWithId[]>([])
   const [isRolling, setIsRolling] = useState(false)
   const [asiDialogOpen, setAsiDialogOpen] = useState(false)
   const [pendingFeatAsi, setPendingFeatAsi] = useState<{ featName: string; asiOptions: string[] } | null>(null)
@@ -75,19 +82,23 @@ export function AbilityScoreSelector() {
     return rolls.slice(0, 3).reduce((sum, roll) => sum + roll, 0)
   }
 
-  // Roll all ability scores
+  // Roll all ability scores with unique IDs
   const rollAllScores = () => {
     setIsRolling(true)
     setTimeout(() => {
-      const newRolledScores = Array.from({ length: 6 }, () => roll4d6DropLowest())
-      setRolledScores(newRolledScores)
+      const newRolledScores = Array.from({ length: 6 }, (_, index) => ({
+        id: `Roll${index + 1}`,
+        value: roll4d6DropLowest(),
+        used: false
+      }))
+      setRolledScoresWithIds(newRolledScores)
       setIsRolling(false)
     }, 500)
   }
 
   // Initialize rolled scores if method is roll and no scores exist
   useEffect(() => {
-    if (abilityScoreMethod === "roll" && rolledScores.length === 0) {
+    if (abilityScoreMethod === "roll" && rolledScoresWithIds.length === 0) {
       rollAllScores()
     }
   }, [abilityScoreMethod])
@@ -140,13 +151,26 @@ export function AbilityScoreSelector() {
     ? standardArray.filter((value) => !usedStandardArrayValues.includes(value))
     : []
 
-  // Track which rolled scores have been used (only for roll method)
-  const usedRolledScores = abilityScoreMethod === "roll"
-    ? Object.values(abilityScores).filter((score) => rolledScores.includes(Number(score)))
-    : []
-  const availableRolledScores = abilityScoreMethod === "roll"
-    ? rolledScores.filter((score) => !usedRolledScores.includes(score))
-    : []
+  // Get available rolled scores (only unused ones)
+  const availableRolledScores = useMemo(() => {
+    if (abilityScoreMethod !== "roll") return []
+    
+    return rolledScoresWithIds
+      .filter(score => !score.used)
+      .map(score => ({ id: score.id, value: score.value }))
+  }, [rolledScoresWithIds, abilityScoreMethod])
+
+  // Update used status based on current ability scores
+  useEffect(() => {
+    if (abilityScoreMethod === "roll") {
+      const newRolledScores = rolledScoresWithIds.map(score => {
+        // Check if this roll ID is currently assigned to any ability
+        const isUsed = Object.values(abilityScores).some(value => value === score.id)
+        return { ...score, used: isUsed }
+      })
+      setRolledScoresWithIds(newRolledScores)
+    }
+  }, [abilityScores, abilityScoreMethod])
 
   // Calculate feat ASI bonuses
   const featASIs = useMemo(() => {
@@ -191,7 +215,19 @@ export function AbilityScoreSelector() {
     const totalScores: Record<string, number> = {}
     
     abilities.forEach(ability => {
-      const baseScore = Number(baseScores[ability.id]) || 0
+      let baseScore = 0
+      
+      // For roll method, convert roll ID to actual value
+      if (abilityScoreMethod === "roll") {
+        const rollId = baseScores[ability.id]
+        if (rollId) {
+          const rollData = rolledScoresWithIds.find(score => score.id === rollId)
+          baseScore = rollData ? rollData.value : 0
+        }
+      } else {
+        baseScore = Number(baseScores[ability.id]) || 0
+      }
+      
       let bonus = 0
       
       if (assignmentMode === "standard") {
@@ -215,31 +251,42 @@ export function AbilityScoreSelector() {
     })
     
     return totalScores
-  }, [abilityScores, raceSubraceBonuses, assignmentMode, customAssignments, featASIs, asiBonuses])
+  }, [abilityScores, raceSubraceBonuses, assignmentMode, customAssignments, featASIs, asiBonuses, abilityScoreMethod, rolledScoresWithIds])
 
   // Validation logic
-  const validateAbility = (value: number, abilityId: string) => {
+  const validateAbility = (value: string | number, abilityId: string) => {
     if (abilityScoreMethod === "roll") {
-      if (!rolledScores.includes(value) && value !== 0) return "Must use a rolled score value."
-      // Prevent duplicate values
-      const used = abilities.filter((ab) => ab.id !== abilityId).map((ab) => abilityScores[ab.id])
-      if (used.includes(value) && value !== 0) return "Each rolled score can only be used once."
+      // For roll method, value should be a roll ID
+      if (typeof value === "string") {
+        const rollExists = rolledScoresWithIds.some(score => score.id === value)
+        if (!rollExists && value !== "") return "Must select a valid rolled score."
+        
+        // Check if this roll is already used by another ability
+        if (value !== "") {
+          const isUsedByOther = Object.entries(abilityScores).some(([key, val]) => 
+            key !== abilityId && val === value
+          )
+          if (isUsedByOther) return "This rolled score has already been assigned to another ability."
+        }
+      }
     }
     if (abilityScoreMethod === "point-buy") {
-      if (value < 8 || value > 15) return "Score must be between 8 and 15 for point buy."
+      const numValue = Number(value)
+      if (numValue < 8 || numValue > 15) return "Score must be between 8 and 15 for point buy."
       // Check if total points spent exceeds 27
       const pointCosts: Record<number, number> = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 }
       const totalPoints = abilities.reduce((total, ab) => {
-        const v = ab.id === abilityId ? value : Number(abilityScores[ab.id] || 8)
+        const v = ab.id === abilityId ? numValue : Number(abilityScores[ab.id] || 8)
         return total + (pointCosts[v] ?? 0)
       }, 0)
       if (totalPoints > 27) return "Total points spent cannot exceed 27."
     }
     if (abilityScoreMethod === "standard-array") {
-      if (!standardArray.includes(value) && value !== 0) return "Must use a standard array value."
+      const numValue = Number(value)
+      if (!standardArray.includes(numValue) && numValue !== 0) return "Must use a standard array value."
       // Prevent duplicate values
       const used = abilities.filter((ab) => ab.id !== abilityId).map((ab) => abilityScores[ab.id])
-      if (used.includes(value) && value !== 0) return "Each value can only be used once."
+      if (used.includes(numValue) && numValue !== 0) return "Each value can only be used once."
     }
     return undefined
   }
@@ -452,17 +499,20 @@ export function AbilityScoreSelector() {
               </Button>
             </div>
             
-            {rolledScores.length > 0 && (
+            {rolledScoresWithIds.length > 0 && (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                {rolledScores.map((score, index) => (
-                  <Badge
-                    key={index}
-                    variant="outline"
-                    className="text-lg font-display p-3 justify-center"
-                  >
-                    {score}
-                  </Badge>
-                ))}
+                {rolledScoresWithIds.map((score, index) => {
+                  const isUsed = Object.values(abilityScores).some(value => value === score.id)
+                  return (
+                    <Badge
+                      key={score.id}
+                      variant="outline"
+                      className={`text-lg font-display p-3 justify-center ${isUsed ? 'opacity-50' : ''}`}
+                    >
+                      {score.value} {isUsed ? '(Used)' : '(Available)'}
+                    </Badge>
+                  )
+                })}
               </div>
             )}
           </CardContent>
@@ -606,7 +656,19 @@ export function AbilityScoreSelector() {
               validate: (value) => validateAbility(value, ability.id)
             }}
             render={({ field, fieldState }) => {
-              const baseScore = Number(field.value || 0)
+              let baseScore = 0
+              
+              // For roll method, convert roll ID to actual value
+              if (abilityScoreMethod === "roll") {
+                const rollId = field.value
+                if (rollId) {
+                  const rollData = rolledScoresWithIds.find(score => score.id === rollId)
+                  baseScore = rollData ? rollData.value : 0
+                }
+              } else {
+                baseScore = Number(field.value || 0)
+              }
+              
               let bonus = 0
               
               if (assignmentMode === "standard") {
@@ -639,13 +701,13 @@ export function AbilityScoreSelector() {
                         {abilityScoreMethod === "roll" ? (
                           <select
                             value={field.value || ""}
-                            onChange={(e) => field.onChange(Number.parseInt(e.target.value) || 0)}
+                            onChange={(e) => field.onChange(e.target.value)}
                             className="flex h-10 w-full rounded-md border border-amber-800/30 bg-black/20 backdrop-blur-sm px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                           >
                             <option value="">Select Rolled Score</option>
                             {availableRolledScores.map((score) => (
-                              <option key={score} value={score}>
-                                {score}
+                              <option key={score.id} value={score.id}>
+                                {score.value}
                               </option>
                             ))}
                           </select>
