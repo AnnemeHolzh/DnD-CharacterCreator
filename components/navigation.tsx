@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Home, Scroll } from "lucide-react"
+import { Home, Scroll, Users } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { usePrivacy } from "@/contexts/privacy-context"
 
@@ -43,6 +43,17 @@ export default function Navigation() {
               >
                 <Scroll className="mr-2 h-4 w-4" />
                 Character Creator
+              </Button>
+            </Link>
+            <Link href="/characters">
+              <Button
+                variant={pathname === "/characters" ? "default" : "ghost"}
+                size="sm"
+                className={`bg-transparent text-amber-200 hover:text-yellow-400 hover:bg-amber-900/30 transition-colors duration-150 px-3 py-1.5 rounded-md ${pathname === "/characters" ? "font-bold underline underline-offset-4" : ""}`}
+                style={{ boxShadow: "none" }}
+              >
+                <Users className="mr-2 h-4 w-4" />
+                Characters
               </Button>
             </Link>
           </div>
