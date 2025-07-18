@@ -242,15 +242,6 @@ export default function LandingPage() {
                   </div>
                 </FantasyCard>
               </div>
-
-              <div className="text-center mt-12">
-                <Link href="/character-creator">
-                  <Button variant="outline" size="lg" className="text-lg px-8 py-4">
-                    Explore All Features
-                    <Scroll className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-              </div>
             </div>
           </div>
         </section>

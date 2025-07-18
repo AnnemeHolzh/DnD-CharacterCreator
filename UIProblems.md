@@ -1,7 +1,8 @@
 # Ui Bugs
 
 # Landing
-The button to confirm on the popup does not work 
+✅ The button to confirm on the popup does not work 
+✅ Remove view all features button 
 
 ## Narative section
 Character traits line does not move correctly

@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { useFormContext } from "react-hook-form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -13,6 +14,7 @@ import { AlignmentSelector } from "@/components/forms/alignment-selector"
 
 export function NarrativeSection() {
   const { control } = useFormContext()
+  const [activeTraitTab, setActiveTraitTab] = useState("personality")
 
   return (
     <div className="space-y-8">
@@ -122,7 +124,7 @@ export function NarrativeSection() {
       </FantasyFormSection>
 
       <FantasyFormSection title="Character Traits">
-        <Tabs defaultValue="personality" className="w-full">
+        <Tabs value={activeTraitTab} onValueChange={setActiveTraitTab} className="w-full">
           <TabsList className="grid grid-cols-4 mb-4">
             <TabsTrigger value="personality" className="font-display">
               Traits
