@@ -757,18 +757,35 @@ export function AbilityScoreSelector() {
                     <div className="flex-1 space-y-3">
                       <FormLabel className="font-display text-lg font-semibold text-amber-100">{ability.name}</FormLabel>
                       <div className="flex items-center gap-3">
+                        {/* Base Score Display */}
+                        <div className="flex flex-col items-center gap-1">
+                          <div className="w-16 h-10 rounded-lg border border-amber-800/30 bg-amber-900/20 flex items-center justify-center">
+                            <span className="font-display text-lg font-bold text-amber-200">
+                              {baseScore || "—"}
+                            </span>
+                          </div>
+                          <span className="text-xs text-amber-300/70">Base</span>
+                        </div>
+                        
                         {abilityScoreMethod === "roll" ? (
                           <Select
                             value={field.value || ""}
                             onValueChange={field.onChange}
                           >
                             <SelectTrigger className="border-amber-800/30 bg-black/20 backdrop-blur-sm">
-                              <SelectValue placeholder="Select Rolled Score" />
+                              <SelectValue placeholder="Select Rolled Score">
+                                {field.value ? (
+                                  (() => {
+                                    const rollData = rolledScoresWithIds.find(score => score.id === field.value)
+                                    return rollData ? `Rolled: ${rollData.value}` : "Select Rolled Score"
+                                  })()
+                                ) : "Select Rolled Score"}
+                              </SelectValue>
                             </SelectTrigger>
                             <SelectContent>
                               {availableRolledScores.map((score) => (
                                 <SelectItem key={score.id} value={score.id}>
-                                  {score.value}
+                                  Rolled: {score.value}
                                 </SelectItem>
                               ))}
                             </SelectContent>
@@ -779,12 +796,14 @@ export function AbilityScoreSelector() {
                             onValueChange={(value) => field.onChange(Number.parseInt(value) || 0)}
                           >
                             <SelectTrigger className="border-amber-800/30 bg-black/20 backdrop-blur-sm">
-                              <SelectValue placeholder="Select Value" />
+                              <SelectValue placeholder="Select Value">
+                                {field.value ? `Score: ${field.value}` : "Select Value"}
+                              </SelectValue>
                             </SelectTrigger>
                             <SelectContent>
                               {availableStandardArrayValues.map((value) => (
                                 <SelectItem key={value} value={value.toString()}>
-                                  {value}
+                                  Score: {value}
                                 </SelectItem>
                               ))}
                             </SelectContent>
@@ -855,8 +874,11 @@ export function AbilityScoreSelector() {
                             className="border-amber-800/30 bg-black/20 backdrop-blur-sm"
                           />
                         )}
-                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 flex items-center justify-center border-2 border-emerald-700/40 shadow-md">
-                          <span className="font-display text-lg font-bold text-emerald-200">{modifierText}</span>
+                        <div className="flex flex-col items-center gap-1">
+                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 flex items-center justify-center border-2 border-emerald-700/40 shadow-md">
+                            <span className="font-display text-lg font-bold text-emerald-200">{modifierText}</span>
+                          </div>
+                          <span className="text-xs text-emerald-300/70">Mod</span>
                         </div>
                       </div>
                       
