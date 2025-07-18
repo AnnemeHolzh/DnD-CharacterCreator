@@ -5,7 +5,7 @@
 ✅ Remove view all features button 
 
 ## Narative section
-Character traits line does not move correctly
+✅ Character traits line does not move correctly
 Up the word limit for narrative section 
 
 ## Mechanical section 
