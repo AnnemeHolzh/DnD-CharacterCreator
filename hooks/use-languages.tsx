@@ -38,6 +38,7 @@ export function useLanguages() {
     languages, 
     loading, 
     error, 
+    hasLoaded,
     refresh: fetchLanguages,
     prefetchLanguages
   }

@@ -9,6 +9,7 @@ export interface UseItemsReturn {
   magicItemDetails: Record<string, MagicItemDetail>
   loading: boolean
   error: string | null
+  hasLoaded: boolean
   fetchItemDetail: (index: string) => Promise<ItemDetail>
   fetchMagicItemDetail: (index: string) => Promise<MagicItemDetail>
   refreshItems: () => Promise<void>
@@ -107,6 +108,7 @@ export function useItems(): UseItemsReturn {
     magicItemDetails,
     loading,
     error,
+    hasLoaded,
     fetchItemDetail,
     fetchMagicItemDetail,
     refreshItems,

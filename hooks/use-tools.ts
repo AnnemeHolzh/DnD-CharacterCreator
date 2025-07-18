@@ -7,6 +7,7 @@ export interface UseToolsReturn {
   toolDetails: Record<string, ToolDetail>
   loading: boolean
   error: string | null
+  hasLoaded: boolean
   fetchToolDetail: (index: string) => Promise<ToolDetail>
   refreshTools: () => Promise<void>
   prefetchTools: () => Promise<void>
@@ -80,6 +81,7 @@ export function useTools(): UseToolsReturn {
     toolDetails,
     loading,
     error,
+    hasLoaded,
     fetchToolDetail,
     refreshTools,
     prefetchTools

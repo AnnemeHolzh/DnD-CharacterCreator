@@ -5,6 +5,7 @@ The button to confirm on the popup does not work
 
 ## Narative section
 Character traits line does not move correctly
+Up the word limit for narrative section 
 
 ## Mechanical section 
 The ability score section had a feature overhaul please make it look cohesive. (drop down menus especialy)
