@@ -18,6 +18,7 @@ export function WeaponSelector() {
   const { weapons, magicWeapons, weaponCategories, loading, error, refreshWeapons } = useWeapons()
   const [searchTerm, setSearchTerm] = useState("")
   const [refreshing, setRefreshing] = useState(false)
+  const [activeTab, setActiveTab] = useState("mundane")
 
   // Filter weapons based on search term
   const filteredWeapons = useMemo(() => {
@@ -49,27 +50,31 @@ export function WeaponSelector() {
     return grouped
   }, [filteredWeapons])
 
+  // Group filtered magic weapons by category
+  const filteredMagicWeaponCategories = useMemo(() => {
+    const grouped: Record<string, typeof magicWeapons> = {}
+    
+    filteredMagicWeapons.forEach((weapon: any) => {
+      const category = weapon.equipment_category || 'Other'
+      if (!grouped[category]) {
+        grouped[category] = []
+      }
+      grouped[category].push(weapon)
+    })
+    
+    return grouped
+  }, [filteredMagicWeapons])
+
   const handleWeaponToggle = (weaponIndex: string, isSelected: boolean) => {
-    let newSelectedWeapons = [...selectedWeapons]
-    
     if (isSelected) {
-      // Check if we're at the limit of 5 weapons
-      if (newSelectedWeapons.length >= 5) {
-        return // Don't add more weapons
-      }
-      if (!newSelectedWeapons.includes(weaponIndex)) {
-        newSelectedWeapons.push(weaponIndex)
-      }
+      setValue("weapons", [...selectedWeapons, weaponIndex])
     } else {
-      newSelectedWeapons = newSelectedWeapons.filter(w => w !== weaponIndex)
+      setValue("weapons", selectedWeapons.filter((w: string) => w !== weaponIndex))
     }
-    
-    setValue("weapons", newSelectedWeapons)
   }
 
-  const handleRemoveWeapon = (weaponIndex: string) => {
-    const newSelectedWeapons = selectedWeapons.filter((w: string) => w !== weaponIndex)
-    setValue("weapons", newSelectedWeapons)
+  const isWeaponSelected = (weaponIndex: string) => {
+    return selectedWeapons.includes(weaponIndex)
   }
 
   const handleRefresh = async () => {
@@ -81,23 +86,11 @@ export function WeaponSelector() {
     }
   }
 
-  const getWeaponDisplayName = (weaponIndex: string): string => {
-    const weapon = weapons.find((w: any) => w.index === weaponIndex)
-    const magicWeapon = magicWeapons.find((w: any) => w.index === weaponIndex)
-    return weapon?.name || magicWeapon?.name || weaponIndex
-  }
-
-  const isWeaponSelected = (weaponIndex: string): boolean => {
-    return selectedWeapons.includes(weaponIndex)
-  }
-
   if (loading) {
     return (
       <div className="flex items-center justify-center p-8">
-        <div className="flex items-center space-x-2">
-          <Loader2 className="h-6 w-6 animate-spin" />
-          <span>Loading weapons...</span>
-        </div>
+        <Loader2 className="h-8 w-8 animate-spin text-amber-400" />
+        <span className="ml-2 text-amber-400">Loading weapons...</span>
       </div>
     )
   }
@@ -107,7 +100,7 @@ export function WeaponSelector() {
       <Alert variant="destructive">
         <AlertTriangle className="h-4 w-4" />
         <AlertDescription>
-          {error}
+          Failed to load weapons. Please try again.
           <Button
             variant="outline"
             size="sm"
@@ -115,11 +108,7 @@ export function WeaponSelector() {
             disabled={refreshing}
             className="ml-2"
           >
-            {refreshing ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              <RefreshCw className="h-4 w-4" />
-            )}
+            <RefreshCw className={`h-4 w-4 mr-1 ${refreshing ? 'animate-spin' : ''}`} />
             Retry
           </Button>
         </AlertDescription>
@@ -136,45 +125,48 @@ export function WeaponSelector() {
           placeholder="Search weapons..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="pl-10"
+          className="pl-10 border-amber-800/30 bg-black/20 backdrop-blur-sm"
         />
+        {searchTerm && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setSearchTerm("")}
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0"
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        )}
       </div>
 
-      {/* Selected Weapons */}
+      {/* Selected Weapons Display */}
       {selectedWeapons.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Sword className="h-5 w-5" />
-              <span>Selected Weapons ({selectedWeapons.length}/5)</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2">
-              {selectedWeapons.map((weaponIndex: string) => (
-                <Badge
-                  key={weaponIndex}
-                  variant="secondary"
-                  className="flex items-center space-x-1 bg-amber-900/40 text-amber-200"
-                >
-                  <span>{getWeaponDisplayName(weaponIndex)}</span>
+        <div className="p-4 bg-green-900/20 border border-green-800/30 rounded-lg">
+          <h4 className="font-display text-lg mb-3 text-green-400">Selected Weapons ({selectedWeapons.length}/5)</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+            {selectedWeapons.map((weaponIndex: string) => {
+              const weapon = weapons.find((w: any) => w.index === weaponIndex) || 
+                           magicWeapons.find((w: any) => w.index === weaponIndex)
+              return (
+                <div key={weaponIndex} className="flex items-center justify-between p-2 bg-green-900/30 border border-green-600/50 rounded">
+                  <span className="text-green-300 text-sm">{weapon?.name || weaponIndex}</span>
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => handleRemoveWeapon(weaponIndex)}
-                    className="h-4 w-4 p-0 hover:bg-amber-800/40"
+                    onClick={() => handleWeaponToggle(weaponIndex, false)}
+                    className="h-6 w-6 p-0 text-green-400 hover:text-green-300"
                   >
-                    <X className="h-3 w-3" />
+                    <X className="h-4 w-4" />
                   </Button>
-                </Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+                </div>
+              )
+            })}
+          </div>
+        </div>
       )}
 
-      {/* Weapon Selection */}
-      <Tabs defaultValue="mundane" className="w-full">
+      {/* Weapon Selection Tabs */}
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="mundane" className="flex items-center space-x-2">
             <Sword className="h-4 w-4" />
@@ -237,64 +229,67 @@ export function WeaponSelector() {
         </TabsContent>
 
         <TabsContent value="magical" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Magical Weapons</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                {filteredMagicWeapons.map((weapon) => {
-                  const isSelected = isWeaponSelected(weapon.index)
-                  const isDisabled = selectedWeapons.length >= 5 && !isSelected
-                  
-                  return (
-                    <TooltipProvider key={weapon.index}>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant={isSelected ? "default" : "outline"}
-                            className={`w-full justify-start text-left h-auto p-3 ${
-                              isSelected ? "bg-purple-600 hover:bg-purple-700" : ""
-                            } ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
-                            onClick={() => handleWeaponToggle(weapon.index, !isSelected)}
-                            disabled={isDisabled}
-                          >
-                            <div className="flex flex-col items-start space-y-1">
-                              <span className="font-medium">{weapon.name}</span>
-                              {isSelected && (
-                                <Badge variant="secondary" className="text-xs bg-purple-900/40 text-purple-200">
-                                  Selected
-                                </Badge>
-                              )}
-                            </div>
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{weapon.name}</p>
-                          <p className="text-purple-200">Magical Weapon</p>
-                          {isDisabled && (
-                            <p className="text-red-200">Maximum 5 weapons allowed</p>
-                          )}
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  )
-                })}
-              </div>
-            </CardContent>
-          </Card>
+          {Object.entries(filteredMagicWeaponCategories).map(([category, categoryWeapons]) => (
+            <Card key={category}>
+              <CardHeader>
+                <CardTitle className="text-lg">{category}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                  {categoryWeapons.map((weapon) => {
+                    const isSelected = isWeaponSelected(weapon.index)
+                    const isDisabled = selectedWeapons.length >= 5 && !isSelected
+                    
+                    return (
+                      <TooltipProvider key={weapon.index}>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant={isSelected ? "default" : "outline"}
+                              className={`w-full justify-start text-left h-auto p-3 ${
+                                isSelected ? "bg-purple-600 hover:bg-purple-700" : ""
+                              } ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
+                              onClick={() => handleWeaponToggle(weapon.index, !isSelected)}
+                              disabled={isDisabled}
+                            >
+                              <div className="flex flex-col items-start space-y-1">
+                                <span className="font-medium">{weapon.name}</span>
+                                {isSelected && (
+                                  <Badge variant="secondary" className="text-xs bg-purple-900/40 text-purple-200">
+                                    Selected
+                                  </Badge>
+                                )}
+                              </div>
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{weapon.name}</p>
+                            <p className="text-purple-200">Magical Weapon</p>
+                            {isDisabled && (
+                              <p className="text-red-200">Maximum 5 weapons allowed</p>
+                            )}
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    )
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </TabsContent>
       </Tabs>
 
-      {/* Weapon Limit Warning */}
-      {selectedWeapons.length >= 5 && (
-        <Alert>
-          <AlertTriangle className="h-4 w-4" />
-          <AlertDescription>
-            You have reached the maximum of 5 weapons. Remove a weapon to add another.
-          </AlertDescription>
-        </Alert>
-      )}
+      {/* Equipment Rules Info */}
+      <div className="p-4 bg-amber-900/20 border border-amber-800/30 rounded-lg">
+        <h4 className="font-display text-lg mb-3 text-amber-400">Weapon Rules</h4>
+        <div className="text-sm text-amber-300 space-y-2">
+          <p>• You can select up to 5 weapons for your character</p>
+          <p>• Weapons include both mundane and magical options</p>
+          <p>• Selected weapons will be available for your character to use</p>
+          <p>• You can remove weapons by clicking the X button on selected items</p>
+        </div>
+      </div>
     </div>
   )
 } 

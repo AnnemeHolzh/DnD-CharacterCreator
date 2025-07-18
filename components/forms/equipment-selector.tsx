@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { useFormContext } from "react-hook-form"
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -13,10 +14,11 @@ import { SpellSelector } from "./spell-selector"
 
 export function EquipmentSelector() {
   const { control } = useFormContext()
+  const [activeTab, setActiveTab] = useState("weapons")
 
   return (
     <FantasyFormSection title="Equipment & Possessions">
-      <Tabs defaultValue="weapons" className="w-full">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid grid-cols-5 mb-4">
           <TabsTrigger value="weapons" className="font-display">
             Weapons
