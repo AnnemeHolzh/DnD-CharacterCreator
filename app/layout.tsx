@@ -19,9 +19,12 @@ const cinzel = Cinzel({
 })
 
 export const metadata: Metadata = {
-  title: "D&D Character Creator",
+  title: "The Role Study",
   description: "Create your Dungeons & Dragons 5e character with a Baldur's Gate inspired UI",
-  generator: 'v0.dev'
+  generator: 'v0.dev',
+  icons: {
+    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🐉</text></svg>',
+  },
 }
 
 export default function RootLayout({
@@ -32,7 +35,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="preload" href="/images/bg3-background.jpg" as="image" />
         <link rel="preload" href="/images/bg3-glyph1.png" as="image" />
         <link rel="preload" href="/images/bg3-glyph2.png" as="image" />
