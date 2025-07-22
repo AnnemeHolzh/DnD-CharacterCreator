@@ -138,7 +138,7 @@ export function SpellSelector() {
         </div>
 
         <div className="flex items-end">
-          <Button variant="outline" onClick={clearFilters} className="w-full">
+          <Button type="button" variant="outline" onClick={clearFilters} className="w-full">
             Clear Filters
           </Button>
         </div>

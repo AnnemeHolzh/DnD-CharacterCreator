@@ -160,6 +160,7 @@ export function ProgressionSection() {
                     />
 
                     <Button
+                      type="button"
                       variant="destructive"
                       size="sm"
                       onClick={() => removeLevelEntry(entry.level)}
@@ -177,7 +178,7 @@ export function ProgressionSection() {
         {watchedProgression.length === 0 && (
           <div className="text-center py-8 border border-dashed border-amber-800/30 rounded-md">
             <p className="text-muted-foreground mb-4">No level progression entries yet.</p>
-            <Button variant="outline" onClick={() => addLevelEntry(1)} className="group">
+            <Button type="button" variant="outline" onClick={() => addLevelEntry(1)} className="group">
               <Plus className="h-4 w-4 mr-2 group-hover:rotate-90 transition-transform" />
               Add Level 1
             </Button>

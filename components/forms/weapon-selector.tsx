@@ -102,6 +102,7 @@ export function WeaponSelector() {
         <AlertDescription>
           Failed to load weapons. Please try again.
           <Button
+            type="button"
             variant="outline"
             size="sm"
             onClick={handleRefresh}
@@ -128,14 +129,15 @@ export function WeaponSelector() {
           className="pl-10 border-amber-800/30 bg-black/20 backdrop-blur-sm"
         />
         {searchTerm && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setSearchTerm("")}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0"
-          >
-            <X className="h-4 w-4" />
-          </Button>
+                            <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setSearchTerm("")}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
         )}
       </div>
 
@@ -151,6 +153,7 @@ export function WeaponSelector() {
                 <div key={weaponIndex} className="flex items-center justify-between p-2 bg-green-900/30 border border-green-600/50 rounded">
                   <span className="text-green-300 text-sm">{weapon?.name || weaponIndex}</span>
                   <Button
+                    type="button"
                     variant="ghost"
                     size="sm"
                     onClick={() => handleWeaponToggle(weaponIndex, false)}
@@ -195,6 +198,7 @@ export function WeaponSelector() {
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <Button
+                              type="button"
                               variant={isSelected ? "default" : "outline"}
                               className={`w-full justify-start text-left h-auto p-3 ${
                                 isSelected ? "bg-green-600 hover:bg-green-700" : ""
@@ -245,6 +249,7 @@ export function WeaponSelector() {
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <Button
+                              type="button"
                               variant={isSelected ? "default" : "outline"}
                               className={`w-full justify-start text-left h-auto p-3 ${
                                 isSelected ? "bg-purple-600 hover:bg-purple-700" : ""
