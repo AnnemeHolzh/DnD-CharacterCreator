@@ -4,6 +4,7 @@ import { Cinzel, Lora } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { PrivacyProvider } from "@/contexts/privacy-context"
+import { MobileDetectionProvider } from "@/components/mobile-detection-provider"
 
 // Load fonts using Next.js font system
 const lora = Lora({
@@ -35,6 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link rel="preload" href="/images/bg3-background.jpg" as="image" />
         <link rel="preload" href="/images/bg3-glyph1.png" as="image" />
         <link rel="preload" href="/images/bg3-glyph2.png" as="image" />
@@ -45,11 +47,13 @@ export default function RootLayout({
         <link rel="preload" href="/images/bg3-cursor-text.png" as="image" />
       </head>
       <body className={`${lora.variable} ${cinzel.variable}`}>
-        <PrivacyProvider>
-          <ThemeProvider attribute="class" defaultTheme="dark">
-            {children}
-          </ThemeProvider>
-        </PrivacyProvider>
+        <MobileDetectionProvider>
+          <PrivacyProvider>
+            <ThemeProvider attribute="class" defaultTheme="dark">
+              {children}
+            </ThemeProvider>
+          </PrivacyProvider>
+        </MobileDetectionProvider>
       </body>
     </html>
   )

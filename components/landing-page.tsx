@@ -5,7 +5,6 @@ import { FantasyCard } from "@/components/ui/fantasy-card"
 import { Sparkles, User, Scroll, Swords, BookOpen, Dice6, Shield, Wand2 } from "lucide-react"
 import Link from "next/link"
 import Navigation from "@/components/navigation"
-import SectionDivider from "@/components/section-divider"
 import FancyButton from "@/components/FancyButton"
 import { useEffect } from "react"
 import PrivacyConsentPopup from "@/components/privacy-consent-popup"
@@ -16,6 +15,7 @@ const leatherGradientBackground = {
   backgroundBlendMode: "multiply",
   backgroundSize: "cover, auto",
   backgroundRepeat: "no-repeat, repeat",
+  backgroundPosition: "center top",
 };
 
 export default function LandingPage() {
@@ -68,7 +68,7 @@ export default function LandingPage() {
       
       {/* Hero Section */}
       <section 
-        className="min-h-screen flex items-center justify-center relative bg-cover bg-center bg-no-repeat pt-20 overflow-hidden"
+        className="h-screen flex items-center justify-center relative bg-cover bg-center bg-no-repeat pt-14 overflow-hidden mb-0"
         style={{ backgroundImage: "url('/images/dungeon.jpg')" }}
       >
         {/* Vignette overlay */}
@@ -125,12 +125,32 @@ export default function LandingPage() {
         />
       )}
 
-      <SectionDivider />
-
       {/* Wrap both sections in a parent div with the background */}
       <div style={leatherGradientBackground} className="relative overflow-hidden">
+        {/* Section Divider positioned absolutely within the background container */}
+        <div className="absolute top-0 left-0 right-0 h-[44px] z-10">
+          <div
+            className="w-full h-[44px]"
+            style={{
+              backgroundImage: "url('/images/divider.png')",
+              backgroundRepeat: "repeat-x",
+              backgroundPosition: "0px 0px",
+              backgroundSize: "auto 88px",
+              pointerEvents: "none",
+            }}
+            aria-hidden="true"
+          />
+          <div
+            className="absolute left-0 right-0 -bottom-0 h-2 z-0 pointer-events-none"
+            style={{
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0))",
+              filter: "blur(6px)",
+            }}
+            aria-hidden="true"
+          />
+        </div>
         {/* About Section */}
-        <section className="min-h-screen flex items-center -mt-[22px] bg-transparent relative">
+        <section className="min-h-screen flex items-center bg-transparent relative pt-[44px]">
           {/* Left torch light effect */}
           <div className="absolute left-0 top-0 bottom-0 w-[45vw] pointer-events-none z-0" style={{
             background: "radial-gradient(ellipse at left center, rgba(255, 180, 80, 0.22) 0%, rgba(255, 180, 80, 0.10) 40%, transparent 80%)",
@@ -163,17 +183,19 @@ export default function LandingPage() {
                     className="text-lg mb-6 leading-relaxed text-center"
                     style={{ color: "#71675b" }}
                   >
-                    This website is part of an Honours-level research project in Information Technology. The study aims to develop a hybrid recommender system that helps Dungeons & Dragons (D&D) players build compelling characters by combining structured data (like race, class, and ability scores) with unstructured, narrative data (like backstories and alignment).                  </p>
+                    This website is part of an Honours-level research project in Information Technology. The study aims to develop a hybrid recommender system that helps Dungeons & Dragons (D&D) players build compelling characters by combining structured data (like race, class, and ability scores) with unstructured, narrative data (like backstories and alignment).
+                  </p>
                   <p
                     className="text-lg mb-6 leading-relaxed text-center"
                     style={{ color: "#71675b" }}
                   >
-                    We're collecting real character data from players around the world to train and test this system. By analyzing both the mechanical and storytelling aspects of characters, the goal is to create an AI-driven tool that can offer personalized recommendations—whether you're building a new character or evolving an existing one. The research is grounded in Herbert Simon's Science of Design, with the aim of balancing creativity and logic in a game where both are essential.                  </p>
+                    We're collecting real character data from players around the world to train and test this system. By analyzing both the mechanical and storytelling aspects of characters, the goal is to create an AI-driven tool that can offer personalized recommendations—whether you're building a new character or evolving an existing one. 
+                  </p>
                   <p
                     className="text-lg leading-relaxed text-center"
                     style={{ color: "#71675b" }}
                   >
-                    Your contribution will directly help shape this system. By submitting your character(s), you'll be helping us teach the AI how real players think, build, and roleplay.
+                    The research is grounded in Herbert Simon's Science of Design, with the aim of balancing creativity and logic in a game where both are essential.                  
                   </p>
                 </div>
               </div>
