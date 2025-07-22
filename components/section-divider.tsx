@@ -1,7 +1,7 @@
 // components/section-divider.tsx
 export default function SectionDivider() {
   return (
-    <div className="relative w-full h-[44px] -mt-[22px] z-10">
+    <div className="relative w-full h-[44px] z-10">
       {/* Divider */}
       <div
         className="w-full h-[44px]"
