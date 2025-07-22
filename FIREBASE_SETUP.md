@@ -121,15 +121,12 @@ interface CharacterWithId {
 ## Usage
 
 ### Creating Characters
-1. Navigate to `/characters`
-2. Click "Create New Character"
-3. Fill out the narrative and mechanical sections
-4. Click "Save Character"
+1. Navigate to `/character-creator`
+2. Fill out the narrative and mechanical sections
+3. Click "Save Character"
 
-### Editing Characters
-1. From the character list, click "Edit" on any character
-2. Make your changes
-3. Click "Update Character"
+### Character Management
+Characters are created through the character creator form. The system automatically saves character data to Firebase as you work on them.
 
 ### Character Completion
 

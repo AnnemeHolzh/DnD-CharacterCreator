@@ -5,7 +5,8 @@ import { useForm, FormProvider } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { Sparkles, Save, CheckCircle, AlertCircle, AlertTriangle } from "lucide-react"
+import { LoadingSpinner } from "@/components/ui/loading-spinner"
+import { Sparkles, Save, CheckCircle, AlertCircle, AlertTriangle, ArrowRight } from "lucide-react"
 import { NarrativeSection } from "@/components/forms/narrative-section"
 import { MechanicsSection } from "@/components/forms/mechanics-section"
 import { FeedbackSection } from "@/components/forms/feedback-section"
@@ -28,6 +29,7 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
   const [showSaveConfirmation, setShowSaveConfirmation] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
+  const [isLoadingCharacter, setIsLoadingCharacter] = useState(false)
   const { saveCharacter, updateCharacter, loadCharacter, getCharacterCompletionStatus, saving } = useCharacters()
 
   const methods = useForm<CharacterFormData>({
@@ -72,12 +74,15 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
   // Load existing character if editing
   useEffect(() => {
     if (characterId) {
+      setIsLoadingCharacter(true)
       loadCharacter(characterId).then((character) => {
         if (character) {
           // Remove the id field before setting form values
           const { id, createdAt, updatedAt, ...characterData } = character
           methods.reset(characterData)
         }
+      }).finally(() => {
+        setIsLoadingCharacter(false)
       })
     }
   }, [characterId, loadCharacter, methods])
@@ -136,6 +141,18 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
     setSaveError(null)
   }
 
+  // Show loading state while character is being loaded
+  if (isLoadingCharacter) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-8">
+        <LoadingSpinner size="lg" text="Loading character data..." />
+        <p className="text-bg3-gold-light/80 font-display tracking-wider">
+          Retrieving your character from the ancient archives...
+        </p>
+      </div>
+    )
+  }
+
   return (
     <FormProvider {...methods}>
       <form className="space-y-8">
@@ -161,22 +178,33 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
               </TabsContent>
 
               <div className="flex justify-end space-x-4 mt-6">
-                <Button 
-                  type="button" 
-                  onClick={handleSaveClick}
-                  disabled={saving || isSubmitting} 
-                  className="group"
-                >
-                  {saving || isSubmitting ? (
-                    <>
-                      Saving <Sparkles className="ml-2 h-4 w-4 animate-pulse" />
-                    </>
-                  ) : (
-                    <>
-                      {characterId ? 'Update' : 'Save'} Character <Save className="ml-2 h-4 w-4" />
-                    </>
-                  )}
-                </Button>
+                {activeTab === "narrative" ? (
+                  <Button 
+                    type="button" 
+                    onClick={() => setActiveTab("mechanics")}
+                    className="group bg-gradient-to-r from-amber-900/40 to-amber-800/30 border-amber-600/50 hover:from-amber-900/60 hover:to-amber-800/50 text-amber-200"
+                  >
+                    Continue to Mechanics
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                ) : (
+                  <Button 
+                    type="button" 
+                    onClick={handleSaveClick}
+                    disabled={saving || isSubmitting} 
+                    className="group"
+                  >
+                    {saving || isSubmitting ? (
+                      <>
+                        Saving <Sparkles className="ml-2 h-4 w-4 animate-pulse" />
+                      </>
+                    ) : (
+                      <>
+                        {characterId ? 'Update' : 'Save'} Character <Save className="ml-2 h-4 w-4" />
+                      </>
+                    )}
+                  </Button>
+                )}
               </div>
             </Tabs>
           </div>

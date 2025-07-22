@@ -9,6 +9,7 @@ export interface UseWeaponsReturn {
   magicWeaponDetails: Record<string, MagicWeaponDetail>
   loading: boolean
   error: string | null
+  hasLoaded: boolean
   fetchWeaponDetail: (index: string) => Promise<WeaponDetail>
   fetchMagicWeaponDetail: (index: string) => Promise<MagicWeaponDetail>
   refreshWeapons: () => Promise<void>
@@ -107,6 +108,7 @@ export function useWeapons(): UseWeaponsReturn {
     magicWeaponDetails,
     loading,
     error,
+    hasLoaded,
     fetchWeaponDetail,
     fetchMagicWeaponDetail,
     refreshWeapons,

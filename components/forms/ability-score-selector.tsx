@@ -341,48 +341,94 @@ export function AbilityScoreSelector() {
       {/* Method Selection */}
       <Card className="border-amber-800/30 bg-black/20 backdrop-blur-sm">
         <CardHeader>
-          <CardTitle className="font-display text-lg">Ability Score Generation Method</CardTitle>
+          <CardTitle className="font-display text-lg flex items-center gap-2">
+            <Settings className="h-5 w-5" />
+            Ability Score Generation Method
+          </CardTitle>
         </CardHeader>
         <CardContent>
-          <ToggleGroup
-            type="single"
-            value={abilityScoreMethod}
-            onValueChange={handleMethodChange}
-            className="grid grid-cols-1 md:grid-cols-3 gap-2"
-          >
-            <ToggleGroupItem
-              value="roll"
-              className="flex flex-col items-center gap-2 p-4 h-auto data-[state=on]:bg-amber-900/40 data-[state=on]:border-amber-600/50"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <button
+              type="button"
+              onClick={() => handleMethodChange("roll")}
+              className={`relative p-6 rounded-lg border transition-all duration-200 text-left ${
+                abilityScoreMethod === "roll"
+                  ? "border-amber-600/50 bg-gradient-to-br from-amber-900/40 via-amber-900/20 to-amber-800/10 shadow-[0_0_20px_rgba(232,193,112,0.15)]"
+                  : "border-amber-800/30 bg-black/20 hover:border-amber-600/40 hover:bg-amber-900/10"
+              }`}
             >
-              <Dice6 className="h-6 w-6" />
-              <div className="text-center">
-                <div className="font-display font-semibold">Roll (4d6 Drop Lowest)</div>
-                <div className="text-xs text-muted-foreground">Roll four dice, drop the lowest</div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                  abilityScoreMethod === "roll" 
+                    ? "bg-amber-600/30 text-amber-200" 
+                    : "bg-amber-900/30 text-amber-400"
+                }`}>
+                  <Dice6 className="h-5 w-5" />
+                </div>
+                <div className="font-display font-semibold text-lg">Roll</div>
               </div>
-            </ToggleGroupItem>
+              <div className="text-sm text-muted-foreground">
+                4d6 drop lowest - Roll four dice, drop the lowest
+              </div>
+              {abilityScoreMethod === "roll" && (
+                <div className="absolute top-2 right-2 w-3 h-3 bg-amber-400 rounded-full animate-pulse" />
+              )}
+            </button>
             
-            <ToggleGroupItem
-              value="standard-array"
-              className="flex flex-col items-center gap-2 p-4 h-auto data-[state=on]:bg-amber-900/40 data-[state=on]:border-amber-600/50"
+            <button
+              type="button"
+              onClick={() => handleMethodChange("standard-array")}
+              className={`relative p-6 rounded-lg border transition-all duration-200 text-left ${
+                abilityScoreMethod === "standard-array"
+                  ? "border-amber-600/50 bg-gradient-to-br from-amber-900/40 via-amber-900/20 to-amber-800/10 shadow-[0_0_20px_rgba(232,193,112,0.15)]"
+                  : "border-amber-800/30 bg-black/20 hover:border-amber-600/40 hover:bg-amber-900/10"
+              }`}
             >
-              <Shuffle className="h-6 w-6" />
-              <div className="text-center">
-                <div className="font-display font-semibold">Standard Array</div>
-                <div className="text-xs text-muted-foreground">Use [15, 14, 13, 12, 10, 8]</div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                  abilityScoreMethod === "standard-array" 
+                    ? "bg-amber-600/30 text-amber-200" 
+                    : "bg-amber-900/30 text-amber-400"
+                }`}>
+                  <Shuffle className="h-5 w-5" />
+                </div>
+                <div className="font-display font-semibold text-lg">Standard Array</div>
               </div>
-            </ToggleGroupItem>
+              <div className="text-sm text-muted-foreground">
+                Use [15, 14, 13, 12, 10, 8] - Balanced starting scores
+              </div>
+              {abilityScoreMethod === "standard-array" && (
+                <div className="absolute top-2 right-2 w-3 h-3 bg-amber-400 rounded-full animate-pulse" />
+              )}
+            </button>
             
-            <ToggleGroupItem
-              value="point-buy"
-              className="flex flex-col items-center gap-2 p-4 h-auto data-[state=on]:bg-amber-900/40 data-[state=on]:border-amber-600/50"
+            <button
+              type="button"
+              onClick={() => handleMethodChange("point-buy")}
+              className={`relative p-6 rounded-lg border transition-all duration-200 text-left ${
+                abilityScoreMethod === "point-buy"
+                  ? "border-amber-600/50 bg-gradient-to-br from-amber-900/40 via-amber-900/20 to-amber-800/10 shadow-[0_0_20px_rgba(232,193,112,0.15)]"
+                  : "border-amber-800/30 bg-black/20 hover:border-amber-600/40 hover:bg-amber-900/10"
+              }`}
             >
-              <Calculator className="h-6 w-6" />
-              <div className="text-center">
-                <div className="font-display font-semibold">Point Buy</div>
-                <div className="text-xs text-muted-foreground">Spend 27 points</div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                  abilityScoreMethod === "point-buy" 
+                    ? "bg-amber-600/30 text-amber-200" 
+                    : "bg-amber-900/30 text-amber-400"
+                }`}>
+                  <Calculator className="h-5 w-5" />
+                </div>
+                <div className="font-display font-semibold text-lg">Point Buy</div>
               </div>
-            </ToggleGroupItem>
-          </ToggleGroup>
+              <div className="text-sm text-muted-foreground">
+                Spend 27 points - Customize your ability scores
+              </div>
+              {abilityScoreMethod === "point-buy" && (
+                <div className="absolute top-2 right-2 w-3 h-3 bg-amber-400 rounded-full animate-pulse" />
+              )}
+            </button>
+          </div>
         </CardContent>
       </Card>
 
@@ -398,26 +444,39 @@ export function AbilityScoreSelector() {
           <CardContent className="space-y-4">
             {/* Assignment Mode Toggle */}
             {hasFlexibleAssignment && (
-              <div className="flex items-center justify-between p-3 border border-amber-800/30 rounded-md">
-                <div>
-                  <div className="font-display font-semibold">Assignment Mode</div>
-                  <div className="text-sm text-muted-foreground">
-                    Choose how to assign your racial ability score bonuses
+              <div className="p-4 border border-amber-800/30 rounded-lg bg-gradient-to-r from-amber-900/10 to-amber-800/5">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <div className="font-display font-semibold text-amber-100">Assignment Mode</div>
+                    <div className="text-sm text-amber-300/80">
+                      Choose how to assign your racial ability score bonuses
+                    </div>
                   </div>
                 </div>
-                <ToggleGroup
-                  type="single"
-                  value={assignmentMode}
-                  onValueChange={handleAssignmentModeChange}
-                  className="flex gap-2"
-                >
-                  <ToggleGroupItem value="standard" className="px-3 py-1 text-sm">
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => handleAssignmentModeChange("standard")}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                      assignmentMode === "standard"
+                        ? "bg-amber-600/30 text-amber-200 border border-amber-600/50 shadow-sm"
+                        : "bg-black/20 text-amber-300/70 border border-amber-800/30 hover:bg-amber-900/20 hover:text-amber-200"
+                    }`}
+                  >
                     Standard
-                  </ToggleGroupItem>
-                  <ToggleGroupItem value="custom" className="px-3 py-1 text-sm">
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleAssignmentModeChange("custom")}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                      assignmentMode === "custom"
+                        ? "bg-amber-600/30 text-amber-200 border border-amber-600/50 shadow-sm"
+                        : "bg-black/20 text-amber-300/70 border border-amber-800/30 hover:bg-amber-900/20 hover:text-amber-200"
+                    }`}
+                  >
                     Custom
-                  </ToggleGroupItem>
-                </ToggleGroup>
+                  </button>
+                </div>
               </div>
             )}
 
@@ -646,7 +705,7 @@ export function AbilityScoreSelector() {
       )}
 
       {/* Ability Score Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {abilities.map((ability) => (
           <FormField
             key={ability.id}
@@ -691,62 +750,83 @@ export function AbilityScoreSelector() {
 
               return (
                 <FormItem>
-                  <div className="flex items-center gap-2">
-                    <div className="w-12 h-12 rounded-full bg-emerald-900/30 flex items-center justify-center border border-amber-800/30">
-                      <span className="font-display text-lg">{ability.abbr}</span>
+                  <div className="flex items-start gap-4 p-4 rounded-lg border border-amber-800/20 bg-black/10 backdrop-blur-sm hover:bg-amber-900/5 transition-all duration-200">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-900/40 to-emerald-800/30 flex items-center justify-center border-2 border-amber-800/40 shadow-lg">
+                      <span className="font-display text-xl font-bold text-emerald-200">{ability.abbr}</span>
                     </div>
-                    <div className="flex-1">
-                      <FormLabel className="font-display">{ability.name}</FormLabel>
-                      <div className="flex items-center gap-2">
+                    <div className="flex-1 space-y-3">
+                      <FormLabel className="font-display text-lg font-semibold text-amber-100">{ability.name}</FormLabel>
+                      <div className="flex items-center gap-3">
+                        {/* Base Score Display */}
+                        <div className="flex flex-col items-center gap-1">
+                          <div className="w-16 h-10 rounded-lg border border-amber-800/30 bg-amber-900/20 flex items-center justify-center">
+                            <span className="font-display text-lg font-bold text-amber-200">
+                              {baseScore || "—"}
+                            </span>
+                          </div>
+                          <span className="text-xs text-amber-300/70">Base</span>
+                        </div>
+                        
                         {abilityScoreMethod === "roll" ? (
-                          <select
+                          <Select
                             value={field.value || ""}
-                            onChange={(e) => field.onChange(e.target.value)}
-                            className="flex h-10 w-full rounded-md border border-amber-800/30 bg-black/20 backdrop-blur-sm px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            onValueChange={field.onChange}
                           >
-                            <option value="">Select Rolled Score</option>
-                            {availableRolledScores.map((score) => (
-                              <option key={score.id} value={score.id}>
-                                {score.value}
-                              </option>
-                            ))}
-                          </select>
+                            <SelectTrigger className="border-amber-800/30 bg-black/20 backdrop-blur-sm">
+                              <SelectValue placeholder="Select Rolled Score">
+                                {field.value ? (
+                                  (() => {
+                                    const rollData = rolledScoresWithIds.find(score => score.id === field.value)
+                                    return rollData ? `Rolled: ${rollData.value}` : "Select Rolled Score"
+                                  })()
+                                ) : "Select Rolled Score"}
+                              </SelectValue>
+                            </SelectTrigger>
+                            <SelectContent>
+                              {availableRolledScores.map((score) => (
+                                <SelectItem key={score.id} value={score.id}>
+                                  Rolled: {score.value}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
                         ) : abilityScoreMethod === "standard-array" ? (
-                          <select
-                            value={field.value || ""}
-                            onChange={(e) => field.onChange(Number.parseInt(e.target.value) || 0)}
-                            className="flex h-10 w-full rounded-md border border-amber-800/30 bg-black/20 backdrop-blur-sm px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                          <Select
+                            value={field.value?.toString() || ""}
+                            onValueChange={(value) => field.onChange(Number.parseInt(value) || 0)}
                           >
-                            <option value="">Select Value</option>
-                            {availableStandardArrayValues.map((value) => (
-                              <option key={value} value={value}>
-                                {value}
-                              </option>
-                            ))}
-                          </select>
+                            <SelectTrigger className="border-amber-800/30 bg-black/20 backdrop-blur-sm">
+                              <SelectValue placeholder="Select Value">
+                                {field.value ? `Score: ${field.value}` : "Select Value"}
+                              </SelectValue>
+                            </SelectTrigger>
+                            <SelectContent>
+                              {availableStandardArrayValues.map((value) => (
+                                <SelectItem key={value} value={value.toString()}>
+                                  Score: {value}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
                         ) : abilityScoreMethod === "point-buy" ? (
                           <div className="flex items-center gap-2">
                             <button
                               type="button"
-                              className="w-8 h-8 rounded bg-amber-900/40 text-amber-200 font-bold flex items-center justify-center border border-amber-800/30 disabled:opacity-40"
+                              className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-900/40 to-amber-800/30 text-amber-200 font-bold flex items-center justify-center border border-amber-800/30 hover:bg-amber-900/60 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
                               onClick={() => field.onChange(Math.max(8, (Number(field.value || 8)) - 1))}
                               disabled={Number(field.value || 8) <= 8}
                               aria-label={`Decrease ${ability.name}`}
                             >
-                              –
+                              <Minus className="h-4 w-4" />
                             </button>
-                            <Input
-                              type="number"
-                              min={8}
-                              max={15}
-                              value={field.value || 8}
-                              readOnly
-                              className="w-16 text-center border-amber-800/30 bg-black/20 backdrop-blur-sm cursor-default"
-                              tabIndex={-1}
-                            />
+                            <div className="w-20 h-10 rounded-lg border border-amber-800/30 bg-black/20 backdrop-blur-sm flex items-center justify-center">
+                              <span className="font-display text-lg font-semibold text-amber-200">
+                                {field.value || 8}
+                              </span>
+                            </div>
                             <button
                               type="button"
-                              className="w-8 h-8 rounded bg-amber-900/40 text-amber-200 font-bold flex items-center justify-center border border-amber-800/30 disabled:opacity-40"
+                              className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-900/40 to-amber-800/30 text-amber-200 font-bold flex items-center justify-center border border-amber-800/30 hover:bg-amber-900/60 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
                               onClick={() => {
                                 // Calculate new value and check if it would exceed 27 points
                                 const current = Number(field.value || 8)
@@ -781,7 +861,7 @@ export function AbilityScoreSelector() {
                               }
                               aria-label={`Increase ${ability.name}`}
                             >
-                              +
+                              <Plus className="h-4 w-4" />
                             </button>
                           </div>
                         ) : (
@@ -794,30 +874,41 @@ export function AbilityScoreSelector() {
                             className="border-amber-800/30 bg-black/20 backdrop-blur-sm"
                           />
                         )}
-                        <div className="w-10 h-10 rounded-md bg-emerald-900/20 flex items-center justify-center border border-amber-800/30">
-                          <span className="font-display text-sm">{modifierText}</span>
+                        <div className="flex flex-col items-center gap-1">
+                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 flex items-center justify-center border-2 border-emerald-700/40 shadow-md">
+                            <span className="font-display text-lg font-bold text-emerald-200">{modifierText}</span>
+                          </div>
+                          <span className="text-xs text-emerald-300/70">Mod</span>
                         </div>
                       </div>
                       
                       {/* Show bonus breakdown if applicable */}
-                      {(raceSubraceBonuses[ability.id] || 0) > 0 && (
-                        <div className="text-xs text-amber-400 mt-1">
-                          Race/Subrace: +{raceSubraceBonuses[ability.id] || 0}
-                        </div>
-                      )}
-                      {(featASIs[ability.id] || 0) > 0 && (
-                        <div className="text-xs text-green-400 mt-1">
-                          Feat ASI: +{featASIs[ability.id] || 0}
-                        </div>
-                      )}
-                      {(asiBonuses[ability.id] || 0) > 0 && (
-                        <div className="text-xs text-purple-400 mt-1">
-                          ASI Choice: +{asiBonuses[ability.id] || 0}
-                        </div>
-                      )}
-                      {(bonus > 0 || featAsiBonus > 0 || userAsiBonus > 0) && (
-                        <div className="text-xs text-blue-400 mt-1">
-                          Total: {baseScore} + {bonus + featAsiBonus + userAsiBonus} = {totalScore}
+                      {(raceSubraceBonuses[ability.id] || 0) > 0 || (featASIs[ability.id] || 0) > 0 || (asiBonuses[ability.id] || 0) > 0 && (
+                        <div className="space-y-1 pt-2 border-t border-amber-800/20">
+                          {(raceSubraceBonuses[ability.id] || 0) > 0 && (
+                            <div className="flex items-center gap-2 text-xs">
+                              <div className="w-2 h-2 rounded-full bg-amber-400"></div>
+                              <span className="text-amber-300">Race/Subrace: +{raceSubraceBonuses[ability.id] || 0}</span>
+                            </div>
+                          )}
+                          {(featASIs[ability.id] || 0) > 0 && (
+                            <div className="flex items-center gap-2 text-xs">
+                              <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                              <span className="text-green-300">Feat ASI: +{featASIs[ability.id] || 0}</span>
+                            </div>
+                          )}
+                          {(asiBonuses[ability.id] || 0) > 0 && (
+                            <div className="flex items-center gap-2 text-xs">
+                              <div className="w-2 h-2 rounded-full bg-purple-400"></div>
+                              <span className="text-purple-300">ASI Choice: +{asiBonuses[ability.id] || 0}</span>
+                            </div>
+                          )}
+                          {(bonus > 0 || featAsiBonus > 0 || userAsiBonus > 0) && (
+                            <div className="flex items-center gap-2 text-xs font-semibold">
+                              <div className="w-2 h-2 rounded-full bg-blue-400"></div>
+                              <span className="text-blue-300">Total: {baseScore} + {bonus + featAsiBonus + userAsiBonus} = {totalScore}</span>
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>

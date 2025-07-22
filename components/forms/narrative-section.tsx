@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { useFormContext } from "react-hook-form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -13,6 +14,7 @@ import { AlignmentSelector } from "@/components/forms/alignment-selector"
 
 export function NarrativeSection() {
   const { control } = useFormContext()
+  const [activeTraitTab, setActiveTraitTab] = useState("personality")
 
   return (
     <div className="space-y-8">
@@ -85,7 +87,17 @@ export function NarrativeSection() {
         <FormField
           control={control}
           name="appearance"
-          render={({ field }) => (
+          rules={{
+            validate: (value) => {
+              if (!value || value.trim().length === 0) return true // Allow empty
+              const wordCount = value.trim().split(/\s+/).filter((word: string) => word.length > 0).length
+              if (wordCount < 20) {
+                return `Appearance description must be at least 20 words (currently ${wordCount} words)`
+              }
+              return true
+            }
+          }}
+          render={({ field, fieldState }) => (
             <FormItem>
               <FormLabel className="font-display text-lg">Appearance</FormLabel>
               <FormControl>
@@ -97,6 +109,14 @@ export function NarrativeSection() {
                 />
               </FormControl>
               <FormMessage />
+              {field.value && (
+                <div className="text-xs text-muted-foreground">
+                  Word count: {field.value.trim().split(/\s+/).filter((word: string) => word.length > 0).length}/200
+                  {field.value.trim().split(/\s+/).filter((word: string) => word.length > 0).length < 20 && (
+                    <span className="text-amber-400 ml-2">(Minimum 20 words required)</span>
+                  )}
+                </div>
+              )}
             </FormItem>
           )}
         />
@@ -104,7 +124,17 @@ export function NarrativeSection() {
         <FormField
           control={control}
           name="backstory"
-          render={({ field }) => (
+          rules={{
+            validate: (value) => {
+              if (!value || value.trim().length === 0) return true // Allow empty
+              const wordCount = value.trim().split(/\s+/).filter((word: string) => word.length > 0).length
+              if (wordCount < 200) {
+                return `Backstory must be at least 200 words (currently ${wordCount} words)`
+              }
+              return true
+            }
+          }}
+          render={({ field, fieldState }) => (
             <FormItem>
               <FormLabel className="font-display text-lg">Backstory</FormLabel>
               <FormControl>
@@ -116,13 +146,21 @@ export function NarrativeSection() {
                 />
               </FormControl>
               <FormMessage />
+              {field.value && (
+                <div className="text-xs text-muted-foreground">
+                  Word count: {field.value.trim().split(/\s+/).filter((word: string) => word.length > 0).length}/500
+                  {field.value.trim().split(/\s+/).filter((word: string) => word.length > 0).length < 200 && (
+                    <span className="text-amber-400 ml-2">(Minimum 200 words required)</span>
+                  )}
+                </div>
+              )}
             </FormItem>
           )}
         />
       </FantasyFormSection>
 
       <FantasyFormSection title="Character Traits">
-        <Tabs defaultValue="personality" className="w-full">
+        <Tabs value={activeTraitTab} onValueChange={setActiveTraitTab} className="w-full">
           <TabsList className="grid grid-cols-4 mb-4">
             <TabsTrigger value="personality" className="font-display">
               Traits

@@ -7,7 +7,8 @@ import { FormField, FormItem, FormControl, FormMessage } from "@/components/ui/f
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { AlertTriangle, CheckCircle, XCircle } from "lucide-react"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+import { AlertTriangle, CheckCircle, XCircle, ChevronDown, ChevronRight } from "lucide-react"
 import { feats, getAvailableFeats, getEligibleFeats, meetsFeatPrerequisites, hasASI, getFeatASIs } from "@/lib/data/feats"
 import { classes } from "@/lib/data/classes"
 import { ASISelectionDialog } from "./asi-selection-dialog"
@@ -17,6 +18,7 @@ export function FeatSelector() {
   const [asiDialogOpen, setAsiDialogOpen] = useState(false)
   const [pendingFeatAsi, setPendingFeatAsi] = useState<{ featName: string; asiOptions: string[] } | null>(null)
   const [featASIChoices, setFeatASIChoices] = useState<Record<string, string>>({})
+  const [featLevelsExpanded, setFeatLevelsExpanded] = useState(false)
   
   const abilityScores = useWatch({ control, name: "abilityScores" }) || {}
   const characterClasses = useWatch({ control, name: "classes" }) || []
@@ -39,6 +41,46 @@ export function FeatSelector() {
 
   return (
     <div className="space-y-6">
+      {/* Feat Levels by Class Info Card - Now at the top and toggleable */}
+      <Collapsible open={featLevelsExpanded} onOpenChange={setFeatLevelsExpanded}>
+        <CollapsibleTrigger asChild>
+          <Card className="cursor-pointer transition-all duration-200 bg-blue-900/20 border border-blue-800/30 hover:bg-blue-900/30">
+            <CardHeader className="pb-3">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg font-display text-blue-400">Feat Levels by Class</CardTitle>
+                <div className="flex items-center space-x-2">
+                  <Badge variant="outline" className="text-xs bg-blue-900/50 text-blue-300 border-blue-600/50">
+                    Info
+                  </Badge>
+                  {featLevelsExpanded ? (
+                    <ChevronDown className="h-4 w-4 text-blue-400" />
+                  ) : (
+                    <ChevronRight className="h-4 w-4 text-blue-400" />
+                  )}
+                </div>
+              </div>
+            </CardHeader>
+          </Card>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <div className="mt-2 p-4 bg-blue-900/10 border border-blue-800/20 rounded-lg">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {classes.map((cls) => {
+                const featLevels = cls.FeatLevel || []
+                return (
+                  <div key={cls.id} className="text-sm">
+                    <div className="font-semibold text-blue-300">{cls.name}</div>
+                    <div className="text-blue-200">
+                      Feat levels: {featLevels.length > 0 ? featLevels.join(', ') : 'None'}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
+
       {/* Feat Summary */}
       <div className="flex items-center justify-between p-4 bg-amber-900/20 border border-amber-800/30 rounded-lg">
         <div className="flex items-center space-x-4">
@@ -202,24 +244,6 @@ export function FeatSelector() {
             </TooltipProvider>
           )
         })}
-      </div>
-
-      {/* Feat Level Information */}
-      <div className="p-4 bg-blue-900/20 border border-blue-800/30 rounded-lg">
-        <h4 className="font-display text-lg mb-3 text-blue-400">Feat Levels by Class</h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {classes.map((cls) => {
-            const featLevels = cls.FeatLevel || []
-            return (
-              <div key={cls.id} className="text-sm">
-                <div className="font-semibold text-blue-300">{cls.name}</div>
-                <div className="text-blue-200">
-                  Feat levels: {featLevels.length > 0 ? featLevels.join(', ') : 'None'}
-                </div>
-              </div>
-            )
-          })}
-        </div>
       </div>
 
       {/* ASI Selection Dialog */}

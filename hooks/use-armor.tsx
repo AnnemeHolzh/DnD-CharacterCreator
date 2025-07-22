@@ -12,6 +12,7 @@ export interface UseArmorReturn {
   magicArmorDetails: Record<string, MagicArmorDetail>
   loading: boolean
   error: string | null
+  hasLoaded: boolean
   fetchArmorDetail: (index: string) => Promise<ArmorDetail>
   fetchMagicArmorDetail: (index: string) => Promise<MagicArmorDetail>
   refreshArmor: () => Promise<void>
@@ -120,6 +121,7 @@ export function useArmor(): UseArmorReturn {
     magicArmorDetails,
     loading,
     error,
+    hasLoaded,
     fetchArmorDetail,
     fetchMagicArmorDetail,
     refreshArmor,
