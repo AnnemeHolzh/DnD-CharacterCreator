@@ -20,7 +20,7 @@ export default function Navigation() {
       <div className="container mx-auto px-4 h-full flex items-center">
         <div className="flex justify-between items-center w-full h-full">
           <Link href="/" className="font-display text-2xl font-bold text-amber-200 tracking-wider" style={{ letterSpacing: '0.05em' }}>
-            D&D Creator
+            The Role Study
           </Link>
           <div className="flex gap-2 items-center">
             <Link href="/">

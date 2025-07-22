@@ -1,4 +1,4 @@
-# Firebase Setup for D&D Character Creator
+# Firebase Setup for The Role Study
 
 This guide will help you set up Firebase Realtime Database for storing individual characters.
 
