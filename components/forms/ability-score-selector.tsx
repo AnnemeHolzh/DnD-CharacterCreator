@@ -550,6 +550,7 @@ export function AbilityScoreSelector() {
                 Roll 4d6, drop the lowest die, sum the remaining three
               </p>
               <Button
+                type="button"
                 onClick={rollAllScores}
                 disabled={isRolling}
                 className="bg-amber-900/40 border-amber-800/30 hover:bg-amber-900/60"
@@ -632,6 +633,7 @@ export function AbilityScoreSelector() {
                     Increase one ability score by 2, or increase two ability scores by 1 each.
                   </div>
                   <Button
+                    type="button"
                     variant="outline"
                     className="border-green-800/30 bg-green-900/20 hover:bg-green-900/40 text-green-300"
                     onClick={() => setAsiChoiceDialogOpen(true)}

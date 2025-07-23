@@ -15,7 +15,7 @@ This file Is for storing a compalation of DnD classes and subclasses with all ad
     "cited_source": "PHB p.48-49:contentReference[oaicite:4]{index=4}"
   },
   {
-    "subclass_name": "Path of the Wild Heart",
+    "subclass_name": "Path of the Totem Warrior",
     "class": "Barbarian",
     "sourcebook": "PHB",
     "class_features": [

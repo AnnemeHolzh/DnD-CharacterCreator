@@ -94,7 +94,88 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
     // Check if form is valid
     const isValid = methods.formState.isValid
     if (!isValid) {
-      setSaveError("Please complete all required fields before saving")
+      // Get specific validation errors to show which fields are missing
+      const errors = methods.formState.errors
+      const formValues = methods.getValues()
+      const missingFields: string[] = []
+      
+      // Check for specific field errors
+      if (errors.name) missingFields.push('Character Name')
+      if (errors.race) missingFields.push('Race')
+      if (errors.classes) missingFields.push('Class')
+      if (errors.abilityScores) missingFields.push('Ability Scores')
+      if (errors.level) missingFields.push('Level')
+      if (errors.background) missingFields.push('Background')
+      if (errors.alignment) missingFields.push('Alignment')
+      
+      // Check for nested class errors
+      if (errors.classes && Array.isArray(errors.classes)) {
+        errors.classes.forEach((classError: any, index: number) => {
+          if (classError?.class) missingFields.push(`Class ${index + 1}`)
+          if (classError?.subclass) missingFields.push(`Subclass ${index + 1}`)
+          if (classError?.level) missingFields.push(`Class ${index + 1} Level`)
+        })
+      }
+      
+      // Check for ability score errors
+      if (errors.abilityScores) {
+        const abilityScoreErrors = errors.abilityScores as any
+        if (abilityScoreErrors.strength) missingFields.push('Strength')
+        if (abilityScoreErrors.dexterity) missingFields.push('Dexterity')
+        if (abilityScoreErrors.constitution) missingFields.push('Constitution')
+        if (abilityScoreErrors.intelligence) missingFields.push('Intelligence')
+        if (abilityScoreErrors.wisdom) missingFields.push('Wisdom')
+        if (abilityScoreErrors.charisma) missingFields.push('Charisma')
+      }
+      
+      // Also check actual form values against completion requirements
+      if (!formValues.name || formValues.name.trim().length === 0) {
+        if (!missingFields.includes('Character Name')) missingFields.push('Character Name')
+      }
+      if (!formValues.race) {
+        if (!missingFields.includes('Race')) missingFields.push('Race')
+      }
+      if (!formValues.classes || formValues.classes.length === 0 || !formValues.classes[0].class) {
+        if (!missingFields.includes('Class')) missingFields.push('Class')
+      }
+      if (!formValues.abilityScores || Object.values(formValues.abilityScores).every(score => score === 0)) {
+        if (!missingFields.includes('Ability Scores')) missingFields.push('Ability Scores')
+      }
+      if (!formValues.level || formValues.level <= 0) {
+        if (!missingFields.includes('Level')) missingFields.push('Level')
+      }
+      
+      // Check word count requirements for optional fields that have content
+      if (formValues.appearance && formValues.appearance.trim().length > 0) {
+        const appearanceWordCount = formValues.appearance.trim().split(/\s+/).filter((word: string) => word.length > 0).length
+        if (appearanceWordCount < 20) {
+          missingFields.push('Appearance (minimum 20 words)')
+        }
+      }
+      if (formValues.backstory && formValues.backstory.trim().length > 0) {
+        const backstoryWordCount = formValues.backstory.trim().split(/\s+/).filter((word: string) => word.length > 0).length
+        if (backstoryWordCount < 200) {
+          missingFields.push('Backstory (minimum 200 words)')
+        }
+      }
+      
+      // Check total level validation
+      if (formValues.classes && formValues.classes.length > 0) {
+        const totalLevel = formValues.classes.reduce((sum: number, classEntry: any) => {
+          return sum + (classEntry?.level || 0);
+        }, 0);
+        if (totalLevel > 20) {
+          missingFields.push('Total level exceeds 20')
+        }
+      }
+      
+      // Create error message with specific missing fields
+      let errorMessage = "Please complete all required fields before saving"
+      if (missingFields.length > 0) {
+        errorMessage += `: ${missingFields.join(', ')}`
+      }
+      
+      setSaveError(errorMessage)
       return
     }
 
@@ -231,6 +312,7 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
             </p>
             <div className="flex gap-3">
               <Button 
+                type="button"
                 onClick={handleConfirmSave}
                 disabled={saving || isSubmitting}
                 className="flex-1 bg-amber-900/40 border-amber-800/30 hover:bg-amber-900/60"
@@ -246,6 +328,7 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
                 )}
               </Button>
               <Button 
+                type="button"
                 onClick={handleCancelSave}
                 variant="outline"
                 className="flex-1 border-amber-800/30"

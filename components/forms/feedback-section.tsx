@@ -14,7 +14,8 @@ import {
   Mail, 
   Heart,
   AlertCircle,
-  CheckCircle
+  CheckCircle,
+  Monitor
 } from "lucide-react"
 import { FantasyFormSection } from "@/components/ui/fantasy-form-section"
 import { useFeedback } from "@/hooks/use-feedback"
@@ -94,6 +95,14 @@ export function FeedbackSection() {
                 <div className="text-xs text-muted-foreground mt-1">
                   {feedbackText.length}/1000 characters
                 </div>
+              </div>
+
+              {/* Browser Info Notice */}
+              <div className="flex items-center gap-2 p-3 bg-blue-900/20 border border-blue-800/30 rounded-md">
+                <Monitor className="h-4 w-4 text-blue-400" />
+                <span className="text-xs text-blue-300">
+                  Browser information will be automatically included to help with troubleshooting
+                </span>
               </div>
 
               {/* Email Field */}
@@ -189,6 +198,12 @@ export function FeedbackSection() {
                               Email provided
                             </span>
                           )}
+                          {feedbackItem.browserInfo && (
+                            <span className="flex items-center gap-1">
+                              <Monitor className="h-3 w-3" />
+                              {feedbackItem.browserInfo.name} {feedbackItem.browserInfo.version}
+                            </span>
+                          )}
                         </div>
                       </div>
                       
@@ -237,6 +252,7 @@ export function FeedbackSection() {
                 <li>• Share your suggestions, feature requests, or report issues</li>
                 <li>• Upvote feedback you agree with to help prioritize improvements</li>
                 <li>• Provide your email to get notified when your suggestions are implemented</li>
+                <li>• Browser information is automatically included to help with troubleshooting</li>
                 <li>• Feedback is sorted by popularity (upvotes) and recency</li>
               </ul>
             </div>

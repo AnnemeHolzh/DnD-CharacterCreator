@@ -143,7 +143,7 @@ export const feats: Feat[] = [
 ];
 
 // Function to check if a character meets feat prerequisites
-export function meetsFeatPrerequisites(feat: Feat, abilityScores: Record<string, number>, classes: any[], proficiencies: string[]): boolean {
+export function meetsFeatPrerequisites(feat: Feat, abilityScores: Record<string, number>, characterClasses: any[], proficiencies: string[]): boolean {
   const prereqs = feat.prereqs.toLowerCase();
   
   if (prereqs === "none") return true;
@@ -161,7 +161,11 @@ export function meetsFeatPrerequisites(feat: Feat, abilityScores: Record<string,
   
   // Check spellcasting ability prerequisite
   if (prereqs.includes("spellcasting ability")) {
-    const hasSpellcasting = classes.some(cls => cls.class && classes.find(c => c.id === cls.class)?.spellcasting);
+    const hasSpellcasting = characterClasses.some(cls => {
+      if (!cls.class) return false;
+      const classData = classes.find(c => c.id === cls.class);
+      return classData?.spellcasting === true;
+    });
     if (!hasSpellcasting) return false;
   }
   

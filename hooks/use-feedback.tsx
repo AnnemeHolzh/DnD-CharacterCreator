@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { FeedbackService, type Feedback, type FeedbackWithId } from '@/lib/services/feedback-service'
 import { useToast } from '@/hooks/use-toast'
+import { detectBrowser } from '@/lib/utils/browser-detection'
 
 export function useFeedback() {
   const [feedback, setFeedback] = useState<FeedbackWithId[]>([])
@@ -46,7 +47,21 @@ export function useFeedback() {
         return null
       }
 
-      const feedbackId = await FeedbackService.saveFeedback(feedbackData)
+      // Get browser information
+      const browserInfo = detectBrowser()
+      const feedbackWithBrowser = {
+        ...feedbackData,
+        browserInfo: {
+          name: browserInfo.name,
+          version: browserInfo.version,
+          platform: browserInfo.platform,
+          isMobile: browserInfo.isMobile,
+          isTablet: browserInfo.isTablet,
+          isDesktop: browserInfo.isDesktop
+        }
+      }
+
+      const feedbackId = await FeedbackService.saveFeedback(feedbackWithBrowser)
       
       // Reload feedback to get the updated list
       await loadFeedback()
