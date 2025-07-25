@@ -10,7 +10,7 @@ import { AlertTriangle, Loader2, RefreshCw, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTools } from "@/hooks/use-tools"
 import { useState, useEffect, useMemo } from "react"
-import { calculateToolProficiencies, validateToolSelections, ToolProficiencyData, isArtisansTool, filterArtisansTools, calculateToolChoiceAllowances } from "@/lib/utils/character-utils"
+import { calculateToolProficiencies, validateToolSelections, ToolProficiencyData, isArtisansTool, calculateToolChoiceAllowances } from "@/lib/utils/character-utils"
 
 export function ToolSelector() {
   const { control, setValue } = useFormContext()
@@ -52,30 +52,6 @@ export function ToolSelector() {
     }
   }, [toolData.fixedTools, selectedTools, setValue])
 
-  // Filter tools to only show artisan's tools
-  const filteredToolCategories = useMemo(() => {
-    const filtered: Record<string, any[]> = {}
-    
-    Object.entries(toolCategories).forEach(([category, categoryTools]) => {
-      const artisansTools = categoryTools.filter(tool => isArtisansTool(tool.name))
-      if (artisansTools.length > 0) {
-        filtered[category] = artisansTools
-      }
-    })
-    
-    return filtered
-  }, [toolCategories])
-
-  // Filter fixed tools to only include artisan's tools
-  const filteredFixedTools = useMemo(() => {
-    return filterArtisansTools(toolData.fixedTools, tools)
-  }, [toolData.fixedTools, tools])
-
-  // Filter selected tools to only include artisan's tools
-  const filteredSelectedTools = useMemo(() => {
-    return filterArtisansTools(selectedTools, tools)
-  }, [selectedTools, tools])
-
   // Calculate tool choice allowances
   const toolChoiceAllowances = useMemo(() => {
     return calculateToolChoiceAllowances(characterClasses, race || "", subrace || "", background || "")
@@ -88,12 +64,6 @@ export function ToolSelector() {
 
   const handleToolToggle = (toolIndex: string, isSelected: boolean) => {
     let newSelectedTools = [...selectedTools]
-    
-    // Only allow artisan's tools
-    const tool = tools.find(t => t.index === toolIndex)
-    if (tool && !isArtisansTool(tool.name)) {
-      return // Don't allow non-artisan's tools
-    }
     
     if (isSelected) {
       if (!newSelectedTools.includes(toolIndex)) {
@@ -180,11 +150,11 @@ export function ToolSelector() {
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Fixed Proficiencies */}
-          {filteredFixedTools.length > 0 && (
+          {toolData.fixedTools.length > 0 && (
             <div>
               <h4 className="font-display text-sm mb-2 text-amber-400">Fixed Proficiencies</h4>
               <div className="flex flex-wrap gap-2">
-                {filteredFixedTools.map((toolId) => (
+                {toolData.fixedTools.map((toolId) => (
                   <Badge key={toolId} variant="secondary" className="bg-amber-900/40 text-amber-200">
                     {getToolDisplayName(toolId)}
                     <Lock className="inline ml-1 h-3 w-3" />
@@ -199,21 +169,34 @@ export function ToolSelector() {
             <div>
               <h4 className="font-display text-sm mb-2 text-blue-400">Tool Choice Allowances</h4>
               <p className="text-sm text-muted-foreground">
-                You can choose {toolChoiceAllowances} additional artisan's tool{toolChoiceAllowances !== 1 ? 's' : ''} from your race, background, or class.
+                You can choose {toolChoiceAllowances} additional tool{toolChoiceAllowances !== 1 ? 's' : ''} from your race, background, or class.
+                {toolData.artisansToolChoices > 0 && (
+                  <span className="block mt-1 text-amber-400">
+                    {toolData.artisansToolChoices} of these choices must be artisan's tools.
+                  </span>
+                )}
               </p>
             </div>
           )}
 
           {/* Selected Tools */}
-          {filteredSelectedTools.length > 0 && (
+          {selectedTools.length > 0 && (
             <div>
               <h4 className="font-display text-sm mb-2">Selected Tools</h4>
               <div className="flex flex-wrap gap-2">
-                {filteredSelectedTools.map((toolIndex: string) => (
-                  <Badge key={toolIndex} variant="secondary" className="bg-amber-900/40 text-amber-200">
-                    {getToolDisplayName(toolIndex)}
-                  </Badge>
-                ))}
+                {selectedTools.map((toolIndex: string) => {
+                  const isFixed = toolData.fixedTools.includes(toolIndex)
+                  return (
+                    <Badge 
+                      key={toolIndex} 
+                      variant="secondary" 
+                      className={`${isFixed ? 'bg-amber-900/40 text-amber-200' : 'bg-green-900/40 text-green-200'}`}
+                    >
+                      {getToolDisplayName(toolIndex)}
+                      {isFixed && <Lock className="inline ml-1 h-3 w-3" />}
+                    </Badge>
+                  )
+                })}
               </div>
             </div>
           )}
@@ -234,7 +217,7 @@ export function ToolSelector() {
 
       {/* Tool Categories */}
       <div className="space-y-4">
-        {Object.entries(filteredToolCategories).map(([category, categoryTools]) => (
+        {Object.entries(toolCategories).map(([category, categoryTools]) => (
           <Card key={category}>
             <CardHeader>
               <CardTitle className="text-lg font-display">{category}</CardTitle>
@@ -244,6 +227,7 @@ export function ToolSelector() {
                 {categoryTools.map((tool) => {
                   const isSelected = selectedTools.includes(tool.index)
                   const isFixed = toolData.fixedTools.includes(tool.index)
+                  const isArtisansToolType = isArtisansTool(tool.name)
                   
                   return (
                     <TooltipProvider key={tool.index}>
@@ -275,6 +259,11 @@ export function ToolSelector() {
                                 Fixed
                               </Badge>
                             )}
+                            {isArtisansToolType && (
+                              <Badge variant="secondary" className="ml-1 text-xs bg-blue-900/40 text-blue-200">
+                                Artisan
+                              </Badge>
+                            )}
                           </div>
                         </TooltipTrigger>
                         <TooltipContent>
@@ -283,7 +272,10 @@ export function ToolSelector() {
                             <p className="max-w-xs">{tool.description}</p>
                           )}
                           {isFixed && (
-                            <p className="text-amber-400">Fixed proficiency from race or background</p>
+                            <p className="text-amber-400">Fixed proficiency from race, background, or class</p>
+                          )}
+                          {isArtisansToolType && (
+                            <p className="text-blue-400">This is an artisan's tool</p>
                           )}
                         </TooltipContent>
                       </Tooltip>

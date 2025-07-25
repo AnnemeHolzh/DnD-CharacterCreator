@@ -405,6 +405,7 @@ export interface ToolProficiencyData {
   fixedTools: string[]
   availableTools: string[]
   selectedTools: string[]
+  artisansToolChoices: number
 }
 
 // Map language names from races data to API language indices
@@ -592,7 +593,11 @@ export function calculateToolProficiencies(
   const raceTools = getRaceToolProficiencies(raceId, subraceId)
   const backgroundTools = getBackgroundToolProficiencies(backgroundId)
   const classTools = characterClasses.map(c => getClassToolProficiencies(c.class)).flat()
-  const fixedTools = [...raceTools, ...backgroundTools, ...classTools]
+  
+  // Separate fixed tools from "Artisan's tools" choices
+  const allFixedTools = [...raceTools, ...backgroundTools, ...classTools]
+  const fixedTools = allFixedTools.filter(tool => tool !== 'artisans-tools')
+  const artisansToolChoices = allFixedTools.filter(tool => tool === 'artisans-tools').length
 
   // Get available tools (all tools minus fixed ones)
   // This will be populated by the API data
@@ -606,7 +611,8 @@ export function calculateToolProficiencies(
   return {
     fixedTools,
     availableTools,
-    selectedTools: selectedNonFixedTools
+    selectedTools: selectedNonFixedTools,
+    artisansToolChoices
   }
 }
 
@@ -743,29 +749,26 @@ export function validateToolSelections(
     }
   })
   
-  // Validate that only artisan's tools are selected
-  if (allTools.length > 0) {
-    const nonArtisansTools = selectedTools.filter(toolIndex => {
-      const tool = allTools.find(t => t.index === toolIndex)
-      return tool && !isArtisansTool(tool.name)
-    })
-    
-    if (nonArtisansTools.length > 0) {
-      const toolNames = nonArtisansTools.map(toolIndex => {
-        const tool = allTools.find(t => t.index === toolIndex)
-        return tool ? tool.name : toolIndex
-      })
-      errors.push(`Only artisan's tools can be selected. Invalid selections: ${toolNames.join(', ')}`)
-    }
-  }
-  
   // Validate selection limits based on allowances
   if (characterClasses.length > 0 && raceId && backgroundId) {
     const totalAllowances = calculateToolChoiceAllowances(characterClasses, raceId, subraceId, backgroundId)
     const selectedNonFixedTools = selectedTools.filter(tool => !toolData.fixedTools.includes(tool))
     
     if (selectedNonFixedTools.length > totalAllowances) {
-      errors.push(`You can only select ${totalAllowances} additional artisan's tool${totalAllowances !== 1 ? 's' : ''}. You have selected ${selectedNonFixedTools.length}.`)
+      errors.push(`You can only select ${totalAllowances} additional tool${totalAllowances !== 1 ? 's' : ''}. You have selected ${selectedNonFixedTools.length}.`)
+    }
+    
+    // Validate artisan's tools requirements
+    if (toolData.artisansToolChoices > 0 && allTools.length > 0) {
+      const selectedArtisansTools = selectedNonFixedTools.filter(toolIndex => {
+        const tool = allTools.find(t => t.index === toolIndex)
+        return tool && isArtisansTool(tool.name)
+      })
+      
+      if (selectedArtisansTools.length < toolData.artisansToolChoices) {
+        const remaining = toolData.artisansToolChoices - selectedArtisansTools.length
+        errors.push(`You must select ${remaining} more artisan's tool${remaining !== 1 ? 's' : ''} to fulfill your requirements.`)
+      }
     }
   }
   
