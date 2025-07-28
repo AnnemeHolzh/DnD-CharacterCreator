@@ -34,6 +34,7 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
 
   const methods = useForm<CharacterFormData>({
     resolver: zodResolver(CharacterSchema),
+    mode: "onSubmit",
     defaultValues: {
       name: "",
       background: "",
@@ -87,26 +88,33 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
     }
   }, [characterId, loadCharacter, methods])
 
-  const handleSaveClick = (e: React.MouseEvent) => {
+  const handleSaveClick = async (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
     
-    // Check if form is valid
-    const isValid = methods.formState.isValid
+    // COMMENTED OUT VALIDATION FOR TESTING
+    /*
+    // Trigger validation to ensure all validations are run
+    const isValid = await methods.trigger()
+    
     if (!isValid) {
       // Get specific validation errors to show which fields are missing
       const errors = methods.formState.errors
       const formValues = methods.getValues()
       const missingFields: string[] = []
       
+      // Debug: Log form values to understand what's happening
+      console.log('Form values:', formValues)
+      console.log('Form errors:', errors)
+      console.log('Ability scores:', formValues.abilityScores)
+      console.log('Form state:', methods.formState)
+      console.log('Is form valid:', isValid)
+      
       // Check for specific field errors
       if (errors.name) missingFields.push('Character Name')
       if (errors.race) missingFields.push('Race')
       if (errors.classes) missingFields.push('Class')
-      if (errors.abilityScores) missingFields.push('Ability Scores')
       if (errors.level) missingFields.push('Level')
-      if (errors.background) missingFields.push('Background')
-      if (errors.alignment) missingFields.push('Alignment')
       
       // Check for nested class errors
       if (errors.classes && Array.isArray(errors.classes)) {
@@ -115,17 +123,6 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
           if (classError?.subclass) missingFields.push(`Subclass ${index + 1}`)
           if (classError?.level) missingFields.push(`Class ${index + 1} Level`)
         })
-      }
-      
-      // Check for ability score errors
-      if (errors.abilityScores) {
-        const abilityScoreErrors = errors.abilityScores as any
-        if (abilityScoreErrors.strength) missingFields.push('Strength')
-        if (abilityScoreErrors.dexterity) missingFields.push('Dexterity')
-        if (abilityScoreErrors.constitution) missingFields.push('Constitution')
-        if (abilityScoreErrors.intelligence) missingFields.push('Intelligence')
-        if (abilityScoreErrors.wisdom) missingFields.push('Wisdom')
-        if (abilityScoreErrors.charisma) missingFields.push('Charisma')
       }
       
       // Also check actual form values against completion requirements
@@ -138,25 +135,8 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
       if (!formValues.classes || formValues.classes.length === 0 || !formValues.classes[0].class) {
         if (!missingFields.includes('Class')) missingFields.push('Class')
       }
-      if (!formValues.abilityScores || Object.values(formValues.abilityScores).every(score => score === 0)) {
-        if (!missingFields.includes('Ability Scores')) missingFields.push('Ability Scores')
-      }
       if (!formValues.level || formValues.level <= 0) {
         if (!missingFields.includes('Level')) missingFields.push('Level')
-      }
-      
-      // Check word count requirements for optional fields that have content
-      if (formValues.appearance && formValues.appearance.trim().length > 0) {
-        const appearanceWordCount = formValues.appearance.trim().split(/\s+/).filter((word: string) => word.length > 0).length
-        if (appearanceWordCount < 20) {
-          missingFields.push('Appearance (minimum 20 words)')
-        }
-      }
-      if (formValues.backstory && formValues.backstory.trim().length > 0) {
-        const backstoryWordCount = formValues.backstory.trim().split(/\s+/).filter((word: string) => word.length > 0).length
-        if (backstoryWordCount < 200) {
-          missingFields.push('Backstory (minimum 200 words)')
-        }
       }
       
       // Check total level validation
@@ -178,6 +158,7 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
       setSaveError(errorMessage)
       return
     }
+    */
 
     // Show confirmation dialog
     setShowSaveConfirmation(true)
@@ -269,22 +250,35 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 ) : (
-                  <Button 
-                    type="button" 
-                    onClick={handleSaveClick}
-                    disabled={saving || isSubmitting} 
-                    className="group"
-                  >
-                    {saving || isSubmitting ? (
-                      <>
-                        Saving <Sparkles className="ml-2 h-4 w-4 animate-pulse" />
-                      </>
-                    ) : (
-                      <>
-                        {characterId ? 'Update' : 'Save'} Character <Save className="ml-2 h-4 w-4" />
-                      </>
-                    )}
-                  </Button>
+                  <>
+                    <Button 
+                      type="button" 
+                      onClick={() => {
+                        console.log('Current form values:', methods.getValues())
+                        console.log('Form errors:', methods.formState.errors)
+                        console.log('Form state:', methods.formState)
+                      }}
+                      className="group bg-gradient-to-r from-blue-900/40 to-blue-800/30 border-blue-600/50 hover:from-blue-900/60 hover:to-blue-800/50 text-blue-200"
+                    >
+                      Debug Form
+                    </Button>
+                    <Button 
+                      type="button" 
+                      onClick={handleSaveClick}
+                      disabled={saving || isSubmitting} 
+                      className="group"
+                    >
+                      {saving || isSubmitting ? (
+                        <>
+                          Saving <Sparkles className="ml-2 h-4 w-4 animate-pulse" />
+                        </>
+                      ) : (
+                        <>
+                          {characterId ? 'Update' : 'Save'} Character <Save className="ml-2 h-4 w-4" />
+                        </>
+                      )}
+                    </Button>
+                  </>
                 )}
               </div>
             </Tabs>

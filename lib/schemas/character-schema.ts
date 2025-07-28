@@ -24,14 +24,14 @@ export const CharacterSchema = z.object({
   alignment: z.string().optional(),
   appearance: z.string()
     .transform((val) => val ? sanitizeText(val) : val)
-    .refine((val) => !val || countWords(val) <= 200, {
-      message: "Appearance description must be 200 words or less"
+    .refine((val) => !val || countWords(val) <= 450, {
+      message: "Appearance description must be 450 words or less"
     })
     .optional(),
   backstory: z.string()
     .transform((val) => val ? sanitizeText(val) : val)
-    .refine((val) => !val || countWords(val) <= 200, {
-      message: "Backstory must be 200 words or less"
+    .refine((val) => !val || countWords(val) <= 450, {
+      message: "Backstory must be 450 words or less"
     })
     .optional(),
   personalityTraits: z.string()

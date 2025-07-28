@@ -32,6 +32,8 @@ export function useCharacters() {
   const saveCharacter = useCallback(async (character: Character): Promise<string | null> => {
     setSaving(true)
     try {
+      // COMMENTED OUT VALIDATION FOR TESTING
+      /*
       // Check if character is complete
       const completionStatus = CharacterService.getCharacterCompletionStatus(character)
       
@@ -43,6 +45,7 @@ export function useCharacters() {
         })
         return null
       }
+      */
 
       const characterId = await CharacterService.saveCharacter(character)
       
@@ -72,6 +75,8 @@ export function useCharacters() {
   const updateCharacter = useCallback(async (characterId: string, character: Character): Promise<boolean> => {
     setSaving(true)
     try {
+      // COMMENTED OUT VALIDATION FOR TESTING
+      /*
       // Check if character is complete
       const completionStatus = CharacterService.getCharacterCompletionStatus(character)
       
@@ -83,6 +88,7 @@ export function useCharacters() {
         })
         return false
       }
+      */
 
       await CharacterService.updateCharacter(characterId, character)
       

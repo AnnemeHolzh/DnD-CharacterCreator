@@ -47,3 +47,4 @@
 - I cant save a character and getting this responce "Please complete all required fields before saving" even though all fields are filled in
 - ability scor e modifier does not go down if the user lowers an ability score
 - ability score modifiers in skills section dont update after ability score incresease
+- Handel musical instruments and gaming sets in tools section
