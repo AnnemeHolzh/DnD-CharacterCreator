@@ -88,6 +88,27 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
     }
   }, [characterId, loadCharacter, methods])
 
+  // Scroll to top when switching to mechanics tab
+  useEffect(() => {
+    if (activeTab === "mechanics") {
+      // Use setTimeout to ensure the tab content is rendered before scrolling
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }, 100)
+    }
+  }, [activeTab])
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value)
+    // Prevent any automatic focus behavior
+    if (value === "mechanics") {
+      // Blur any focused element to prevent automatic scrolling
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur()
+      }
+    }
+  }
+
   const handleSaveClick = async (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
@@ -220,7 +241,7 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
       <form className="space-y-8">
         <FantasyCard className="relative overflow-hidden">
           <div className="relative z-10">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
               <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="narrative">Narrative</TabsTrigger>
                 <TabsTrigger value="mechanics">Mechanics</TabsTrigger>

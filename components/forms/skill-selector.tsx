@@ -13,7 +13,7 @@ import { AlertTriangle, CheckCircle, Lock, BookOpen, Globe } from "lucide-react"
 import { skills } from "@/lib/data/skills"
 import { ToolSelector } from "./tool-selector"
 import { LanguageSelector } from "./language-selector"
-import { calculateSkillProficiencies, validateSkillSelections } from "@/lib/utils/character-utils"
+import { calculateSkillProficiencies, validateSkillSelections, calculateModifier, calculateTotalAbilityScoreIncreases } from "@/lib/utils/character-utils"
 
 export function SkillSelector() {
   const { control, setValue } = useFormContext()
@@ -23,6 +23,12 @@ export function SkillSelector() {
   const race = useWatch({ control, name: "race" }) || ""
   const subrace = useWatch({ control, name: "subrace" }) || ""
   const background = useWatch({ control, name: "background" }) || ""
+  const assignmentMode = useWatch({ control, name: "assignmentMode" }) || "standard"
+  const customAssignments = useWatch({ control, name: "customAssignments" }) || {}
+  const featASIs = useWatch({ control, name: "featASIs" }) || {}
+  const asiBonuses = useWatch({ control, name: "asiBonuses" }) || {}
+  const abilityScoreMethod = useWatch({ control, name: "abilityScoreMethod" }) || "point-buy"
+  const rolledScoresWithIds = useWatch({ control, name: "rolledScoresWithIds" }) || []
   const [skillMode, setSkillMode] = useState<"class" | "global">("class")
   const [activeTab, setActiveTab] = useState("skills")
   const processedCombinationRef = useRef<string>("")
@@ -50,6 +56,66 @@ export function SkillSelector() {
       selectedSkills
     )
   }, [characterClasses, race, subrace, background, selectedSkills])
+
+  // Calculate total ability scores with bonuses (same as ability score selector)
+  const totalAbilityScores = useMemo(() => {
+    const baseScores = abilityScores || {}
+    const totalScores: Record<string, number> = {}
+    
+    // Get race/subrace bonuses
+    const raceSubraceBonuses = calculateTotalAbilityScoreIncreases(race, subrace)
+    
+    skills.forEach(skill => {
+      const abilityId = skill.ability
+      let baseScore = 0
+      
+      // For roll method, convert roll ID to actual value
+      if (abilityScoreMethod === "roll") {
+        const rollId = baseScores[abilityId]
+        if (rollId) {
+          const rollData = rolledScoresWithIds.find((score: any) => score.id === rollId)
+          baseScore = rollData ? rollData.value : 0
+        }
+      } else {
+        baseScore = Number(baseScores[abilityId]) || 0
+      }
+      
+      let bonus = 0
+      
+      if (assignmentMode === "standard") {
+        bonus = raceSubraceBonuses[abilityId] || 0
+      } else {
+        // Custom mode: check if this ability is assigned any flexible bonuses
+        Object.values(customAssignments).forEach(assignedAbility => {
+          if (assignedAbility === abilityId) {
+            bonus += 1 // Each flexible bonus gives +1
+          }
+        })
+      }
+      
+      // Add feat ASI bonuses
+      bonus += featASIs[abilityId] || 0
+      
+      // Add user ASI choices
+      bonus += asiBonuses[abilityId] || 0
+      
+      totalScores[abilityId] = baseScore + bonus
+    })
+    
+    return totalScores
+  }, [abilityScores, race, subrace, assignmentMode, customAssignments, featASIs, asiBonuses, abilityScoreMethod, rolledScoresWithIds])
+
+  // Calculate skill modifiers based on total ability scores
+  const skillModifiers = useMemo(() => {
+    const modifiers: Record<string, number> = {}
+    skills.forEach(skill => {
+      const abilityId = skill.ability
+      const totalAbilityScore = totalAbilityScores[abilityId] || 10
+      const modifier = calculateModifier(totalAbilityScore)
+      modifiers[skill.id] = modifier
+    })
+    return modifiers
+  }, [totalAbilityScores, abilityScores])
 
   // Validate skill selections
   const validation = useMemo(() => {
@@ -148,9 +214,8 @@ export function SkillSelector() {
             else if (isClassSkill) skillType = "class"
             else if (isGlobalSkill) skillType = "global"
             
-            // Calculate modifier
-            const abilityScore = abilityScores[skill.abilityAbbr.toLowerCase()] || 10
-            const modifier = Math.floor((abilityScore - 10) / 2)
+            // Get modifier from memoized calculation
+            const modifier = skillModifiers[skill.id] || 0
             
             // Determine if skill can be selected
             let canSelect = false
