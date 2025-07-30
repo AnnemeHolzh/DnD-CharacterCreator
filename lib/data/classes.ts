@@ -26,7 +26,7 @@ export const classes = [
     savingThrows: ["dexterity", "charisma"],
     armorProficiencies: ["light"],
     weaponProficiencies: ["simple", "hand-crossbow", "longsword", "rapier", "shortsword"],
-    toolProficiencies: ["Musical instrument", "Musical instrument", "Musical instrument"],
+    toolProficiencies: ["lute", "flute", "drum"],
     skillChoices: 3,
     skillProficiencies: [
       "acrobatics",

@@ -484,10 +484,8 @@ export function mapToolNameToIndex(toolName: string): string {
   const toolNameMap: Record<string, string> = {
     "Disguise kit": "disguise-kit",
     "Forgery kit": "forgery-kit",
-    "Gaming set": "gaming-set",
     "Thieves' tools": "thieves-tools",
     "thieves' tools": "thieves-tools",
-    "Musical instrument": "musical-instrument",
     "Artisan's tools": "artisans-tools",
     "artisan's tools": "artisans-tools",
     "Herbalism kit": "herbalism-kit",
