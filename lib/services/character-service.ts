@@ -19,6 +19,8 @@ export class CharacterService {
    */
   static async saveCharacter(character: Character): Promise<string> {
     try {
+      console.log("CharacterService.saveCharacter - received character:", character)
+      
       // Validate character data
       const validatedCharacter = CharacterSchema.parse(character)
       
@@ -65,6 +67,8 @@ export class CharacterService {
    */
   static async updateCharacter(characterId: string, character: Character): Promise<void> {
     try {
+      console.log("CharacterService.updateCharacter - received character:", character)
+      
       // Validate character data
       const validatedCharacter = CharacterSchema.parse(character)
       

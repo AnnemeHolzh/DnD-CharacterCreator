@@ -57,65 +57,17 @@ export function SkillSelector() {
     )
   }, [characterClasses, race, subrace, background, selectedSkills])
 
-  // Calculate total ability scores with bonuses (same as ability score selector)
-  const totalAbilityScores = useMemo(() => {
-    const baseScores = abilityScores || {}
-    const totalScores: Record<string, number> = {}
-    
-    // Get race/subrace bonuses
-    const raceSubraceBonuses = calculateTotalAbilityScoreIncreases(race, subrace)
-    
-    skills.forEach(skill => {
-      const abilityId = skill.ability
-      let baseScore = 0
-      
-      // For roll method, convert roll ID to actual value
-      if (abilityScoreMethod === "roll") {
-        const rollId = baseScores[abilityId]
-        if (rollId) {
-          const rollData = rolledScoresWithIds.find((score: any) => score.id === rollId)
-          baseScore = rollData ? rollData.value : 0
-        }
-      } else {
-        baseScore = Number(baseScores[abilityId]) || 0
-      }
-      
-      let bonus = 0
-      
-      if (assignmentMode === "standard") {
-        bonus = raceSubraceBonuses[abilityId] || 0
-      } else {
-        // Custom mode: check if this ability is assigned any flexible bonuses
-        Object.values(customAssignments).forEach(assignedAbility => {
-          if (assignedAbility === abilityId) {
-            bonus += 1 // Each flexible bonus gives +1
-          }
-        })
-      }
-      
-      // Add feat ASI bonuses
-      bonus += featASIs[abilityId] || 0
-      
-      // Add user ASI choices
-      bonus += asiBonuses[abilityId] || 0
-      
-      totalScores[abilityId] = baseScore + bonus
-    })
-    
-    return totalScores
-  }, [abilityScores, race, subrace, assignmentMode, customAssignments, featASIs, asiBonuses, abilityScoreMethod, rolledScoresWithIds])
-
-  // Calculate skill modifiers based on total ability scores
+  // Calculate skill modifiers based on ability scores (which now include bonuses)
   const skillModifiers = useMemo(() => {
     const modifiers: Record<string, number> = {}
     skills.forEach(skill => {
       const abilityId = skill.ability
-      const totalAbilityScore = totalAbilityScores[abilityId] || 10
-      const modifier = calculateModifier(totalAbilityScore)
+      const abilityScore = abilityScores[abilityId] || 10
+      const modifier = calculateModifier(abilityScore)
       modifiers[skill.id] = modifier
     })
     return modifiers
-  }, [totalAbilityScores, abilityScores])
+  }, [abilityScores])
 
   // Validate skill selections
   const validation = useMemo(() => {

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useState, useCallback } from "react"
 import { useFormContext, useWatch } from "react-hook-form"
 import { Input } from "@/components/ui/input"
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
@@ -44,6 +44,7 @@ export function AbilityScoreSelector() {
   const characterLevel = useWatch({ control, name: "level" }) || 1
   const proficiencies = useWatch({ control, name: "proficiencies" }) || []
   const formFeatASIChoices = useWatch({ control, name: "featASIChoices" }) || {}
+  const formAsiChoices = useWatch({ control, name: "asiChoices" }) || []
 
   const abilities = [
     { id: "strength", name: "Strength", abbr: "STR" },
@@ -183,7 +184,7 @@ export function AbilityScoreSelector() {
   }, [characterLevel, characterClasses, abilityScores, proficiencies])
 
   // Calculate remaining feats after ASI choices
-  const remainingFeats = availableFeats - asiChoices.length
+  const remainingFeats = availableFeats - formAsiChoices.length
 
   // Calculate ASI bonuses from user choices
   const asiBonuses = useMemo(() => {
@@ -196,8 +197,8 @@ export function AbilityScoreSelector() {
       charisma: 0
     }
     
-    asiChoices.forEach(choice => {
-      choice.abilities.forEach(ability => {
+    formAsiChoices.forEach((choice: { choice: "single" | "double", abilities: string[] }) => {
+      choice.abilities.forEach((ability: string) => {
         if (choice.choice === "single") {
           bonuses[ability] += 2
         } else {
@@ -207,12 +208,22 @@ export function AbilityScoreSelector() {
     })
     
     return bonuses
-  }, [asiChoices])
+  }, [formAsiChoices])
 
   // Calculate total ability scores with bonuses
   const totalAbilityScores = useMemo(() => {
     const baseScores = abilityScores || {}
     const totalScores: Record<string, number> = {}
+    
+    console.log("AbilityScoreSelector - calculating totalAbilityScores with:", {
+      abilityScores,
+      raceSubraceBonuses,
+      assignmentMode,
+      customAssignments,
+      featASIs,
+      asiBonuses,
+      abilityScoreMethod
+    })
     
     abilities.forEach(ability => {
       let baseScore = 0
@@ -250,8 +261,13 @@ export function AbilityScoreSelector() {
       totalScores[ability.id] = baseScore + bonus
     })
     
+    console.log("AbilityScoreSelector - calculated totalScores:", totalScores)
     return totalScores
   }, [abilityScores, raceSubraceBonuses, assignmentMode, customAssignments, featASIs, asiBonuses, abilityScoreMethod, rolledScoresWithIds])
+
+  // Don't automatically update ability scores - just calculate and display totals
+  // The total scores are calculated in totalAbilityScores and displayed to the user
+  // The base ability scores remain unchanged to prevent infinite loops
 
   // Validation logic
   const validateAbility = (value: string | number, abilityId: string) => {
@@ -637,8 +653,9 @@ export function AbilityScoreSelector() {
                     variant="outline"
                     className="border-green-800/30 bg-green-900/20 hover:bg-green-900/40 text-green-300"
                     onClick={() => setAsiChoiceDialogOpen(true)}
+                    disabled={remainingFeats <= 0}
                   >
-                    Choose ASI
+                    {remainingFeats > 0 ? "Choose ASI" : "No Slots Available"}
                   </Button>
                 </CardContent>
               </Card>
@@ -662,14 +679,14 @@ export function AbilityScoreSelector() {
       )}
 
       {/* ASI Choices Summary */}
-      {asiChoices.length > 0 && (
+      {formAsiChoices.length > 0 && (
         <Card className="border-purple-800/30 bg-purple-900/10">
           <CardHeader>
             <CardTitle className="font-display text-lg text-purple-400">ASI Choices Made</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              {asiChoices.map((choice, index) => (
+              {formAsiChoices.map((choice: { choice: "single" | "double", abilities: string[] }, index: number) => (
                 <div key={index} className="text-sm">
                   <span className="text-purple-300">Choice {index + 1}:</span>
                   <span className="text-purple-400 ml-2">
@@ -887,6 +904,16 @@ export function AbilityScoreSelector() {
                           </div>
                           <span className="text-xs text-emerald-300/70">Mod</span>
                         </div>
+                        
+                        {/* Total Score Display */}
+                        <div className="flex flex-col items-center gap-1">
+                          <div className="w-16 h-10 rounded-lg border border-blue-800/30 bg-blue-900/20 flex items-center justify-center">
+                            <span className="font-display text-lg font-bold text-blue-200">
+                              {totalScore || "—"}
+                            </span>
+                          </div>
+                          <span className="text-xs text-blue-300/70">Total</span>
+                        </div>
                       </div>
                       
                       {/* Show bonus breakdown if applicable */}
@@ -948,7 +975,8 @@ export function AbilityScoreSelector() {
         isOpen={asiChoiceDialogOpen}
         onClose={() => setAsiChoiceDialogOpen(false)}
         onConfirm={(choice, abilities) => {
-          setAsiChoices([...asiChoices, { choice, abilities }])
+          const newAsiChoices = [...formAsiChoices, { choice, abilities }]
+          setValue("asiChoices", newAsiChoices)
           setAsiChoiceDialogOpen(false)
         }}
       />

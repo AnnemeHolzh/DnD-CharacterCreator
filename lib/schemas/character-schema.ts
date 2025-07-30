@@ -147,6 +147,7 @@ export const CharacterSchema = z.object({
     wisdom: z.number().optional(),
     charisma: z.number().optional(),
   }).optional(),
+
   savingThrowProficiencies: z.array(z.string()).optional(),
   skills: z.array(z.string()).optional(),
   tools: z.array(z.string()).optional(),
@@ -165,6 +166,10 @@ export const CharacterSchema = z.object({
   equipment: z.array(z.any()).optional(),
   spells: z.array(z.string()).optional(),
   feats: z.array(z.string()).optional(),
+  asiChoices: z.array(z.object({
+    choice: z.enum(["single", "double"]),
+    abilities: z.array(z.string())
+  })).optional(),
   featASIChoices: z.record(z.string()).optional(),
   hp: z.number().optional(),
   xp: z.number().optional(),

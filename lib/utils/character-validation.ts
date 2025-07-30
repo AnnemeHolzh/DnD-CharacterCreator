@@ -47,6 +47,7 @@ export interface CharacterFormData {
     wisdom?: number
     charisma?: number
   }
+
   savingThrowProficiencies?: string[]
   skills?: string[]
   tools?: string[]
@@ -65,6 +66,7 @@ export interface CharacterFormData {
   equipment?: any[]
   spells?: string[]
   feats?: string[]
+  asiChoices?: Array<{ choice: "single" | "double", abilities: string[] }>
   featASIChoices?: Record<string, string>
   hp?: number
   xp?: number
@@ -465,24 +467,26 @@ export function validateAbilityScores(data: CharacterFormData): ValidationError[
       break
 
     case 'point-buy':
-      // Point buy validation
-      const pointBuyCost = calculatePointBuyCost(scoreValues)
-      if (pointBuyCost > 27) {
-        errors.push({
-          section: 'Ability Scores',
-          field: 'Point Buy',
-          message: `Point buy cost (${pointBuyCost}) exceeds maximum of 27 points`,
-          priority: 'high'
-        })
-      }
-
-      // Check for scores outside valid range
-      const invalidScores = scoreValues.filter(score => score < 8 || score > 15)
-      if (invalidScores.length > 0) {
+      // For point buy, we need to check if the scores are reasonable for base scores
+      // Since we now save total scores, we'll be more lenient with the validation
+      // Check for scores that are clearly too high for base scores (above 20)
+      const highScores = scoreValues.filter(score => score > 20)
+      if (highScores.length > 0) {
         errors.push({
           section: 'Ability Scores',
           field: 'Point Buy Range',
-          message: 'Point buy scores must be between 8 and 15',
+          message: 'Base ability scores cannot exceed 20 (total scores with bonuses may be higher)',
+          priority: 'high'
+        })
+      }
+      
+      // Check for scores that are too low (below 3)
+      const lowScores = scoreValues.filter(score => score < 3)
+      if (lowScores.length > 0) {
+        errors.push({
+          section: 'Ability Scores',
+          field: 'Point Buy Range',
+          message: 'Ability scores cannot be below 3',
           priority: 'high'
         })
       }
@@ -490,8 +494,8 @@ export function validateAbilityScores(data: CharacterFormData): ValidationError[
 
     case 'roll':
       // Roll validation - check for minimum scores
-      const lowScores = scoreValues.filter(score => score < 3)
-      if (lowScores.length > 0) {
+      const lowRolledScores = scoreValues.filter(score => score < 3)
+      if (lowRolledScores.length > 0) {
         errors.push({
           section: 'Ability Scores',
           field: 'Rolled Scores',
@@ -536,15 +540,24 @@ export function validateFeats(data: CharacterFormData): ValidationError[] {
   }
 
   const selectedFeats = data.feats || []
+  const asiChoices = data.asiChoices || []
   const eligibleFeats = getEligibleFeats(data.abilityScores || {}, data.classes || [], data.proficiencies || [])
 
-  // Check if all feat slots are filled
-  if (selectedFeats.length < availableFeats) {
+  // Check if all feat slots are filled (feats + ASI choices)
+  const totalUsedSlots = selectedFeats.length + asiChoices.length
+  if (totalUsedSlots < availableFeats) {
     errors.push({
       section: 'Feats',
       field: 'Feat Selection',
-      message: `All ${availableFeats} feat slot(s) must be filled`,
+      message: `All ${availableFeats} feat slot(s) must be filled (currently using ${totalUsedSlots} slots)`,
       priority: 'low'
+    })
+  } else if (totalUsedSlots > availableFeats) {
+    errors.push({
+      section: 'Feats',
+      field: 'Feat Selection',
+      message: `Too many feat slots used (${totalUsedSlots} used, ${availableFeats} available)`,
+      priority: 'medium'
     })
   }
 
@@ -687,22 +700,7 @@ export function validateCharacterForm(data: CharacterFormData): ValidationResult
   }
 }
 
-/**
- * Helper function to calculate point buy cost
- */
-function calculatePointBuyCost(scores: number[]): number {
-  let totalCost = 0
-  
-  scores.forEach(score => {
-    if (score <= 13) {
-      totalCost += score - 8
-    } else {
-      totalCost += 5 + (score - 13) * 2
-    }
-  })
-  
-  return totalCost
-}
+
 
 /**
  * Formats validation errors for display

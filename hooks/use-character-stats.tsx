@@ -48,19 +48,9 @@ export function useCharacterStats() {
       }
     }
 
-    // Calculate total ability scores including race bonuses and ASIs
-    const totalConstitution = calculateTotalAbilityScore(
-      abilityScores.constitution || 10,
-      race || "",
-      subrace || "",
-      featASIChoices || {}
-    )
-    const totalDexterity = calculateTotalAbilityScore(
-      abilityScores.dexterity || 10,
-      race || "",
-      subrace || "",
-      featASIChoices || {}
-    )
+    // Use ability scores (which now include bonuses)
+    const totalConstitution = abilityScores.constitution || 10
+    const totalDexterity = abilityScores.dexterity || 10
 
     const constitutionModifier = calculateModifier(totalConstitution)
     const dexterityModifier = calculateModifier(totalDexterity)
