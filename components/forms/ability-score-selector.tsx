@@ -550,6 +550,7 @@ export function AbilityScoreSelector() {
                 Roll 4d6, drop the lowest die, sum the remaining three
               </p>
               <Button
+                type="button"
                 onClick={rollAllScores}
                 disabled={isRolling}
                 className="bg-amber-900/40 border-amber-800/30 hover:bg-amber-900/60"
@@ -632,6 +633,7 @@ export function AbilityScoreSelector() {
                     Increase one ability score by 2, or increase two ability scores by 1 each.
                   </div>
                   <Button
+                    type="button"
                     variant="outline"
                     className="border-green-800/30 bg-green-900/20 hover:bg-green-900/40 text-green-300"
                     onClick={() => setAsiChoiceDialogOpen(true)}
@@ -725,7 +727,9 @@ export function AbilityScoreSelector() {
                   baseScore = rollData ? rollData.value : 0
                 }
               } else {
-                baseScore = Number(field.value || 0)
+                // Use the current value from the form state to ensure reactivity
+                const currentValue = abilityScores[ability.id]
+                baseScore = Number(currentValue || field.value || 0)
               }
               
               let bonus = 0
@@ -769,14 +773,14 @@ export function AbilityScoreSelector() {
                         
                         {abilityScoreMethod === "roll" ? (
                           <Select
-                            value={field.value || ""}
+                            value={abilityScores[ability.id] || field.value || ""}
                             onValueChange={field.onChange}
                           >
                             <SelectTrigger className="border-amber-800/30 bg-black/20 backdrop-blur-sm">
                               <SelectValue placeholder="Select Rolled Score">
-                                {field.value ? (
+                                {(abilityScores[ability.id] || field.value) ? (
                                   (() => {
-                                    const rollData = rolledScoresWithIds.find(score => score.id === field.value)
+                                    const rollData = rolledScoresWithIds.find(score => score.id === (abilityScores[ability.id] || field.value))
                                     return rollData ? `Rolled: ${rollData.value}` : "Select Rolled Score"
                                   })()
                                 ) : "Select Rolled Score"}
@@ -792,12 +796,12 @@ export function AbilityScoreSelector() {
                           </Select>
                         ) : abilityScoreMethod === "standard-array" ? (
                           <Select
-                            value={field.value?.toString() || ""}
+                            value={(abilityScores[ability.id] || field.value)?.toString() || ""}
                             onValueChange={(value) => field.onChange(Number.parseInt(value) || 0)}
                           >
                             <SelectTrigger className="border-amber-800/30 bg-black/20 backdrop-blur-sm">
                               <SelectValue placeholder="Select Value">
-                                {field.value ? `Score: ${field.value}` : "Select Value"}
+                                {(abilityScores[ability.id] || field.value) ? `Score: ${abilityScores[ability.id] || field.value}` : "Select Value"}
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent>
@@ -813,15 +817,18 @@ export function AbilityScoreSelector() {
                             <button
                               type="button"
                               className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-900/40 to-amber-800/30 text-amber-200 font-bold flex items-center justify-center border border-amber-800/30 hover:bg-amber-900/60 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
-                              onClick={() => field.onChange(Math.max(8, (Number(field.value || 8)) - 1))}
-                              disabled={Number(field.value || 8) <= 8}
+                              onClick={() => {
+                                const currentValue = Number(abilityScores[ability.id] || field.value || 8)
+                                field.onChange(Math.max(8, currentValue - 1))
+                              }}
+                              disabled={Number(abilityScores[ability.id] || field.value || 8) <= 8}
                               aria-label={`Decrease ${ability.name}`}
                             >
                               <Minus className="h-4 w-4" />
                             </button>
                             <div className="w-20 h-10 rounded-lg border border-amber-800/30 bg-black/20 backdrop-blur-sm flex items-center justify-center">
                               <span className="font-display text-lg font-semibold text-amber-200">
-                                {field.value || 8}
+                                {abilityScores[ability.id] || field.value || 8}
                               </span>
                             </div>
                             <button
@@ -829,7 +836,7 @@ export function AbilityScoreSelector() {
                               className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-900/40 to-amber-800/30 text-amber-200 font-bold flex items-center justify-center border border-amber-800/30 hover:bg-amber-900/60 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
                               onClick={() => {
                                 // Calculate new value and check if it would exceed 27 points
-                                const current = Number(field.value || 8)
+                                const current = Number(abilityScores[ability.id] || field.value || 8)
                                 const next = current + 1
                                 if (next > 15) return
                                 const pointCosts: Record<number, number> = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 }
@@ -844,8 +851,8 @@ export function AbilityScoreSelector() {
                                 field.onChange(next)
                               }}
                               disabled={
-                                Number(field.value || 8) >= 15 || (() => {
-                                  const current = Number(field.value || 8)
+                                Number(abilityScores[ability.id] || field.value || 8) >= 15 || (() => {
+                                  const current = Number(abilityScores[ability.id] || field.value || 8)
                                   const next = current + 1
                                   if (next > 15) return true
                                   const pointCosts: Record<number, number> = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 }

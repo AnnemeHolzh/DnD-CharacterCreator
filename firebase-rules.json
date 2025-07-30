@@ -1,0 +1,9 @@
+{
+    "rules": {
+      "characters": {
+        ".indexOn": ["name"],
+        ".read": true,
+        ".write": true
+      }
+    }
+  }

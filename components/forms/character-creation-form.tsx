@@ -15,6 +15,7 @@ import { FantasyCard } from "@/components/ui/fantasy-card"
 import { useCharacters } from "@/hooks/use-characters"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { validateCharacterForm, formatValidationErrors } from "@/lib/utils/character-validation"
 import type { z } from "zod"
 
 type CharacterFormData = z.infer<typeof CharacterSchema>
@@ -34,6 +35,7 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
 
   const methods = useForm<CharacterFormData>({
     resolver: zodResolver(CharacterSchema),
+    mode: "onSubmit",
     defaultValues: {
       name: "",
       background: "",
@@ -87,14 +89,41 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
     }
   }, [characterId, loadCharacter, methods])
 
-  const handleSaveClick = (e: React.MouseEvent) => {
+  // Scroll to top when switching to mechanics tab
+  useEffect(() => {
+    if (activeTab === "mechanics") {
+      // Use setTimeout to ensure the tab content is rendered before scrolling
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }, 100)
+    }
+  }, [activeTab])
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value)
+    // Prevent any automatic focus behavior
+    if (value === "mechanics") {
+      // Blur any focused element to prevent automatic scrolling
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur()
+      }
+    }
+  }
+
+  const handleSaveClick = async (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
     
-    // Check if form is valid
-    const isValid = methods.formState.isValid
-    if (!isValid) {
-      setSaveError("Please complete all required fields before saving")
+    // Get form data
+    const formData = methods.getValues()
+    
+    // Run comprehensive validation
+    const validationResult = validateCharacterForm(formData)
+    
+    if (!validationResult.isValid) {
+      // Format validation errors for display
+      const errorMessage = formatValidationErrors(validationResult.errors)
+      setSaveError(errorMessage)
       return
     }
 
@@ -109,13 +138,22 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
       return
     }
 
+    // Validate form again before saving
+    const formData = methods.getValues()
+    const validationResult = validateCharacterForm(formData)
+    
+    if (!validationResult.isValid) {
+      console.log("Form validation failed during save")
+      const errorMessage = formatValidationErrors(validationResult.errors)
+      setSaveError(errorMessage)
+      return
+    }
+
     setIsSubmitting(true)
     setSaveError(null)
     setSaveSuccess(false)
 
     try {
-      const formData = methods.getValues()
-      
       if (characterId) {
         // Update existing character
         await updateCharacter(characterId, formData)
@@ -158,7 +196,7 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
       <form className="space-y-8">
         <FantasyCard className="relative overflow-hidden">
           <div className="relative z-10">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
               <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="narrative">Narrative</TabsTrigger>
                 <TabsTrigger value="mechanics">Mechanics</TabsTrigger>
@@ -188,22 +226,35 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 ) : (
-                  <Button 
-                    type="button" 
-                    onClick={handleSaveClick}
-                    disabled={saving || isSubmitting} 
-                    className="group"
-                  >
-                    {saving || isSubmitting ? (
-                      <>
-                        Saving <Sparkles className="ml-2 h-4 w-4 animate-pulse" />
-                      </>
-                    ) : (
-                      <>
-                        {characterId ? 'Update' : 'Save'} Character <Save className="ml-2 h-4 w-4" />
-                      </>
-                    )}
-                  </Button>
+                  <>
+                    <Button 
+                      type="button" 
+                      onClick={() => {
+                        console.log('Current form values:', methods.getValues())
+                        console.log('Form errors:', methods.formState.errors)
+                        console.log('Form state:', methods.formState)
+                      }}
+                      className="group bg-gradient-to-r from-blue-900/40 to-blue-800/30 border-blue-600/50 hover:from-blue-900/60 hover:to-blue-800/50 text-blue-200"
+                    >
+                      Debug Form
+                    </Button>
+                    <Button 
+                      type="button" 
+                      onClick={handleSaveClick}
+                      disabled={saving || isSubmitting} 
+                      className="group"
+                    >
+                      {saving || isSubmitting ? (
+                        <>
+                          Saving <Sparkles className="ml-2 h-4 w-4 animate-pulse" />
+                        </>
+                      ) : (
+                        <>
+                          {characterId ? 'Update' : 'Save'} Character <Save className="ml-2 h-4 w-4" />
+                        </>
+                      )}
+                    </Button>
+                  </>
                 )}
               </div>
             </Tabs>
@@ -231,6 +282,7 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
             </p>
             <div className="flex gap-3">
               <Button 
+                type="button"
                 onClick={handleConfirmSave}
                 disabled={saving || isSubmitting}
                 className="flex-1 bg-amber-900/40 border-amber-800/30 hover:bg-amber-900/60"
@@ -246,6 +298,7 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
                 )}
               </Button>
               <Button 
+                type="button"
                 onClick={handleCancelSave}
                 variant="outline"
                 className="flex-1 border-amber-800/30"

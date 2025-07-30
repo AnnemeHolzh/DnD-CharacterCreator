@@ -87,16 +87,6 @@ export function NarrativeSection() {
         <FormField
           control={control}
           name="appearance"
-          rules={{
-            validate: (value) => {
-              if (!value || value.trim().length === 0) return true // Allow empty
-              const wordCount = value.trim().split(/\s+/).filter((word: string) => word.length > 0).length
-              if (wordCount < 20) {
-                return `Appearance description must be at least 20 words (currently ${wordCount} words)`
-              }
-              return true
-            }
-          }}
           render={({ field, fieldState }) => (
             <FormItem>
               <FormLabel className="font-display text-lg">Appearance</FormLabel>
@@ -104,14 +94,14 @@ export function NarrativeSection() {
                 <WordLimitedTextarea
                   placeholder="Describe your character's physical appearance..."
                   className="min-h-[100px] border-amber-800/30 bg-black/20 backdrop-blur-sm"
-                  maxWords={200}
+                  maxWords={450}
                   {...field}
                 />
               </FormControl>
               <FormMessage />
               {field.value && (
                 <div className="text-xs text-muted-foreground">
-                  Word count: {field.value.trim().split(/\s+/).filter((word: string) => word.length > 0).length}/200
+                  Word count: {field.value.trim().split(/\s+/).filter((word: string) => word.length > 0).length}/450
                   {field.value.trim().split(/\s+/).filter((word: string) => word.length > 0).length < 20 && (
                     <span className="text-amber-400 ml-2">(Minimum 20 words required)</span>
                   )}
@@ -124,16 +114,6 @@ export function NarrativeSection() {
         <FormField
           control={control}
           name="backstory"
-          rules={{
-            validate: (value) => {
-              if (!value || value.trim().length === 0) return true // Allow empty
-              const wordCount = value.trim().split(/\s+/).filter((word: string) => word.length > 0).length
-              if (wordCount < 200) {
-                return `Backstory must be at least 200 words (currently ${wordCount} words)`
-              }
-              return true
-            }
-          }}
           render={({ field, fieldState }) => (
             <FormItem>
               <FormLabel className="font-display text-lg">Backstory</FormLabel>
@@ -141,14 +121,14 @@ export function NarrativeSection() {
                 <WordLimitedTextarea
                   placeholder="Share your character's history and origins..."
                   className="min-h-[150px] border-amber-800/30 bg-black/20 backdrop-blur-sm"
-                  maxWords={500}
+                  maxWords={750}
                   {...field}
                 />
               </FormControl>
               <FormMessage />
               {field.value && (
                 <div className="text-xs text-muted-foreground">
-                  Word count: {field.value.trim().split(/\s+/).filter((word: string) => word.length > 0).length}/500
+                  Word count: {field.value.trim().split(/\s+/).filter((word: string) => word.length > 0).length}/750
                   {field.value.trim().split(/\s+/).filter((word: string) => word.length > 0).length < 200 && (
                     <span className="text-amber-400 ml-2">(Minimum 200 words required)</span>
                   )}

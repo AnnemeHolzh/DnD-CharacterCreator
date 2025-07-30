@@ -5,6 +5,14 @@ export interface Feedback {
   id: string
   feedback: string
   userEmail?: string
+  browserInfo?: {
+    name: string
+    version: string
+    platform: string
+    isMobile: boolean
+    isTablet: boolean
+    isDesktop: boolean
+  }
   upvotes: number
   createdAt: number
   updatedAt: number

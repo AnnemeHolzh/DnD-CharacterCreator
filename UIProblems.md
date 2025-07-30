@@ -15,3 +15,7 @@
 ✅ please try to make it a bit smaller maybe the buttons for teh generation method can go on the side and be alot smaller
 ✅ the ability score selectors dont update properly this will go in my TODO list as well so might be fixed unless i forgot
 ✅ The skill sleection mode buttons (when one is selected its blue and ugly)
+
+
+# Post Launch stuff
+Modifiers for skills section is not correct

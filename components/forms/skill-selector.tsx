@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect, useRef } from "react"
 import { useFormContext, useWatch } from "react-hook-form"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -13,14 +13,25 @@ import { AlertTriangle, CheckCircle, Lock, BookOpen, Globe } from "lucide-react"
 import { skills } from "@/lib/data/skills"
 import { ToolSelector } from "./tool-selector"
 import { LanguageSelector } from "./language-selector"
+import { calculateSkillProficiencies, validateSkillSelections, calculateModifier, calculateTotalAbilityScoreIncreases } from "@/lib/utils/character-utils"
 
 export function SkillSelector() {
   const { control, setValue } = useFormContext()
   const selectedSkills = useWatch({ control, name: "skills" }) || []
   const characterClasses = useWatch({ control, name: "classes" }) || []
   const abilityScores = useWatch({ control, name: "abilityScores" }) || {}
+  const race = useWatch({ control, name: "race" }) || ""
+  const subrace = useWatch({ control, name: "subrace" }) || ""
+  const background = useWatch({ control, name: "background" }) || ""
+  const assignmentMode = useWatch({ control, name: "assignmentMode" }) || "standard"
+  const customAssignments = useWatch({ control, name: "customAssignments" }) || {}
+  const featASIs = useWatch({ control, name: "featASIs" }) || {}
+  const asiBonuses = useWatch({ control, name: "asiBonuses" }) || {}
+  const abilityScoreMethod = useWatch({ control, name: "abilityScoreMethod" }) || "point-buy"
+  const rolledScoresWithIds = useWatch({ control, name: "rolledScoresWithIds" }) || []
   const [skillMode, setSkillMode] = useState<"class" | "global">("class")
   const [activeTab, setActiveTab] = useState("skills")
+  const processedCombinationRef = useRef<string>("")
 
   // Group skills by ability
   const skillsByAbility = useMemo(() => {
@@ -35,67 +46,115 @@ export function SkillSelector() {
     return grouped
   }, [])
 
-  // Calculate skill data based on character classes
+  // Calculate skill data using proper utility functions
   const skillData = useMemo(() => {
-    let fixedProficiencies: string[] = []
-    let classSkillPoints = 0
-    let availableClassSkills: string[] = []
-    let globalSkillPoints = 0
+    return calculateSkillProficiencies(
+      characterClasses,
+      race,
+      subrace,
+      background,
+      selectedSkills
+    )
+  }, [characterClasses, race, subrace, background, selectedSkills])
 
-    characterClasses.forEach((cls: any) => {
-      if (cls.class && cls.level) {
-        // Add fixed proficiencies from class
-        if (cls.skills && Array.isArray(cls.skills)) {
-          fixedProficiencies = [...fixedProficiencies, ...cls.skills]
+  // Calculate total ability scores with bonuses (same as ability score selector)
+  const totalAbilityScores = useMemo(() => {
+    const baseScores = abilityScores || {}
+    const totalScores: Record<string, number> = {}
+    
+    // Get race/subrace bonuses
+    const raceSubraceBonuses = calculateTotalAbilityScoreIncreases(race, subrace)
+    
+    skills.forEach(skill => {
+      const abilityId = skill.ability
+      let baseScore = 0
+      
+      // For roll method, convert roll ID to actual value
+      if (abilityScoreMethod === "roll") {
+        const rollId = baseScores[abilityId]
+        if (rollId) {
+          const rollData = rolledScoresWithIds.find((score: any) => score.id === rollId)
+          baseScore = rollData ? rollData.value : 0
         }
-
-        // Calculate skill points (simplified - you might want to adjust based on your class data)
-        if (cls.level >= 1) {
-          classSkillPoints += 2 // Most classes get 2 skill proficiencies
-          globalSkillPoints += 1 // Some classes get additional skill points
-        }
+      } else {
+        baseScore = Number(baseScores[abilityId]) || 0
       }
+      
+      let bonus = 0
+      
+      if (assignmentMode === "standard") {
+        bonus = raceSubraceBonuses[abilityId] || 0
+      } else {
+        // Custom mode: check if this ability is assigned any flexible bonuses
+        Object.values(customAssignments).forEach(assignedAbility => {
+          if (assignedAbility === abilityId) {
+            bonus += 1 // Each flexible bonus gives +1
+          }
+        })
+      }
+      
+      // Add feat ASI bonuses
+      bonus += featASIs[abilityId] || 0
+      
+      // Add user ASI choices
+      bonus += asiBonuses[abilityId] || 0
+      
+      totalScores[abilityId] = baseScore + bonus
     })
+    
+    return totalScores
+  }, [abilityScores, race, subrace, assignmentMode, customAssignments, featASIs, asiBonuses, abilityScoreMethod, rolledScoresWithIds])
 
-    // Get available class skills (this would come from your class data)
-    // For now, using all skills as available
-    availableClassSkills = skills.map(skill => skill.id)
-
-    // Calculate selected skills by type
-    const selectedClassSkills = selectedSkills.filter((skillId: string) => 
-      availableClassSkills.includes(skillId) && !fixedProficiencies.includes(skillId)
-    )
-    const selectedGlobalSkills = selectedSkills.filter((skillId: string) => 
-      !availableClassSkills.includes(skillId) && !fixedProficiencies.includes(skillId)
-    )
-
-    return {
-      fixedProficiencies: [...new Set(fixedProficiencies)], // Remove duplicates
-      classSkillPoints,
-      availableClassSkills,
-      selectedClassSkills,
-      globalSkillPoints,
-      selectedGlobalSkills
-    }
-  }, [characterClasses, selectedSkills])
+  // Calculate skill modifiers based on total ability scores
+  const skillModifiers = useMemo(() => {
+    const modifiers: Record<string, number> = {}
+    skills.forEach(skill => {
+      const abilityId = skill.ability
+      const totalAbilityScore = totalAbilityScores[abilityId] || 10
+      const modifier = calculateModifier(totalAbilityScore)
+      modifiers[skill.id] = modifier
+    })
+    return modifiers
+  }, [totalAbilityScores, abilityScores])
 
   // Validate skill selections
   const validation = useMemo(() => {
-    const errors: string[] = []
-    
-    if (skillData.selectedClassSkills.length > skillData.classSkillPoints) {
-      errors.push(`Too many class skills selected. Maximum: ${skillData.classSkillPoints}`)
-    }
-    
-    if (skillData.selectedGlobalSkills.length > skillData.globalSkillPoints) {
-      errors.push(`Too many global skills selected. Maximum: ${skillData.globalSkillPoints}`)
-    }
+    return validateSkillSelections(skillData, selectedSkills)
+  }, [skillData, selectedSkills])
 
-    return {
-      isValid: errors.length === 0,
-      errors
+  // Auto-add fixed proficiencies when race, subrace, or background changes
+  useEffect(() => {
+    if (race || background) {
+      const combination = `${race}-${subrace}-${background}`
+      
+      // Only process if this combination hasn't been processed yet
+      if (processedCombinationRef.current !== combination) {
+        const currentSkillData = calculateSkillProficiencies(
+          characterClasses,
+          race,
+          subrace,
+          background,
+          selectedSkills
+        )
+        
+        // Get all fixed proficiencies that should be selected
+        const requiredFixedSkills = currentSkillData.fixedProficiencies
+        
+        // Add any missing fixed proficiencies to selectedSkills
+        const missingFixedSkills = requiredFixedSkills.filter(
+          skill => !selectedSkills.includes(skill)
+        )
+        
+        if (missingFixedSkills.length > 0) {
+          const updatedSkills = [...selectedSkills, ...missingFixedSkills]
+          setValue("skills", updatedSkills)
+        }
+        
+        // Mark this combination as processed
+        processedCombinationRef.current = combination
+      }
     }
-  }, [skillData])
+  }, [race, subrace, background, characterClasses, selectedSkills, setValue])
 
   const handleSkillToggle = (skillId: string, isSelected: boolean) => {
     let newSelectedSkills = [...selectedSkills]
@@ -106,6 +165,7 @@ export function SkillSelector() {
         // Check limits based on skill type
         const isFixed = skillData.fixedProficiencies.includes(skillId)
         const isClassSkill = skillData.availableClassSkills.includes(skillId)
+        const isGlobalSkill = skillData.availableGlobalSkills.includes(skillId)
         
         if (isFixed) {
           // Fixed skills are always allowed
@@ -115,7 +175,7 @@ export function SkillSelector() {
           if (skillData.selectedClassSkills.length < skillData.classSkillPoints) {
             newSelectedSkills.push(skillId)
           }
-        } else {
+        } else if (isGlobalSkill) {
           // Check global skill limit
           if (skillData.selectedGlobalSkills.length < skillData.globalSkillPoints) {
             newSelectedSkills.push(skillId)
@@ -146,16 +206,16 @@ export function SkillSelector() {
             const isSelected = selectedSkills.includes(skill.id)
             const isFixed = skillData.fixedProficiencies.includes(skill.id)
             const isClassSkill = skillData.availableClassSkills.includes(skill.id)
-            const isGlobalSkill = !isClassSkill && !isFixed
+            const isGlobalSkill = skillData.availableGlobalSkills.includes(skill.id)
             
             // Determine skill type for display
             let skillType: "fixed" | "class" | "global" = "global"
             if (isFixed) skillType = "fixed"
             else if (isClassSkill) skillType = "class"
+            else if (isGlobalSkill) skillType = "global"
             
-            // Calculate modifier
-            const abilityScore = abilityScores[skill.abilityAbbr.toLowerCase()] || 10
-            const modifier = Math.floor((abilityScore - 10) / 2)
+            // Get modifier from memoized calculation
+            const modifier = skillModifiers[skill.id] || 0
             
             // Determine if skill can be selected
             let canSelect = false
@@ -167,9 +227,13 @@ export function SkillSelector() {
             } else if (isClassSkill) {
               canSelect = skillData.selectedClassSkills.length < skillData.classSkillPoints || isSelected
               reason = `Class skill (${skillData.selectedClassSkills.length}/${skillData.classSkillPoints})`
-            } else {
+            } else if (isGlobalSkill) {
               canSelect = skillData.selectedGlobalSkills.length < skillData.globalSkillPoints || isSelected
               reason = `Global skill (${skillData.selectedGlobalSkills.length}/${skillData.globalSkillPoints})`
+            } else {
+              // Skill is not available for selection (already covered by fixed/class/global)
+              canSelect = false
+              reason = "Not available"
             }
             
             return (
@@ -311,6 +375,7 @@ export function SkillSelector() {
         <CardContent>
           <div className="flex gap-2">
             <Button
+              type="button"
               variant={skillMode === "class" ? "default" : "outline"}
               onClick={() => setSkillMode("class")}
               className={`flex items-center gap-2 transition-all duration-200 ${
@@ -324,6 +389,7 @@ export function SkillSelector() {
               Class Skills ({skillData.selectedClassSkills.length}/{skillData.classSkillPoints})
             </Button>
             <Button
+              type="button"
               variant={skillMode === "global" ? "default" : "outline"}
               onClick={() => setSkillMode("global")}
               className={`flex items-center gap-2 transition-all duration-200 ${

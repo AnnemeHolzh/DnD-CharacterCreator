@@ -102,6 +102,7 @@ export function ASISelectionDialog({
 
           <div className="flex justify-end gap-2 pt-4">
             <Button
+              type="button"
               variant="outline"
               onClick={handleClose}
               className="border-amber-800/30 bg-black/20 hover:bg-amber-900/20"
@@ -109,6 +110,7 @@ export function ASISelectionDialog({
               Cancel
             </Button>
             <Button
+              type="button"
               onClick={handleConfirm}
               disabled={!selectedAbility}
               className="bg-green-900/40 border-green-600/50 hover:bg-green-900/60 text-green-300"

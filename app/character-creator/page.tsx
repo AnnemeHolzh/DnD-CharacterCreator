@@ -6,6 +6,7 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { ArrowLeft } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useDataLoading } from "@/hooks/use-data-loading"
+import Navigation from "@/components/navigation"
 
 export default function CharacterCreatorPage() {
   const router = useRouter()
@@ -14,6 +15,7 @@ export default function CharacterCreatorPage() {
   if (isInitializing) {
     return (
       <div className="min-h-screen bg-bg3-bg bg-[url('/images/bg3-background.jpg')] bg-cover bg-fixed bg-center">
+        <Navigation />
         {/* Arcane mist overlay */}
         <div 
           className="fixed inset-0 bg-purple-900/10 mix-blend-soft-light pointer-events-none z-10"
@@ -32,7 +34,7 @@ export default function CharacterCreatorPage() {
           }}
         />
         
-        <div className="container mx-auto px-4 py-8 relative z-30">
+        <div className="container mx-auto px-4 py-8 relative z-30 pt-20">
           <div className="flex items-center mb-8">
             <Button
               variant="outline"
@@ -76,6 +78,7 @@ export default function CharacterCreatorPage() {
 
   return (
     <div className="min-h-screen bg-bg3-bg bg-[url('/images/bg3-background.jpg')] bg-cover bg-fixed bg-center">
+      <Navigation />
       {/* Arcane mist overlay */}
       <div 
         className="fixed inset-0 bg-purple-900/10 mix-blend-soft-light pointer-events-none z-10"
@@ -94,7 +97,7 @@ export default function CharacterCreatorPage() {
         }}
       />
       
-      <div className="container mx-auto px-4 py-8 relative z-30">
+      <div className="container mx-auto px-4 py-8 relative z-30 pt-20">
         <div className="flex items-center mb-8">
           <Button
             variant="outline"

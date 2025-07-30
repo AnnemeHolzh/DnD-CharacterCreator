@@ -121,6 +121,7 @@ export function ArmorSelector() {
         <AlertDescription>
           Failed to load armor. Please try again.
           <Button
+            type="button"
             variant="outline"
             size="sm"
             onClick={handleRefresh}
@@ -148,6 +149,7 @@ export function ArmorSelector() {
         />
         {searchTerm && (
           <Button
+            type="button"
             variant="ghost"
             size="sm"
             onClick={() => setSearchTerm("")}
@@ -171,6 +173,7 @@ export function ArmorSelector() {
                  selectedArmor}
               </span>
               <Button
+                type="button"
                 variant="ghost"
                 size="sm"
                 onClick={() => setValue("armor", "")}
@@ -195,6 +198,7 @@ export function ArmorSelector() {
                  selectedShield}
               </span>
               <Button
+                type="button"
                 variant="ghost"
                 size="sm"
                 onClick={() => setValue("shield", "")}
@@ -247,6 +251,7 @@ export function ArmorSelector() {
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <Button
+                              type="button"
                               variant={isSelected ? "default" : "outline"}
                               className={`w-full justify-start text-left h-auto p-3 ${
                                 isSelected ? "bg-blue-600 hover:bg-blue-700" : ""
@@ -286,6 +291,7 @@ export function ArmorSelector() {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
+                      type="button"
                       variant={isSelected ? "default" : "outline"}
                       className={`w-full justify-start text-left h-auto p-3 ${
                         isSelected ? "bg-purple-600 hover:bg-purple-700" : ""
@@ -328,6 +334,7 @@ export function ArmorSelector() {
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <Button
+                              type="button"
                               variant={isSelected ? "default" : "outline"}
                               className={`w-full justify-start text-left h-auto p-3 ${
                                 isSelected ? "bg-green-600 hover:bg-green-700" : ""
@@ -367,6 +374,7 @@ export function ArmorSelector() {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
+                      type="button"
                       variant={isSelected ? "default" : "outline"}
                       className={`w-full justify-start text-left h-auto p-3 ${
                         isSelected ? "bg-purple-600 hover:bg-purple-700" : ""
