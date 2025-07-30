@@ -5,7 +5,7 @@ import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/comp
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { FantasyFormSection } from "@/components/ui/fantasy-form-section"
 import { races, getSubracesForRace, validateRaceSubraceCombination } from "@/lib/data/races"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 export function RaceSection() {
   const { control, setValue, formState: { errors }, trigger } = useFormContext()
@@ -25,14 +25,16 @@ export function RaceSection() {
   // Get available subraces for the selected race
   const availableSubraces = selectedRace ? getSubracesForRace(selectedRace) : []
 
-  // Reset subrace when race changes
+  // Reset subrace when race changes (but only if it's actually a different race)
+  const [previousRace, setPreviousRace] = useState<string>("")
+  
   useEffect(() => {
-    if (selectedRace) {
+    if (selectedRace && selectedRace !== previousRace) {
       setValue("subrace", "")
-      // Trigger validation for subrace field
       trigger("subrace")
+      setPreviousRace(selectedRace)
     }
-  }, [selectedRace, setValue, trigger])
+  }, [selectedRace, previousRace, setValue, trigger])
 
   // Validate subrace when it changes
   useEffect(() => {

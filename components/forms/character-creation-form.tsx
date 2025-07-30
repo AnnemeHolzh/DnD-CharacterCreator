@@ -15,6 +15,7 @@ import { FantasyCard } from "@/components/ui/fantasy-card"
 import { useCharacters } from "@/hooks/use-characters"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { validateCharacterForm, formatValidationErrors } from "@/lib/utils/character-validation"
 import type { z } from "zod"
 
 type CharacterFormData = z.infer<typeof CharacterSchema>
@@ -113,73 +114,18 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
     e.preventDefault()
     e.stopPropagation()
     
-    // COMMENTED OUT VALIDATION FOR TESTING
-    /*
-    // Trigger validation to ensure all validations are run
-    const isValid = await methods.trigger()
+    // Get form data
+    const formData = methods.getValues()
     
-    if (!isValid) {
-      // Get specific validation errors to show which fields are missing
-      const errors = methods.formState.errors
-      const formValues = methods.getValues()
-      const missingFields: string[] = []
-      
-      // Debug: Log form values to understand what's happening
-      console.log('Form values:', formValues)
-      console.log('Form errors:', errors)
-      console.log('Ability scores:', formValues.abilityScores)
-      console.log('Form state:', methods.formState)
-      console.log('Is form valid:', isValid)
-      
-      // Check for specific field errors
-      if (errors.name) missingFields.push('Character Name')
-      if (errors.race) missingFields.push('Race')
-      if (errors.classes) missingFields.push('Class')
-      if (errors.level) missingFields.push('Level')
-      
-      // Check for nested class errors
-      if (errors.classes && Array.isArray(errors.classes)) {
-        errors.classes.forEach((classError: any, index: number) => {
-          if (classError?.class) missingFields.push(`Class ${index + 1}`)
-          if (classError?.subclass) missingFields.push(`Subclass ${index + 1}`)
-          if (classError?.level) missingFields.push(`Class ${index + 1} Level`)
-        })
-      }
-      
-      // Also check actual form values against completion requirements
-      if (!formValues.name || formValues.name.trim().length === 0) {
-        if (!missingFields.includes('Character Name')) missingFields.push('Character Name')
-      }
-      if (!formValues.race) {
-        if (!missingFields.includes('Race')) missingFields.push('Race')
-      }
-      if (!formValues.classes || formValues.classes.length === 0 || !formValues.classes[0].class) {
-        if (!missingFields.includes('Class')) missingFields.push('Class')
-      }
-      if (!formValues.level || formValues.level <= 0) {
-        if (!missingFields.includes('Level')) missingFields.push('Level')
-      }
-      
-      // Check total level validation
-      if (formValues.classes && formValues.classes.length > 0) {
-        const totalLevel = formValues.classes.reduce((sum: number, classEntry: any) => {
-          return sum + (classEntry?.level || 0);
-        }, 0);
-        if (totalLevel > 20) {
-          missingFields.push('Total level exceeds 20')
-        }
-      }
-      
-      // Create error message with specific missing fields
-      let errorMessage = "Please complete all required fields before saving"
-      if (missingFields.length > 0) {
-        errorMessage += `: ${missingFields.join(', ')}`
-      }
-      
+    // Run comprehensive validation
+    const validationResult = validateCharacterForm(formData)
+    
+    if (!validationResult.isValid) {
+      // Format validation errors for display
+      const errorMessage = formatValidationErrors(validationResult.errors)
       setSaveError(errorMessage)
       return
     }
-    */
 
     // Show confirmation dialog
     setShowSaveConfirmation(true)
@@ -192,13 +138,22 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
       return
     }
 
+    // Validate form again before saving
+    const formData = methods.getValues()
+    const validationResult = validateCharacterForm(formData)
+    
+    if (!validationResult.isValid) {
+      console.log("Form validation failed during save")
+      const errorMessage = formatValidationErrors(validationResult.errors)
+      setSaveError(errorMessage)
+      return
+    }
+
     setIsSubmitting(true)
     setSaveError(null)
     setSaveSuccess(false)
 
     try {
-      const formData = methods.getValues()
-      
       if (characterId) {
         // Update existing character
         await updateCharacter(characterId, formData)

@@ -3,49 +3,75 @@ import { sanitizeCharacterName, sanitizeText, countWords, sanitizeRaceSelection,
 import { races, validateRaceSubraceCombination } from "@/lib/data/races"
 import { classes, getSubclassesForClass, getMinLevelUnlock, isSubclassAvailableAtLevel } from "@/lib/data/classes"
 import { getAvailableFeats, getEligibleFeats } from "@/lib/data/feats"
+import { backgrounds } from "@/lib/data/backgrounds"
 
 export const CharacterSchema = z.object({
-  // Narrative section
+  // Narrative section - All fields now required
   name: z.string()
+    .nonempty("Character name is required")
     .max(100, "Character name must be 100 characters or less")
-    .refine((val) => !val || val.trim().length > 0, {
-      message: "Character name cannot be empty if provided"
+    .refine((val) => val.trim().length > 0, {
+      message: "Character name cannot be empty or only whitespace"
     })
-    .refine((val) => !val || !/^[0-9\s]+$/.test(val), {
+    .refine((val) => !/^[0-9\s]+$/.test(val.trim()), {
       message: "Character name cannot consist only of numbers and spaces"
     })
-    .transform((val) => val ? sanitizeCharacterName(val) : val)
-    .optional(),
-  background: z.string().optional(),
+    .transform((val) => sanitizeCharacterName(val)),
+  background: z.string()
+    .nonempty("Background is required")
+    .refine((val) => val.trim().length > 0, {
+      message: "Please select a valid background"
+    })
+    .refine((val) => backgrounds.some(bg => bg.id === val), {
+      message: "Please select a valid background from the list"
+    }),
   backgroundSkillProficiencies: z.array(z.string()).optional(),
   backgroundToolProficiencies: z.array(z.string()).optional(),
   backgroundLanguages: z.number().optional(),
   backgroundEquipment: z.array(z.string()).optional(),
   alignment: z.string().optional(),
   appearance: z.string()
-    .transform((val) => val ? sanitizeText(val) : val)
-    .refine((val) => !val || countWords(val) <= 450, {
+    .nonempty("Appearance description is required")
+    .transform((val) => sanitizeText(val))
+    .refine((val) => countWords(val) >= 20, {
+      message: "Appearance description must be at least 20 words"
+    })
+    .refine((val) => countWords(val) <= 450, {
       message: "Appearance description must be 450 words or less"
-    })
-    .optional(),
+    }),
   backstory: z.string()
-    .transform((val) => val ? sanitizeText(val) : val)
-    .refine((val) => !val || countWords(val) <= 450, {
-      message: "Backstory must be 450 words or less"
+    .nonempty("Backstory is required")
+    .transform((val) => sanitizeText(val))
+    .refine((val) => countWords(val) >= 200, {
+      message: "Backstory must be at least 200 words"
     })
-    .optional(),
+    .refine((val) => countWords(val) <= 750, {
+      message: "Backstory must be 750 words or less"
+    }),
   personalityTraits: z.string()
-    .transform((val) => val ? sanitizeText(val) : val)
-    .optional(),
+    .nonempty("Personality traits are required")
+    .transform((val) => sanitizeText(val))
+    .refine((val) => countWords(val) <= 250, {
+      message: "Personality traits must be 250 words or less"
+    }),
   ideals: z.string()
-    .transform((val) => val ? sanitizeText(val) : val)
-    .optional(),
+    .nonempty("Ideals are required")
+    .transform((val) => sanitizeText(val))
+    .refine((val) => countWords(val) <= 250, {
+      message: "Ideals must be 250 words or less"
+    }),
   bonds: z.string()
-    .transform((val) => val ? sanitizeText(val) : val)
-    .optional(),
+    .nonempty("Bonds are required")
+    .transform((val) => sanitizeText(val))
+    .refine((val) => countWords(val) <= 250, {
+      message: "Bonds must be 250 words or less"
+    }),
   flaws: z.string()
-    .transform((val) => val ? sanitizeText(val) : val)
-    .optional(),
+    .nonempty("Flaws are required")
+    .transform((val) => sanitizeText(val))
+    .refine((val) => countWords(val) <= 250, {
+      message: "Flaws must be 250 words or less"
+    }),
 
   // Mechanics section
   classes: z.array(z.object({
@@ -101,9 +127,6 @@ export const CharacterSchema = z.object({
     .optional(),
   subrace: z.string()
     .transform((val) => val ? sanitizeRaceSelection(val) : val)
-    .refine((val) => !val || val !== "", {
-      message: "Please select a subrace"
-    })
     .refine((val) => {
       if (!val) return true
       // This validation will be handled in the form component
@@ -145,6 +168,16 @@ export const CharacterSchema = z.object({
   featASIChoices: z.record(z.string()).optional(),
   hp: z.number().optional(),
   xp: z.number().optional(),
+  
+  // Calculated stats
+  calculatedStats: z.object({
+    hp: z.number().optional(),
+    ac: z.number().optional(),
+    initiative: z.number().optional(),
+    hpBreakdown: z.array(z.string()).optional(),
+    acBreakdown: z.array(z.string()).optional(),
+    initiativeBreakdown: z.array(z.string()).optional(),
+  }).optional(),
 
   // Progression section
   levelProgression: z.array(z.object({

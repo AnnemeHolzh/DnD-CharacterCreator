@@ -245,3 +245,30 @@ export function validateWordCount(text: string, maxWords: number): { isValid: bo
 
   return { isValid: true };
 }
+
+/**
+ * Validates word count range for required text fields
+ */
+export function validateWordCountRange(text: string, minWords: number, maxWords: number): { isValid: boolean; error?: string } {
+  if (!text || text.trim().length === 0) {
+    return { isValid: false, error: "This field is required" };
+  }
+
+  const wordCount = countWords(text);
+  
+  if (wordCount < minWords) {
+    return { 
+      isValid: false, 
+      error: `Text must be at least ${minWords} words (currently ${wordCount} words)` 
+    };
+  }
+  
+  if (wordCount > maxWords) {
+    return { 
+      isValid: false, 
+      error: `Text must be ${maxWords} words or less (currently ${wordCount} words)` 
+    };
+  }
+
+  return { isValid: true };
+}

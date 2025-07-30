@@ -29,6 +29,7 @@ import { races } from '@/lib/data/races'
 import { backgrounds } from '@/lib/data/backgrounds'
 import { classes } from '@/lib/data/classes'
 import { skills } from '@/lib/data/skills'
+import { ArmorDetail } from '@/lib/services/armor-service'
 
 // Get race ability score increases
 export function getRaceAbilityScoreIncreases(raceId: string): Record<string, number> {
@@ -804,4 +805,165 @@ export function canCharacterCastSpells(characterClasses: Array<{ class: string, 
     // This could be enhanced to check specific subclass requirements
     return classEntry.level >= 1
   })
+}
+
+// Calculate total ability score including race bonuses and ASIs
+export function calculateTotalAbilityScore(
+  baseScore: number,
+  raceId: string,
+  subraceId: string,
+  featASIChoices: Record<string, string> = {}
+): number {
+  let total = baseScore
+
+  // Add race/subrace bonuses
+  const raceBonuses = calculateTotalAbilityScoreIncreases(raceId, subraceId)
+  Object.entries(raceBonuses).forEach(([ability, bonus]) => {
+    if (ability.startsWith('any')) {
+      // Handle flexible bonuses from feats
+      const featBonus = featASIChoices[ability]
+      if (featBonus) {
+        total += bonus
+      }
+    } else {
+      total += bonus
+    }
+  })
+
+  // Add ASI bonuses from feats
+  Object.entries(featASIChoices).forEach(([ability, value]) => {
+    if (!ability.startsWith('any')) {
+      total += parseInt(value) || 0
+    }
+  })
+
+  return total
+}
+
+// Calculate Armor Class based on armor worn and dexterity
+export function calculateArmorClass(
+  dexterityModifier: number,
+  armorIndex: string | undefined,
+  shieldIndex: string | undefined,
+  armorDetails: ArmorDetail | null = null
+): { ac: number; breakdown: string[] } {
+  const breakdown: string[] = []
+  let ac = 10 // Base AC
+
+  breakdown.push("Base AC: 10")
+
+  if (!armorIndex || armorIndex === "none") {
+    // Unarmored defense
+    ac += dexterityModifier
+    if (dexterityModifier > 0) {
+      breakdown.push(`Dexterity bonus: +${dexterityModifier}`)
+    } else if (dexterityModifier < 0) {
+      breakdown.push(`Dexterity penalty: ${dexterityModifier}`)
+    }
+  } else if (armorDetails) {
+    // Armored defense
+    ac = armorDetails.armor_class.base
+    breakdown.push(`${armorDetails.name} base AC: ${armorDetails.armor_class.base}`)
+
+    // Apply dexterity modifier based on armor type
+    if (armorDetails.armor_class.dex_bonus) {
+      const maxBonus = armorDetails.armor_class.max_bonus || 999
+      const appliedBonus = Math.min(dexterityModifier, maxBonus)
+      
+      if (appliedBonus > 0) {
+        ac += appliedBonus
+        breakdown.push(`Dexterity bonus: +${appliedBonus}`)
+        if (dexterityModifier > maxBonus) {
+          breakdown.push(`(Limited to +${maxBonus} by ${armorDetails.armor_category} armor)`)
+        }
+      } else if (appliedBonus < 0) {
+        ac += appliedBonus
+        breakdown.push(`Dexterity penalty: ${appliedBonus}`)
+      }
+    } else {
+      breakdown.push("No dexterity bonus (heavy armor)")
+    }
+  }
+
+  // Add shield bonus
+  if (shieldIndex && shieldIndex !== "none") {
+    ac += 2
+    breakdown.push("Shield bonus: +2")
+  }
+
+  return { ac, breakdown }
+}
+
+// Calculate Initiative modifier
+export function calculateInitiative(
+  dexterityModifier: number,
+  feats: string[] = []
+): { initiative: number; breakdown: string[] } {
+  const breakdown: string[] = []
+  let initiative = dexterityModifier
+
+  breakdown.push(`Dexterity modifier: ${dexterityModifier >= 0 ? '+' : ''}${dexterityModifier}`)
+
+  // Check for feats that modify initiative (e.g., Alert feat)
+  if (feats.includes("alert")) {
+    initiative += 5
+    breakdown.push("Alert feat: +5")
+  }
+
+  return { initiative, breakdown }
+}
+
+// Calculate Hit Points with detailed breakdown
+export function calculateHitPointsWithBreakdown(
+  characterClasses: Array<{ class: string, level: number }>,
+  constitutionModifier: number
+): { hp: number; breakdown: string[] } {
+  const breakdown: string[] = []
+  let totalHP = 0
+
+  characterClasses.forEach((classEntry, index) => {
+    if (!classEntry.class || !classEntry.level) return
+
+    const classData = classes.find(c => c.id === classEntry.class)
+    if (!classData) return
+
+    const hitDie = classData.hitDie
+    const level = classEntry.level
+
+    // First level: max hit die + con modifier
+    const firstLevelHP = hitDie + constitutionModifier
+    totalHP += firstLevelHP
+    breakdown.push(`${classData.name} level 1: ${hitDie} (max) + ${constitutionModifier >= 0 ? '+' : ''}${constitutionModifier} = ${firstLevelHP}`)
+
+    // Additional levels: average hit die roll + con modifier per level
+    if (level > 1) {
+      const averageRoll = Math.floor(hitDie / 2) + 1
+      const additionalLevelsHP = (level - 1) * (averageRoll + constitutionModifier)
+      totalHP += additionalLevelsHP
+      breakdown.push(`${classData.name} levels 2-${level}: ${level - 1} × (${averageRoll} average + ${constitutionModifier >= 0 ? '+' : ''}${constitutionModifier}) = ${additionalLevelsHP}`)
+    }
+  })
+
+  return { hp: totalHP, breakdown }
+}
+
+// Get armor category from armor index
+export function getArmorCategory(armorIndex: string): string {
+  // This is a simplified mapping - in practice, you'd get this from the armor details
+  const armorCategoryMap: Record<string, string> = {
+    "padded": "Light",
+    "leather": "Light", 
+    "studded-leather": "Light",
+    "hide": "Medium",
+    "chain-shirt": "Medium",
+    "scale-mail": "Medium",
+    "breastplate": "Medium",
+    "half-plate": "Medium",
+    "ring-mail": "Heavy",
+    "chain-mail": "Heavy",
+    "splint": "Heavy",
+    "plate": "Heavy"
+  }
+  
+  return armorCategoryMap[armorIndex] || "Light"
 }

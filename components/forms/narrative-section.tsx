@@ -87,16 +87,6 @@ export function NarrativeSection() {
         <FormField
           control={control}
           name="appearance"
-          rules={{
-            validate: (value) => {
-              if (!value || value.trim().length === 0) return true // Allow empty
-              const wordCount = value.trim().split(/\s+/).filter((word: string) => word.length > 0).length
-              if (wordCount < 20) {
-                return `Appearance description must be at least 20 words (currently ${wordCount} words)`
-              }
-              return true
-            }
-          }}
           render={({ field, fieldState }) => (
             <FormItem>
               <FormLabel className="font-display text-lg">Appearance</FormLabel>
@@ -124,16 +114,6 @@ export function NarrativeSection() {
         <FormField
           control={control}
           name="backstory"
-          rules={{
-            validate: (value) => {
-              if (!value || value.trim().length === 0) return true // Allow empty
-              const wordCount = value.trim().split(/\s+/).filter((word: string) => word.length > 0).length
-              if (wordCount < 200) {
-                return `Backstory must be at least 200 words (currently ${wordCount} words)`
-              }
-              return true
-            }
-          }}
           render={({ field, fieldState }) => (
             <FormItem>
               <FormLabel className="font-display text-lg">Backstory</FormLabel>

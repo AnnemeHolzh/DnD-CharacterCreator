@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useRef, useState, useEffect } from "react"
+import React, { useCallback, useRef, useState, useEffect, forwardRef } from "react"
 import { Textarea } from "@/components/ui/textarea"
 import { countWords } from "@/lib/utils/input-validation"
 import { cn } from "@/lib/utils"
@@ -13,7 +13,7 @@ interface WordLimitedTextareaProps
   onWordCountChange?: (wordCount: number) => void
 }
 
-export function WordLimitedTextarea({
+export const WordLimitedTextarea = forwardRef<HTMLTextAreaElement, WordLimitedTextareaProps>(({
   maxWords,
   showWordCount = true,
   onWordCountChange,
@@ -22,7 +22,7 @@ export function WordLimitedTextarea({
   onChange,
   value,
   ...props
-}: WordLimitedTextareaProps) {
+}, ref) => {
   const [wordCount, setWordCount] = useState(() => 
     value ? countWords(value.toString()) : 0
   )
@@ -183,7 +183,7 @@ export function WordLimitedTextarea({
   return (
     <div className="relative">
       <Textarea
-        ref={textareaRef}
+        ref={ref || textareaRef}
         className={cn(
           "pr-16", // Make room for word counter
           wordCount > maxWords && "border-red-500 focus:border-red-500",
@@ -214,4 +214,6 @@ export function WordLimitedTextarea({
       )}
     </div>
   )
-}
+})
+
+WordLimitedTextarea.displayName = "WordLimitedTextarea"
