@@ -16,6 +16,8 @@ import { useCharacters } from "@/hooks/use-characters"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { validateCharacterForm, formatValidationErrors } from "@/lib/utils/character-validation"
+import { calculateTotalAbilityScoreIncreases } from "@/lib/utils/character-utils"
+import { getFeatASIs } from "@/lib/data/feats"
 import type { z } from "zod"
 
 type CharacterFormData = z.infer<typeof CharacterSchema>
@@ -61,11 +63,13 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
         wisdom: 0,
         charisma: 0,
       },
+
       skills: [],
       proficiencies: [],
       equipment: [],
       spells: [],
       feats: [],
+      asiChoices: [],
       featASIChoices: {},
       hp: 0,
       xp: 0,
@@ -81,6 +85,9 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
         if (character) {
           // Remove the id field before setting form values
           const { id, createdAt, updatedAt, ...characterData } = character
+          
+
+          
           methods.reset(characterData)
         }
       }).finally(() => {
@@ -138,9 +145,83 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
       return
     }
 
-    // Validate form again before saving
+    // Trigger form validation to ensure all fields are updated
+    await methods.trigger()
+
+    // Add a small delay to ensure form is fully updated
+    await new Promise(resolve => setTimeout(resolve, 100))
+
+    // Get the form data
     const formData = methods.getValues()
-    const validationResult = validateCharacterForm(formData)
+    
+    // Calculate total ability scores with bonuses before saving
+    const abilityScores = formData.abilityScores || {}
+    const race = formData.race || ""
+    const subrace = formData.subrace || ""
+    const assignmentMode = formData.abilityScoreAssignmentMode || "standard"
+    const customAssignments = formData.customAbilityScoreAssignments || {}
+    const feats = formData.feats || []
+    const asiChoices = formData.asiChoices || []
+    const featASIChoices = formData.featASIChoices || {}
+    
+    // Calculate total ability scores
+    const totalScores: Record<string, number> = {}
+    const abilities = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
+    
+    // Get race/subrace bonuses
+    const raceSubraceBonuses = calculateTotalAbilityScoreIncreases(race, subrace)
+    
+    // Calculate feat ASI bonuses
+    const featASIs: Record<string, number> = {}
+    if (feats.length > 0) {
+      const featASIBonuses = getFeatASIs(feats, featASIChoices)
+      Object.entries(featASIBonuses).forEach(([ability, bonus]) => {
+        featASIs[ability] = bonus
+      })
+    }
+    
+    // Calculate ASI bonuses from user choices
+    const asiBonuses: Record<string, number> = {}
+    asiChoices.forEach((choice: { choice: "single" | "double", abilities: string[] }) => {
+      choice.abilities.forEach(ability => {
+        if (choice.choice === "single") {
+          asiBonuses[ability] = (asiBonuses[ability] || 0) + 2
+        } else {
+          asiBonuses[ability] = (asiBonuses[ability] || 0) + 1
+        }
+      })
+    })
+    
+    // Calculate total scores
+    abilities.forEach(abilityId => {
+      const baseScore = Number(abilityScores[abilityId]) || 0
+      let bonus = 0
+      
+      if (assignmentMode === "standard") {
+        bonus = (raceSubraceBonuses as Record<string, number>)[abilityId] || 0
+      } else {
+        Object.values(customAssignments).forEach(assignedAbility => {
+          if (assignedAbility === abilityId) {
+            bonus += 1
+          }
+        })
+      }
+      
+      bonus += featASIs[abilityId] || 0
+      bonus += asiBonuses[abilityId] || 0
+      
+      totalScores[abilityId] = baseScore + bonus
+    })
+    
+    // Update the form with total ability scores
+    methods.setValue("abilityScores", totalScores)
+    
+    // Get the updated form data
+    const updatedFormData = methods.getValues()
+    console.log("Saving character data:", updatedFormData)
+    console.log("Total ability scores being saved:", updatedFormData.abilityScores)
+    
+    const validationResult = validateCharacterForm(updatedFormData)
     
     if (!validationResult.isValid) {
       console.log("Form validation failed during save")
@@ -156,12 +237,12 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
     try {
       if (characterId) {
         // Update existing character
-        await updateCharacter(characterId, formData)
+        await updateCharacter(characterId, updatedFormData)
         console.log("Character updated successfully")
         setSaveSuccess(true)
       } else {
         // Save new character
-        const newCharacterId = await saveCharacter(formData)
+        const newCharacterId = await saveCharacter(updatedFormData)
         console.log("Character saved successfully with ID:", newCharacterId)
         setSaveSuccess(true)
       }

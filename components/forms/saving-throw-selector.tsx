@@ -71,37 +71,7 @@ export function SavingThrowSelector() {
     return bonuses
   }, [asiChoices])
 
-  // Calculate total ability scores with bonuses
-  const totalAbilityScores = useMemo(() => {
-    const baseScores = abilityScores || {}
-    const totalScores: Record<string, number> = {}
-    
-    abilities.forEach(ability => {
-      const baseScore = Number(baseScores[ability.id]) || 0
-      let bonus = 0
-      
-      if (assignmentMode === "standard") {
-        bonus = raceSubraceBonuses[ability.id] || 0
-      } else {
-        // Custom mode: check if this ability is assigned any flexible bonuses
-        Object.values(customAssignments).forEach(assignedAbility => {
-          if (assignedAbility === ability.id) {
-            bonus += 1 // Each flexible bonus gives +1
-          }
-        })
-      }
-      
-      // Add feat ASI bonuses
-      bonus += featASIs[ability.id] || 0
-      
-      // Add user ASI choices
-      bonus += asiBonuses[ability.id] || 0
-      
-      totalScores[ability.id] = baseScore + bonus
-    })
-    
-    return totalScores
-  }, [abilityScores, raceSubraceBonuses, assignmentMode, customAssignments, featASIs, asiBonuses])
+
 
   // Update saving throw proficiencies when class changes
   useEffect(() => {
@@ -122,7 +92,7 @@ export function SavingThrowSelector() {
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {abilities.map((ability) => {
-            const modifier = calculateModifier(totalAbilityScores[ability.id] || 10)
+            const modifier = calculateModifier(abilityScores[ability.id] || 10)
             const isProficient = watchedClass && classes.find(c => c.id === watchedClass)?.savingThrows.includes(ability.id)
             const totalBonus = modifier + (isProficient ? proficiencyBonus : 0)
 
