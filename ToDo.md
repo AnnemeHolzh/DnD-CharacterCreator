@@ -264,16 +264,3 @@
 - Check if draconic sorcerer features are properly loaded and applied
 - Examine the character state management for subclass features
 
-### Stats Input Validation Error
-
-**Problem**: When trying to input stats, the system shows "received string and expected number" error and marks fields as unassigned
-**Where to look**:
-- Check `components/forms/ability-score-selector.tsx` - input validation and type checking
-- Examine the form field types and validation rules in React Hook Form
-- Look for any string-to-number conversion logic that might be failing
-- Check `lib/utils/input-validation.ts` - validation functions for ability scores
-- Examine the character schema in `lib/schemas/character-schema.ts` - Zod validation rules
-- Look for any default values or initialization that might cause type mismatches
-- Check if there are any form state management issues in the ability score selector
-- Examine the input field onChange handlers for proper type handling
-- Look for any parseInt/parseFloat calls that might be failing on invalid input

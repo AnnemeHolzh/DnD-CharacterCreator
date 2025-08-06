@@ -515,6 +515,19 @@ export function validateAbilityScores(data: CharacterFormData): ValidationError[
         })
       }
       break
+
+    case 'manual-roll':
+      // Manual roll validation - check for valid range (1-20)
+      const invalidManualScores = numericScoreValues.filter(score => score < 1 || score > 20)
+      if (invalidManualScores.length > 0) {
+        errors.push({
+          section: 'Ability Scores',
+          field: 'Manual Roll Scores',
+          message: 'Manual roll scores must be between 1 and 20',
+          priority: 'high'
+        })
+      }
+      break
   }
 
   // Check for scores that are too low (0 or negative)
