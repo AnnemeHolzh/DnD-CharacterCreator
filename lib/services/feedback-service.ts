@@ -31,6 +31,10 @@ export class FeedbackService {
    */
   static async saveFeedback(feedback: Omit<Feedback, 'id' | 'createdAt' | 'updatedAt' | 'upvotes' | 'upvotedBy'>): Promise<string> {
     try {
+      console.log("FeedbackService.saveFeedback - Starting save operation")
+      console.log("FeedbackService.saveFeedback - Database reference:", this.FEEDBACK_REF)
+      console.log("FeedbackService.saveFeedback - Feedback data:", feedback)
+      
       const newFeedback: Omit<FeedbackWithId, 'id'> = {
         ...feedback,
         upvotes: 0,
@@ -39,9 +43,14 @@ export class FeedbackService {
         updatedAt: Date.now()
       }
 
+      console.log("FeedbackService.saveFeedback - Prepared feedback object:", newFeedback)
+
       // Generate a new reference and get the key
       const newFeedbackRef = push(ref(database, this.FEEDBACK_REF))
       const feedbackId = newFeedbackRef.key!
+
+      console.log("FeedbackService.saveFeedback - Generated feedback ID:", feedbackId)
+      console.log("FeedbackService.saveFeedback - Database path:", `${this.FEEDBACK_REF}/${feedbackId}`)
 
       // Save the feedback
       await set(newFeedbackRef, newFeedback)
@@ -50,6 +59,12 @@ export class FeedbackService {
       return feedbackId
     } catch (error) {
       console.error('Error saving feedback:', error)
+      console.error('Error details:', {
+        message: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined,
+        database: database,
+        feedbackRef: this.FEEDBACK_REF
+      })
       throw new Error('Failed to save feedback')
     }
   }

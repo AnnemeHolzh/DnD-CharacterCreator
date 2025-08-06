@@ -38,7 +38,11 @@ export function useFeedback() {
   const saveFeedback = useCallback(async (feedbackData: { feedback: string; userEmail?: string }): Promise<string | null> => {
     setSaving(true)
     try {
+      console.log("useFeedback.saveFeedback - Starting save operation")
+      console.log("useFeedback.saveFeedback - Input data:", feedbackData)
+      
       if (!feedbackData.feedback.trim()) {
+        console.log("useFeedback.saveFeedback - Empty feedback, returning early")
         toast({
           title: "Error",
           description: "Please enter your feedback or suggestion.",
@@ -49,6 +53,8 @@ export function useFeedback() {
 
       // Get browser information
       const browserInfo = detectBrowser()
+      console.log("useFeedback.saveFeedback - Browser info:", browserInfo)
+      
       const feedbackWithBrowser = {
         ...feedbackData,
         browserInfo: {
@@ -61,7 +67,11 @@ export function useFeedback() {
         }
       }
 
+      console.log("useFeedback.saveFeedback - Prepared feedback with browser info:", feedbackWithBrowser)
+
       const feedbackId = await FeedbackService.saveFeedback(feedbackWithBrowser)
+      
+      console.log("useFeedback.saveFeedback - Successfully saved with ID:", feedbackId)
       
       // Reload feedback to get the updated list
       await loadFeedback()
@@ -74,6 +84,10 @@ export function useFeedback() {
       return feedbackId
     } catch (error) {
       console.error('Error saving feedback:', error)
+      console.error('useFeedback.saveFeedback - Error details:', {
+        message: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined
+      })
       toast({
         title: "Error",
         description: "Failed to save feedback. Please try again.",

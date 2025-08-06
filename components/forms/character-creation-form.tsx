@@ -194,7 +194,18 @@ export default function CharacterCreationForm({ characterId }: CharacterCreation
     
     // Calculate total scores
     abilities.forEach(abilityId => {
-      const baseScore = Number(abilityScores[abilityId]) || 0
+      let baseScore = 0
+      const assignment = (abilityScores as Record<string, any>)[abilityId]
+      
+      // Handle roll assignments or direct numeric values
+      if (assignment && typeof assignment === 'object' && 'rollId' in assignment) {
+        // Roll assignment - extract the numeric value
+        baseScore = assignment.value
+      } else {
+        // Direct numeric value (for standard array and point buy)
+        baseScore = Number(assignment) || 0
+      }
+      
       let bonus = 0
       
       if (assignmentMode === "standard") {

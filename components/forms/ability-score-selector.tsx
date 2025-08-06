@@ -23,6 +23,12 @@ type RolledScoreWithId = {
   used: boolean
 }
 
+// Type for storing roll assignments in form state
+type RollAssignment = {
+  rollId: string
+  value: number
+}
+
 export function AbilityScoreSelector() {
   const { control, setValue, getValues } = useFormContext()
   const [rolledScoresWithIds, setRolledScoresWithIds] = useState<RolledScoreWithId[]>([])
@@ -165,8 +171,13 @@ export function AbilityScoreSelector() {
   useEffect(() => {
     if (abilityScoreMethod === "roll") {
       const newRolledScores = rolledScoresWithIds.map(score => {
-        // Check if this roll ID is currently assigned to any ability
-        const isUsed = Object.values(abilityScores).some(value => value === score.id)
+        // Check if this specific roll ID is currently assigned to any ability
+        const isUsed = Object.values(abilityScores).some(assignment => {
+          if (assignment && typeof assignment === 'object' && 'rollId' in assignment) {
+            return (assignment as RollAssignment).rollId === score.id
+          }
+          return false
+        })
         return { ...score, used: isUsed }
       })
       setRolledScoresWithIds(newRolledScores)
@@ -226,17 +237,16 @@ export function AbilityScoreSelector() {
     })
     
     abilities.forEach(ability => {
+      // Handle roll assignments or direct numeric values
       let baseScore = 0
+      const assignment = baseScores[ability.id]
       
-      // For roll method, convert roll ID to actual value
-      if (abilityScoreMethod === "roll") {
-        const rollId = baseScores[ability.id]
-        if (rollId) {
-          const rollData = rolledScoresWithIds.find(score => score.id === rollId)
-          baseScore = rollData ? rollData.value : 0
-        }
+      if (assignment && typeof assignment === 'object' && 'rollId' in assignment) {
+        // Roll assignment - extract the numeric value
+        baseScore = (assignment as RollAssignment).value
       } else {
-        baseScore = Number(baseScores[ability.id]) || 0
+        // Direct numeric value (for standard array and point buy)
+        baseScore = Number(assignment) || 0
       }
       
       let bonus = 0
@@ -247,29 +257,21 @@ export function AbilityScoreSelector() {
         // Custom mode: check if this ability is assigned any flexible bonuses
         Object.values(customAssignments).forEach(assignedAbility => {
           if (assignedAbility === ability.id) {
-            bonus += 1 // Each flexible bonus gives +1
+            bonus += 1
           }
         })
       }
       
-      // Add feat ASI bonuses
       bonus += featASIs[ability.id] || 0
-      
-      // Add user ASI choices
       bonus += asiBonuses[ability.id] || 0
       
       totalScores[ability.id] = baseScore + bonus
     })
     
-    console.log("AbilityScoreSelector - calculated totalScores:", totalScores)
     return totalScores
-  }, [abilityScores, raceSubraceBonuses, assignmentMode, customAssignments, featASIs, asiBonuses, abilityScoreMethod, rolledScoresWithIds])
+  }, [abilityScores, raceSubraceBonuses, assignmentMode, customAssignments, featASIs, asiBonuses, abilityScoreMethod])
 
-  // Don't automatically update ability scores - just calculate and display totals
-  // The total scores are calculated in totalAbilityScores and displayed to the user
-  // The base ability scores remain unchanged to prevent infinite loops
-
-  // Validation logic
+  // Validate ability score assignment
   const validateAbility = (value: string | number, abilityId: string) => {
     if (abilityScoreMethod === "roll") {
       // For roll method, value should be a roll ID
@@ -578,7 +580,7 @@ export function AbilityScoreSelector() {
             {rolledScoresWithIds.length > 0 && (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {rolledScoresWithIds.map((score, index) => {
-                  const isUsed = Object.values(abilityScores).some(value => value === score.id)
+                  const isUsed = Object.values(abilityScores).some(value => value === score.value)
                   return (
                     <Badge
                       key={score.id}
@@ -738,9 +740,9 @@ export function AbilityScoreSelector() {
               
               // For roll method, convert roll ID to actual value
               if (abilityScoreMethod === "roll") {
-                const rollId = field.value
-                if (rollId) {
-                  const rollData = rolledScoresWithIds.find(score => score.id === rollId)
+                const rollAssignment = field.value as RollAssignment
+                if (rollAssignment && rollAssignment.rollId) {
+                  const rollData = rolledScoresWithIds.find(score => score.id === rollAssignment.rollId)
                   baseScore = rollData ? rollData.value : 0
                 }
               } else {
@@ -790,15 +792,29 @@ export function AbilityScoreSelector() {
                         
                         {abilityScoreMethod === "roll" ? (
                           <Select
-                            value={abilityScores[ability.id] || field.value || ""}
-                            onValueChange={field.onChange}
+                            value={(abilityScores[ability.id] || field.value)?.rollId || ""}
+                            onValueChange={(rollId) => {
+                              // Find the actual numeric value for this roll ID
+                              const rollData = rolledScoresWithIds.find(score => score.id === rollId)
+                              if (rollData) {
+                                // Store the roll assignment with both ID and value
+                                const rollAssignment: RollAssignment = {
+                                  rollId: rollId,
+                                  value: rollData.value
+                                }
+                                field.onChange(rollAssignment)
+                              }
+                            }}
                           >
                             <SelectTrigger className="border-amber-800/30 bg-black/20 backdrop-blur-sm">
                               <SelectValue placeholder="Select Rolled Score">
                                 {(abilityScores[ability.id] || field.value) ? (
                                   (() => {
-                                    const rollData = rolledScoresWithIds.find(score => score.id === (abilityScores[ability.id] || field.value))
-                                    return rollData ? `Rolled: ${rollData.value}` : "Select Rolled Score"
+                                    const assignment = abilityScores[ability.id] || field.value
+                                    if (assignment && typeof assignment === 'object' && 'rollId' in assignment) {
+                                      return `Rolled: ${(assignment as RollAssignment).value}`
+                                    }
+                                    return `Rolled: ${assignment}`
                                   })()
                                 ) : "Select Rolled Score"}
                               </SelectValue>
@@ -814,7 +830,13 @@ export function AbilityScoreSelector() {
                         ) : abilityScoreMethod === "standard-array" ? (
                           <Select
                             value={(abilityScores[ability.id] || field.value)?.toString() || ""}
-                            onValueChange={(value) => field.onChange(Number.parseInt(value) || 0)}
+                            onValueChange={(value) => {
+                              // Ensure we always store a number
+                              const numericValue = Number(value)
+                              if (!isNaN(numericValue)) {
+                                field.onChange(numericValue)
+                              }
+                            }}
                           >
                             <SelectTrigger className="border-amber-800/30 bg-black/20 backdrop-blur-sm">
                               <SelectValue placeholder="Select Value">
