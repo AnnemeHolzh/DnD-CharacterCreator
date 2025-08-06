@@ -45,9 +45,13 @@ export function FeedbackSection() {
       return
     }
     
-    const feedbackData = {
-      feedback: feedbackText.trim(),
-      userEmail: userEmail.trim() || undefined
+    const feedbackData: { feedback: string; userEmail?: string } = {
+      feedback: feedbackText.trim()
+    }
+    
+    // Only include userEmail if it's not empty
+    if (userEmail.trim()) {
+      feedbackData.userEmail = userEmail.trim()
     }
 
     const success = await saveFeedback(feedbackData)
