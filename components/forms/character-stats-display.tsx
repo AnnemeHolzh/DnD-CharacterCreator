@@ -7,6 +7,14 @@ import { useCharacterStats } from "@/hooks/use-character-stats"
 export function CharacterStatsDisplay() {
   const { stats, isLoading } = useCharacterStats()
 
+  // Helper function to safely display numbers
+  const safeNumber = (value: number): string => {
+    if (isNaN(value) || !isFinite(value)) {
+      return "—"
+    }
+    return value.toString()
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {/* Hit Points */}
@@ -19,7 +27,7 @@ export function CharacterStatsDisplay() {
             </h3>
           </div>
           <div className="text-4xl font-bold text-red-300 mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-            {stats.hp}
+            {safeNumber(stats.hp)}
           </div>
           {isLoading && (
             <div className="text-xs text-[rgba(212,180,102,0.7)]">
@@ -39,7 +47,7 @@ export function CharacterStatsDisplay() {
             </h3>
           </div>
           <div className="text-4xl font-bold text-blue-300 mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-            {stats.ac}
+            {safeNumber(stats.ac)}
           </div>
           {isLoading && (
             <div className="text-xs text-[rgba(212,180,102,0.7)]">
@@ -59,7 +67,10 @@ export function CharacterStatsDisplay() {
             </h3>
           </div>
           <div className="text-4xl font-bold text-yellow-300 mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-            {stats.initiative >= 0 ? `+${stats.initiative}` : stats.initiative}
+            {isNaN(stats.initiative) || !isFinite(stats.initiative) 
+              ? "—" 
+              : stats.initiative >= 0 ? `+${stats.initiative}` : stats.initiative.toString()
+            }
           </div>
         </div>
       </FantasyCard>

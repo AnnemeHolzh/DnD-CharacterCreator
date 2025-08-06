@@ -204,4 +204,76 @@
 
 # Perpetual list of unformated problems
 
-- Handel musical instruments and gaming sets in tools section better
+### Rolled Stats Input Issue
+
+**Problem**: The "rolled" stats option doesn't provide a way for users to input their own stats from external rolls
+**Where to look**:
+- Check `components/forms/ability-score-selector.tsx` - rolled stats implementation
+- Examine the stats generation logic for rolled option
+- Look for input fields or forms that handle manual stat entry
+- Check if there's a toggle between rolled and manual input modes
+- Examine the ability score calculation and validation logic
+- Look for any disabled or hidden input fields for manual stat entry
+
+### Character Choice Undo Functionality
+
+**Problem**: Users cannot undo certain choices, such as removing an ASI to pick up a feat
+**Where to look**:
+- Check `components/forms/asi-selection-dialog.tsx` - ASI selection and removal logic
+- Examine `components/forms/feat-selector.tsx` - feat selection and deselection
+- Look for undo/back functionality in character creation flow
+- Check if there are any disabled buttons or missing UI elements for choice reversal
+- Examine the character state management in `hooks/use-characters.tsx`
+- Look for any validation that prevents choice reversal
+- Check if the UI properly reflects the current state of choices
+
+### Feat Selection Alphabetical Range Issue
+
+**Problem**: Users cannot see or select feats in the latter half of the alphabet (Linguist appears to be the last visible feat)
+**Where to look**:
+- Check `components/forms/feat-selector.tsx` - feat display and pagination logic
+- Examine `hooks/use-feats.tsx` - feat data loading and filtering
+- Look for any alphabetical filtering or sorting that might limit displayed feats
+- Check if there's a scroll or pagination issue in the feat selector UI
+- Examine the API response from `lib/services/feats-service.ts`
+- Look for any search or filter functionality that might be limiting results
+- Check if there are any CSS issues that hide feats beyond a certain point
+
+### Background Skill Overlap Issue
+
+**Problem**: Skill selection doesn't allow choosing a bakground cskill that overlaps with class skills, which should normally allow picking any skill as a background skill
+**Where to look**:
+- Check `components/forms/skill-selector.tsx` - skill selection logic and validation
+- Examine `lib/utils/character-utils.ts` - skill calculation and overlap detection
+- Look for validation logic that prevents overlapping skill selections
+- Check the background skill selection process in `components/forms/background-selector.tsx`
+- Examine how class skills are determined and applied
+- Look for any conditional logic that handles skill overlap scenarios
+- Check if there's a UI issue that prevents selecting overlapping skills
+
+### Draconic Sorcerer Armor Class Calculation Issue
+
+**Problem**: Armor class calculation isn't picking up draconic sorcerer's natural armor bonus
+**Where to look**:
+- Check `components/forms/armor-selector.tsx` - armor class calculation logic
+- Examine `hooks/use-armor.tsx` - armor class computation
+- Look for draconic sorcerer subclass detection in `lib/data/classes.ts`
+- Check `lib/utils/character-utils.ts` - armor class calculation functions
+- Examine the subclass feature detection logic
+- Look for any missing natural armor bonus calculations
+- Check if draconic sorcerer features are properly loaded and applied
+- Examine the character state management for subclass features
+
+### Stats Input Validation Error
+
+**Problem**: When trying to input stats, the system shows "received string and expected number" error and marks fields as unassigned
+**Where to look**:
+- Check `components/forms/ability-score-selector.tsx` - input validation and type checking
+- Examine the form field types and validation rules in React Hook Form
+- Look for any string-to-number conversion logic that might be failing
+- Check `lib/utils/input-validation.ts` - validation functions for ability scores
+- Examine the character schema in `lib/schemas/character-schema.ts` - Zod validation rules
+- Look for any default values or initialization that might cause type mismatches
+- Check if there are any form state management issues in the ability score selector
+- Examine the input field onChange handlers for proper type handling
+- Look for any parseInt/parseFloat calls that might be failing on invalid input

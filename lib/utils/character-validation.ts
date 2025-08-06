@@ -427,8 +427,19 @@ export function validateAbilityScores(data: CharacterFormData): ValidationError[
   const scores = data.abilityScores
   const scoreValues = Object.values(scores).filter(score => score !== undefined && score !== null)
 
+  // Extract numeric values from roll assignments or direct values
+  const numericScoreValues = scoreValues.map(score => {
+    if (score && typeof score === 'object' && 'rollId' in score) {
+      // Roll assignment - extract the numeric value
+      return (score as { rollId: string; value: number }).value
+    } else {
+      // Direct numeric value
+      return Number(score)
+    }
+  }).filter(score => !isNaN(score))
+
   // Check if all 6 scores are assigned
-  if (scoreValues.length !== 6) {
+  if (numericScoreValues.length !== 6) {
     errors.push({
       section: 'Ability Scores',
       field: 'Ability Scores',
@@ -439,7 +450,7 @@ export function validateAbilityScores(data: CharacterFormData): ValidationError[
   }
 
   // Check for all scores being the same (which would be invalid)
-  const uniqueScores = new Set(scoreValues)
+  const uniqueScores = new Set(numericScoreValues)
   if (uniqueScores.size === 1) {
     errors.push({
       section: 'Ability Scores',
@@ -453,7 +464,7 @@ export function validateAbilityScores(data: CharacterFormData): ValidationError[
   switch (data.abilityScoreMethod) {
     case 'standard-array':
       const standardArray = [15, 14, 13, 12, 10, 8]
-      const sortedScores = [...scoreValues].sort((a, b) => b - a)
+      const sortedScores = [...numericScoreValues].sort((a, b) => b - a)
       const isValidStandardArray = standardArray.every((value, index) => sortedScores[index] === value)
       
       if (!isValidStandardArray) {
@@ -470,7 +481,7 @@ export function validateAbilityScores(data: CharacterFormData): ValidationError[
       // For point buy, we need to check if the scores are reasonable for base scores
       // Since we now save total scores, we'll be more lenient with the validation
       // Check for scores that are clearly too high for base scores (above 20)
-      const highScores = scoreValues.filter(score => score > 20)
+      const highScores = numericScoreValues.filter(score => score > 20)
       if (highScores.length > 0) {
         errors.push({
           section: 'Ability Scores',
@@ -481,7 +492,7 @@ export function validateAbilityScores(data: CharacterFormData): ValidationError[
       }
       
       // Check for scores that are too low (below 3)
-      const lowScores = scoreValues.filter(score => score < 3)
+      const lowScores = numericScoreValues.filter(score => score < 3)
       if (lowScores.length > 0) {
         errors.push({
           section: 'Ability Scores',
@@ -494,7 +505,7 @@ export function validateAbilityScores(data: CharacterFormData): ValidationError[
 
     case 'roll':
       // Roll validation - check for minimum scores
-      const lowRolledScores = scoreValues.filter(score => score < 3)
+      const lowRolledScores = numericScoreValues.filter(score => score < 3)
       if (lowRolledScores.length > 0) {
         errors.push({
           section: 'Ability Scores',
@@ -507,7 +518,7 @@ export function validateAbilityScores(data: CharacterFormData): ValidationError[
   }
 
   // Check for scores that are too low (0 or negative)
-  const zeroOrNegativeScores = scoreValues.filter(score => score <= 0)
+  const zeroOrNegativeScores = numericScoreValues.filter(score => score <= 0)
   if (zeroOrNegativeScores.length > 0) {
     errors.push({
       section: 'Ability Scores',

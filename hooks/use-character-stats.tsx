@@ -48,9 +48,19 @@ export function useCharacterStats() {
       }
     }
 
-    // Use ability scores (which now include bonuses)
-    const totalConstitution = abilityScores.constitution || 10
-    const totalDexterity = abilityScores.dexterity || 10
+    // Extract numeric values from ability scores (handling roll assignments)
+    const extractNumericValue = (score: any): number => {
+      if (score && typeof score === 'object' && 'rollId' in score) {
+        // Roll assignment - extract the numeric value
+        return (score as { rollId: string; value: number }).value
+      } else {
+        // Direct numeric value
+        return Number(score) || 0
+      }
+    }
+
+    const totalConstitution = extractNumericValue(abilityScores.constitution) || 10
+    const totalDexterity = extractNumericValue(abilityScores.dexterity) || 10
 
     const constitutionModifier = calculateModifier(totalConstitution)
     const dexterityModifier = calculateModifier(totalDexterity)
