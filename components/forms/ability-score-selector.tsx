@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { calculateModifier, calculateTotalAbilityScoreIncreases, hasFlexibleAbilityScoreAssignment, getFlexibleBonusCount, validateCustomAbilityScoreAssignment } from "@/lib/utils/character-utils"
-import { Dice6, Shuffle, Calculator, Settings, Plus, Minus } from "lucide-react"
+import { Dice6, Shuffle, Calculator, Settings, Plus, Minus, Hand } from "lucide-react"
 import { getFeatASIs, getAvailableFeats } from "@/lib/data/feats"
 import { ASISelectionDialog } from "./asi-selection-dialog"
 import { ASIChoiceDialog } from "./asi-choice-dialog"
@@ -29,9 +29,12 @@ type RollAssignment = {
   value: number
 }
 
+
+
 export function AbilityScoreSelector() {
   const { control, setValue, getValues } = useFormContext()
   const [rolledScoresWithIds, setRolledScoresWithIds] = useState<RolledScoreWithId[]>([])
+
   const [isRolling, setIsRolling] = useState(false)
   const [asiDialogOpen, setAsiDialogOpen] = useState(false)
   const [pendingFeatAsi, setPendingFeatAsi] = useState<{ featName: string; asiOptions: string[] } | null>(null)
@@ -103,6 +106,8 @@ export function AbilityScoreSelector() {
     }, 500)
   }
 
+
+
   // Initialize rolled scores if method is roll and no scores exist
   useEffect(() => {
     if (abilityScoreMethod === "roll" && rolledScoresWithIds.length === 0) {
@@ -132,6 +137,16 @@ export function AbilityScoreSelector() {
       })
     } else if (abilityScoreMethod === "roll") {
       // Don't auto-assign rolled scores, let user choose
+      setValue("abilityScores", {
+        strength: 0,
+        dexterity: 0,
+        constitution: 0,
+        intelligence: 0,
+        wisdom: 0,
+        charisma: 0,
+      })
+    } else if (abilityScoreMethod === "manual-roll") {
+      // Don't auto-assign manual roll scores, let user choose
       setValue("abilityScores", {
         strength: 0,
         dexterity: 0,
@@ -288,6 +303,12 @@ export function AbilityScoreSelector() {
         }
       }
     }
+    if (abilityScoreMethod === "manual-roll") {
+      // For manual roll method, validate the numeric value
+      const numValue = Number(value)
+      if (numValue < 1 || numValue > 20) return "Manual roll must be between 1 and 20."
+      if (!Number.isInteger(numValue)) return "Manual roll must be a whole number."
+    }
     if (abilityScoreMethod === "point-buy") {
       const numValue = Number(value)
       if (numValue < 8 || numValue > 15) return "Score must be between 8 and 15 for point buy."
@@ -365,7 +386,7 @@ export function AbilityScoreSelector() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <button
               type="button"
               onClick={() => handleMethodChange("roll")}
@@ -389,6 +410,33 @@ export function AbilityScoreSelector() {
                 4d6 drop lowest - Roll four dice, drop the lowest
               </div>
               {abilityScoreMethod === "roll" && (
+                <div className="absolute top-2 right-2 w-3 h-3 bg-amber-400 rounded-full animate-pulse" />
+              )}
+            </button>
+            
+            <button
+              type="button"
+              onClick={() => handleMethodChange("manual-roll")}
+              className={`relative p-6 rounded-lg border transition-all duration-200 text-left ${
+                abilityScoreMethod === "manual-roll"
+                  ? "border-amber-600/50 bg-gradient-to-br from-amber-900/40 via-amber-900/20 to-amber-800/10 shadow-[0_0_20px_rgba(232,193,112,0.15)]"
+                  : "border-amber-800/30 bg-black/20 hover:border-amber-600/40 hover:bg-amber-900/10"
+              }`}
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                  abilityScoreMethod === "manual-roll" 
+                    ? "bg-amber-600/30 text-amber-200" 
+                    : "bg-amber-900/30 text-amber-400"
+                }`}>
+                  <Hand className="h-5 w-5" />
+                </div>
+                <div className="font-display font-semibold text-lg">Manual Roll</div>
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Input your own dice results (1-20)
+              </div>
+              {abilityScoreMethod === "manual-roll" && (
                 <div className="absolute top-2 right-2 w-3 h-3 bg-amber-400 rounded-full animate-pulse" />
               )}
             </button>
@@ -597,6 +645,8 @@ export function AbilityScoreSelector() {
         </Card>
       )}
 
+
+
       {/* Point Buy Info */}
       {abilityScoreMethod === "point-buy" && (
         <Card className="border-amber-800/30 bg-black/20 backdrop-blur-sm">
@@ -745,6 +795,10 @@ export function AbilityScoreSelector() {
                   const rollData = rolledScoresWithIds.find(score => score.id === rollAssignment.rollId)
                   baseScore = rollData ? rollData.value : 0
                 }
+              } else if (abilityScoreMethod === "manual-roll") {
+                // For manual roll, use the direct numeric value
+                const currentValue = abilityScores[ability.id]
+                baseScore = Number(currentValue || field.value || 0)
               } else {
                 // Use the current value from the form state to ensure reactivity
                 const currentValue = abilityScores[ability.id]
@@ -827,6 +881,19 @@ export function AbilityScoreSelector() {
                               ))}
                             </SelectContent>
                           </Select>
+                        ) : abilityScoreMethod === "manual-roll" ? (
+                          <Input
+                            type="number"
+                            min="1"
+                            max="20"
+                            value={baseScore || ""}
+                            onChange={(e) => {
+                              const value = Number(e.target.value) || 0;
+                              field.onChange(value);
+                            }}
+                            placeholder="Enter roll (1-20)"
+                            className="border-amber-800/30 bg-black/20 backdrop-blur-sm"
+                          />
                         ) : abilityScoreMethod === "standard-array" ? (
                           <Select
                             value={(abilityScores[ability.id] || field.value)?.toString() || ""}

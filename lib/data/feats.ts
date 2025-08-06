@@ -139,7 +139,92 @@ export const feats: Feat[] = [
     prereqs: "None",
     benefits: "Increase Intelligence by 1; learn three languages; create ciphers others cannot decode without your key",
     asi: ["intelligence"]
+  },
+  {
+    name: "Lightly Armored",
+    source: "Player's Handbook",
+    prereqs: "None",
+    benefits: "Increase Strength or Dexterity by 1 (max 20); you gain proficiency with light armor:contentReference[oaicite:0]{index=0}",
+    asi: ["strength", "dexterity"]
+  },
+  {
+    name: "Moderately Armored",
+    source: "Player's Handbook",
+    prereqs: "Light armor proficiency",
+    benefits: "Increase Strength or Dexterity by 1 (max 20); you gain proficiency with medium armor and shields:contentReference[oaicite:1]{index=1}",
+    asi: ["strength", "dexterity"]
+  },
+  {
+    name: "Medium Armor Master",
+    source: "Player's Handbook",
+    prereqs: "Medium armor proficiency",
+    benefits: "Increase Strength or Dexterity by 1 (max 20); wearing medium armor doesn’t impose disadvantage on Dexterity (Stealth) checks; add +3 to AC (instead of +2) when wearing medium armor if Dexterity is 16 or higher:contentReference[oaicite:2]{index=2}:contentReference[oaicite:3]{index=3}",
+    asi: ["strength", "dexterity"]
+  },
+  {
+    name: "Mage Slayer",
+    source: "Player's Handbook",
+    prereqs: "None",
+    benefits: "When a creature within 5 feet casts a spell, you can use your reaction to make a melee attack against it; a creature you damage while it’s concentrating on a spell has disadvantage on its concentration saving throw; you have advantage on saving throws against spells cast by creatures within 5 feet:contentReference[oaicite:4]{index=4}",
+    asi: []
+  },
+  {
+    name: "Martial Adept",
+    source: "Player's Handbook",
+    prereqs: "None",
+    benefits: "You learn two maneuvers of your choice from the Battle Master archetype list; you gain one superiority die (d6) which you can expend to fuel your maneuvers (replenished on a short or long rest):contentReference[oaicite:5]{index=5}",
+    asi: []
+  },
+  {
+    name: "Mounted Combatant",
+    source: "Player's Handbook",
+    prereqs: "None",
+    benefits: "Increase Strength, Dexterity, or Wisdom by 1 (max 20); while mounted, you have advantage on melee attack rolls against any unmounted creature one size smaller than your mount; if your mount succeeds on a Dexterity saving throw for half damage, it instead takes no damage (half on failure); you can force an attack that hits your mount to hit you instead:contentReference[oaicite:6]{index=6}:contentReference[oaicite:7]{index=7}",
+    asi: ["strength", "dexterity", "wisdom"]
+  },
+  {
+    name: "Savage Attacker",
+    source: "Player's Handbook",
+    prereqs: "None",
+    benefits: "Once per turn when you hit a target with a melee weapon, you can reroll the weapon’s damage dice and use either total:contentReference[oaicite:8]{index=8}",
+    asi: []
+  },
+  {
+    name: "Spell Sniper",
+    source: "Player's Handbook",
+    prereqs: "Ability to cast at least one spell",
+    benefits: "When you cast a spell that requires an attack roll, the spell’s range is doubled; your ranged spell attacks ignore half cover and three-quarters cover; you learn one attack-roll cantrip of your choice from the bard, cleric, druid, sorcerer, warlock, or wizard list (choose the spellcasting ability accordingly):contentReference[oaicite:9]{index=9}",
+    asi: []
+  },
+  {
+    name: "Magic Initiate",
+    source: "Player's Handbook",
+    prereqs: "None",
+    benefits: "You learn two cantrips of your choice from one class’s spell list (bard, cleric, druid, sorcerer, warlock, or wizard); you learn one 1st-level spell from that list (which you can cast once per long rest without a slot, and can also cast using spell slots); your spellcasting ability for these spells depends on the chosen class; you can replace one of these spells when you gain a level; feat can be taken multiple times (each from a different class):contentReference[oaicite:10]{index=10}",
+    asi: []
+  },
+  {
+    name: "Observant",
+    source: "Player's Handbook",
+    prereqs: "Intelligence or Wisdom 13",
+    benefits: "Increase Intelligence or Wisdom by 1 (max 20); if you can see a creature’s mouth while it speaks a language you know, you can interpret what it’s saying by reading its lips; you gain a +5 bonus to your passive Wisdom (Perception) and passive Intelligence (Investigation) scores:contentReference[oaicite:11]{index=11}",
+    asi: ["intelligence", "wisdom"]
+  },
+  {
+    name: "Resilient",
+    source: "Player's Handbook",
+    prereqs: "None",
+    benefits: "Choose one ability score in which you lack saving throw proficiency; increase that score by 1 (max 20) and gain proficiency in saving throws for that ability:contentReference[oaicite:12]{index=12}",
+    asi: ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
+  },
+  {
+    name: "Skilled",
+    source: "Player's Handbook",
+    prereqs: "None",
+    benefits: "You gain proficiency in any three skills or tools of your choice:contentReference[oaicite:13]{index=13}",
+    asi: []
   }
+  
 ];
 
 // Function to check if a character meets feat prerequisites
