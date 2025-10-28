@@ -1,0 +1,6060 @@
+{
+  "-O_BFwT5JcWtoCFoONgF": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 14,
+      "constitution": 9,
+      "dexterity": 10,
+      "intelligence": 14,
+      "strength": 15,
+      "wisdom": 11
+    },
+    "alignment": "chaotic-evil",
+    "appearance": "He moved like a storm given flesh—broad shoulders cloaked in a battered leather coat, its edges frayed like old scars. Black hair, wild and untamed, framed a face cut from stone, with eyes like burning coals behind a veil of ice. Tattoos crawled up his neck and over his knuckles, telling stories no one dared ask about. His boots were heavy, scarred from countless roads, yet silent when he walked. Even standing still, he radiated a coiled violence, the kind that could break out with the precision of a blade. When he looked at you, it wasn’t a glance; it was a weighing, like a predator measuring the distance to its prey.",
+    "armor": "dragon-scale-mail-black",
+    "background": "haunted-one",
+    "backstory": "Born beneath a blood-red sky, he entered the world nameless and unwanted. His family was wiped out in a single night by men whose faces he burned into memory like brands. The boy they left behind didn’t weep—he carved their insignias into his skin to ensure he’d never forget. By twelve, he was breaking men twice his size in underground fight pits for scraps of bread and whispers of his enemies. At sixteen, he vanished, presumed dead, only to resurface as a ghost in the night—a hunter, an enforcer, a whispered legend.He trained under killers, warlords, and a disgraced war-priest who taught him the value of silence, patience, and precision. Every scar is a lesson. Every tattoo a name crossed off his list. Over time, vengeance turned into something colder—balance. He stopped killing for survival and began hunting to restore the scales.Now he roams from city to city, carrying a battered blade and a promise. He protects the weak not out of kindness, but because he once was one of them. His legend is built on shadows, scars, and debts paid in blood. And when his work is done, the last name he carves off his skin will be his own.",
+    "bonds": "The Lost Mentor: He still carries the blade given to him by the disgraced war priest who taught him how to fight without losing his soul. It’s chipped and old, but it’s a reminder of the man who saved him from becoming a monster.The Ghost of Family: Every night he whispers the names of his family before he sleeps — not out of grief, but as a vow that their memory won’t fade until the last name on his list is crossed out.The Child He Saved: Years ago, during a raid, he pulled a terrified child from the rubble and left them in safety. That child has grown into someone important, and though they don’t know it, he watches from the shadows to keep them safe.An Oath of Protection: In a world of betrayal, there’s one person he’d burn entire cities for — a friend, ally, or even enemy who once spared his life. Their bond is unspoken but unbreakable.The Symbol of Freedom: He wears a small token (a coin, charm, or piece of cloth) from the village he helped liberate. It’s a constant reminder of why he fights: not just to destroy, but to free.",
+    "calculatedStats": {
+      "ac": 12,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Shield bonus: +2"
+      ],
+      "hp": 79,
+      "hpBreakdown": [
+        "Fighter level 1: 10 (max) + -1 = 9",
+        "Fighter levels 2-15: 14 × (6 average + -1) = 70"
+      ],
+      "initiative": 0,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +0"
+      ]
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 15,
+        "subclass": "Battle Master"
+      }
+    ],
+    "createdAt": 1757921134598,
+    "feats": [
+      "Great Weapon Master",
+      "Healer",
+      "Keen Mind",
+      "Mage Slayer",
+      "Savage Attacker"
+    ],
+    "flaws": "Unforgiving Heart: Once someone betrays him, he cannot forgive, even if forgiveness would save lives. His grudges run deeper than logic.Silent Self-Destruction: He never asks for help, even when he needs it. Wounds fester, both physical and emotional, because he sees vulnerability as weakness.Obsession with Balance: His belief in “debts must be paid” can make him inflexible and blind to nuance, leading to unnecessary conflict.Ghosts of the Past: Nightmares of his family’s death and his bloody rise sometimes paralyze him. He hides it well, but in quiet moments, it eats away at him.Mistrust of Authority: He instinctively rebels against leaders, even those who mean well, which often sabotages alliances before they can solidify.Edge of Mercy: While he protects the weak, his methods are so brutal that sometimes he becomes the very monster he’s trying to destroy.",
+    "hp": 0,
+    "ideals": "Retribution Over Revenge: He believes every crime leaves a debt, and every debt must be paid — not out of spite, but balance. He doesn’t kill for pleasure; he kills to restore the scales.Strength Without Corruption: Power means nothing if it rots you. He fights to remain unowned, unbroken, and unbought.Loyalty is Sacred: In his world, oaths are rare and precious. If you stand with him, he’ll walk through hell for you. Betray him, and you cease to exist in his eyes.The Code of the Forgotten: He protects those who have no one else — the lost, the weak, the nameless — because he was once all of them.Freedom at Any Cost: Chains, whether iron or invisible, are the enemy. He’d rather die standing than live kneeling",
+    "items": [
+      "book",
+      "alchemists-fire-flask",
+      "backpack",
+      "clothes-costume",
+      "horse-riding",
+      "orb",
+      "poisoners-kit",
+      "pot-iron",
+      "cloak-of-protection",
+      "crystal-ball-of-true-seeing",
+      "demon-armor",
+      "eyes-of-the-eagle",
+      "nine-lives-stealer",
+      "necklace-of-adaptation",
+      "pearl-of-power",
+      "potion-of-flying",
+      "potion-of-healing-superior",
+      "potion-of-invisibility",
+      "potion-of-speed",
+      "ring-of-djinni-summoning",
+      "talisman-of-ultimate-evil",
+      "wings-of-flying",
+      "weapon-3"
+    ],
+    "level": 1,
+    "name": "Draco",
+    "personalityTraits": "Despite the violence that shaped him, he isn’t reckless — he’s calculated, a man who weighs every move like a chessmaster in a game of knives. He’s stoic, his emotions buried deep, but when he speaks, his words are sharp and deliberate, carrying the weight of someone who’s survived too much to waste breath. He has a dark sense of humor, the kind that unsettles people because they’re never sure if he’s joking or threatening. Loyalty means everything to him; betray it once, and you’re already dead to him.He’s resourceful to the point of artistry, able to turn anything — a room, a weapon, a situation — to his advantage. Yet beneath the hardened exterior is a reluctant protector; he won’t admit it, but he has a code, and that code drives him to shield the weak even when it costs him. He’s not a hero, not a villain — he’s the kind of man who walks into the fire because that’s where the truth hides.",
+    "race": "human",
+    "shield": "ring-of-mind-shielding",
+    "skills": [
+      "choice",
+      "acrobatics",
+      "history"
+    ],
+    "subrace": "variant-human",
+    "updatedAt": 1757921134598,
+    "wealth": {
+      "bronze": 500,
+      "gold": 15555,
+      "platinum": 30000,
+      "silver": 1200
+    },
+    "weapons": [
+      "crossbow-light",
+      "sun-blade",
+      "scimitar-of-speed",
+      "staff-of-frost"
+    ],
+    "xp": 0
+  },
+  "-O_BKE6VLdxWPO0_VU-j": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 14,
+      "constitution": 13,
+      "dexterity": 12,
+      "intelligence": 16,
+      "strength": 15,
+      "wisdom": 14
+    },
+    "alignment": "chaotic-good",
+    "appearance": "A rugged and fiercely independent soldier, they stand tall with a lean, athletic build and sharp, stormy eyes that miss nothing. Their weathered face bears old scars and a crooked nose, telling silent stories of battles fought on their own terms. Messy hair, streaked from sun and smoke, is often tied back or left wild, and a stubbled jaw adds to their defiant edge. Tattoos and mismatched gear reflect a personal code of honor—loyal to justice, not authority. Despite their rough exterior, there's a fire in their gaze that reveals a deep drive to protect the innocent, no matter the cost.",
+    "armor": "plate-armor",
+    "asiChoices": [
+      {
+        "abilities": [
+          "strength",
+          "intelligence"
+        ],
+        "choice": "double"
+      }
+    ],
+    "background": "soldier",
+    "backstory": "born into a small, oppressed border village caught between warring factions, your character grew up witnessing firsthand the cost of blind obedience and corrupt power. When their family’s home was razed during a brutal crackdown, they barely escaped with their life, swearing to fight back against tyranny in any form. Enlisting in the military seemed like the best way to make a difference, but it quickly became clear that the rigid chain of command and political agendas were just another form of control they couldn’t abide.After a mission went horribly wrong due to faulty orders, resulting in civilian casualties, they disobeyed direct commands to protect innocent lives, earning both the ire of their commanders and the respect of the locals they saved. Branded a renegade, they deserted the official army, becoming a guerrilla fighter and symbol of hope for the oppressed. Their skills sharpened through years of surviving behind enemy lines, scavenging gear, and rallying disparate groups around a shared cause.Haunted by the losses they couldn’t prevent, they fight fiercely—not for medals or glory, but to give others the freedom they were once denied. Every scar and tattoo tells a story of rebellion, sacrifice, and the unyielding belief that one person can change the world.Would you like it expanded, or adapted to a specific setting or genre?",
+    "bonds": "My fallen comrades: The memory of those lost in battle drives me to fight harder and never abandon my allies.The oppressed: I am bound to protect those who have no voice and fight for their freedom.A personal token: Whether a necklace, a dog tag, or a scarf, this keeps me connected to my past and my purpose.",
+    "calculatedStats": {
+      "ac": 20,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Plate Armor base AC: 18",
+        "No dexterity bonus (heavy armor)",
+        "Shield bonus: +2"
+      ],
+      "hp": 118,
+      "hpBreakdown": [
+        "Fighter level 1: 10 (max) + +0 = 10",
+        "Fighter levels 2-19: 18 × (6 average + +0) = 108"
+      ],
+      "initiative": 0,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +0"
+      ]
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 19,
+        "subclass": "Battle Master"
+      }
+    ],
+    "createdAt": 1757922259557,
+    "featASIChoices": {
+      "Athlete": "strength"
+    },
+    "feats": [
+      "Alert",
+      "Athlete",
+      "Durable",
+      "Healer",
+      "Savage Attacker",
+      "Skilled"
+    ],
+    "flaws": "Reckless: I often rush headfirst into danger, trusting my instincts over careful planning.Distrustful of authority: I struggle to work within structured hierarchies and can be insubordinate.Haunted by guilt: Past failures weigh heavily on me, sometimes clouding my judgment or making me overly harsh on myself.",
+    "hp": 0,
+    "ideals": "Freedom: Every individual deserves the right to live without oppression or control by corrupt powers.Justice: Laws are only worth following if they protect the innocent and uphold fairness.Loyalty: True loyalty is earned through actions, not rank or title.",
+    "items": [
+      "reliquary",
+      "poison-basic-vial",
+      "pick-miners",
+      "paper-one-sheet",
+      "soap",
+      "wagon",
+      "perfume-vial",
+      "lamp",
+      "horse-draft",
+      "grappling-hook",
+      "cart"
+    ],
+    "languages": [
+      "common",
+      "abyssal"
+    ],
+    "level": 1,
+    "name": "Taariq",
+    "personalityTraits": "fiercely rebellious, never one to blindly follow orders or accept rules that clash with their personal sense of justice. This trait often puts them at odds with superiors or rigid systems, but they embrace the conflict because their loyalty lies with what’s right, not with authority. Beneath their tough, battle-hardened exterior is a deeply compassionate heart; they fight not for glory or power, but to protect the innocent and vulnerable who cannot defend themselves. This compassion drives their actions, even when it means breaking laws or risking everything.Quick-witted and resourceful, they excel at thinking on their feet, using unconventional tactics and improvisation to turn the tide in battle or escape dangerous situations. Their impulsiveness is both a strength and a weakness—they often charge into the fray driven by gut instinct, which can lead to unexpected victories or close calls. They have a sharp, dry sense of humor that they use to lighten heavy moments or deflect attention from their own pain.Despite their outward confidence, they carry emotional hauntings—memories of loss and sacrifice that weigh heavily on their mind, fueling their drive but also occasionally clouding their judgment. Above all, they are loyal to those they care about, willing to put themselves in harm’s way without hesitation.refuses to compromise their moral code, even when it puts them at odds with authority or in danger. They trust their gut, follow their conscience, and always stand up for what's right—no matter the consequences.",
+    "race": "human",
+    "shield": "shield",
+    "skills": [
+      "athletics",
+      "intimidation",
+      "survival",
+      "animal-handling"
+    ],
+    "subrace": "standard-human",
+    "tools": [
+      "dice-set",
+      "vehicles-land"
+    ],
+    "updatedAt": 1757922259557,
+    "wealth": {
+      "bronze": 69,
+      "gold": 65,
+      "platinum": 78,
+      "silver": 61
+    },
+    "weapons": [
+      "vicious-weapon",
+      "sword-of-wounding",
+      "handaxe",
+      "dagger-of-venom",
+      "dancing-sword"
+    ],
+    "xp": 0
+  },
+  "-O_BL1YhOUpwZ5HtFlQs": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 9,
+      "constitution": 13,
+      "dexterity": 16,
+      "intelligence": 14,
+      "strength": 18,
+      "wisdom": 11
+    },
+    "alignment": "chaotic-good",
+    "appearance": "A rugged and fiercely independent soldier, they stand tall with a lean, athletic build and sharp, stormy eyes that miss nothing. Their weathered face bears old scars and a crooked nose, telling silent stories of battles fought on their own terms. Messy hair, streaked from sun and smoke, is often tied back or left wild, and a stubbled jaw adds to their defiant edge. Tattoos and mismatched gear reflect a personal code of honor—loyal to justice, not authority. Despite their rough exterior, there's a fire in their gaze that reveals a deep drive to protect the innocent, no matter the cost.",
+    "armor": "plate-armor",
+    "asiChoices": [
+      {
+        "abilities": [
+          "strength",
+          "intelligence"
+        ],
+        "choice": "double"
+      }
+    ],
+    "background": "soldier",
+    "backstory": "born into a small, oppressed border village caught between warring factions, your character grew up witnessing firsthand the cost of blind obedience and corrupt power. When their family’s home was razed during a brutal crackdown, they barely escaped with their life, swearing to fight back against tyranny in any form. Enlisting in the military seemed like the best way to make a difference, but it quickly became clear that the rigid chain of command and political agendas were just another form of control they couldn’t abide.After a mission went horribly wrong due to faulty orders, resulting in civilian casualties, they disobeyed direct commands to protect innocent lives, earning both the ire of their commanders and the respect of the locals they saved. Branded a renegade, they deserted the official army, becoming a guerrilla fighter and symbol of hope for the oppressed. Their skills sharpened through years of surviving behind enemy lines, scavenging gear, and rallying disparate groups around a shared cause.Haunted by the losses they couldn’t prevent, they fight fiercely—not for medals or glory, but to give others the freedom they were once denied. Every scar and tattoo tells a story of rebellion, sacrifice, and the unyielding belief that one person can change the world.Would you like it expanded, or adapted to a specific setting or genre?",
+    "bonds": "My fallen comrades: The memory of those lost in battle drives me to fight harder and never abandon my allies.The oppressed: I am bound to protect those who have no voice and fight for their freedom.A personal token: Whether a necklace, a dog tag, or a scarf, this keeps me connected to my past and my purpose.",
+    "calculatedStats": {
+      "ac": 20,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Plate Armor base AC: 18",
+        "No dexterity bonus (heavy armor)",
+        "Shield bonus: +2"
+      ],
+      "hp": 118,
+      "hpBreakdown": [
+        "Fighter level 1: 10 (max) + +0 = 10",
+        "Fighter levels 2-19: 18 × (6 average + +0) = 108"
+      ],
+      "initiative": 2,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +2"
+      ]
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 19,
+        "subclass": "Battle Master"
+      }
+    ],
+    "createdAt": 1757922470257,
+    "featASIChoices": {
+      "Athlete": "strength"
+    },
+    "feats": [
+      "Alert",
+      "Athlete",
+      "Durable",
+      "Healer",
+      "Savage Attacker",
+      "Skilled"
+    ],
+    "flaws": "Reckless: I often rush headfirst into danger, trusting my instincts over careful planning.Distrustful of authority: I struggle to work within structured hierarchies and can be insubordinate.Haunted by guilt: Past failures weigh heavily on me, sometimes clouding my judgment or making me overly harsh on myself.",
+    "hp": 0,
+    "ideals": "Freedom: Every individual deserves the right to live without oppression or control by corrupt powers.Justice: Laws are only worth following if they protect the innocent and uphold fairness.Loyalty: True loyalty is earned through actions, not rank or title.",
+    "items": [
+      "reliquary",
+      "poison-basic-vial",
+      "pick-miners",
+      "paper-one-sheet",
+      "soap",
+      "wagon",
+      "perfume-vial",
+      "lamp",
+      "horse-draft",
+      "grappling-hook",
+      "cart"
+    ],
+    "languages": [
+      "common",
+      "abyssal"
+    ],
+    "level": 1,
+    "name": "Kade Strix",
+    "personalityTraits": "fiercely rebellious, never one to blindly follow orders or accept rules that clash with their personal sense of justice. This trait often puts them at odds with superiors or rigid systems, but they embrace the conflict because their loyalty lies with what’s right, not with authority. Beneath their tough, battle-hardened exterior is a deeply compassionate heart; they fight not for glory or power, but to protect the innocent and vulnerable who cannot defend themselves. This compassion drives their actions, even when it means breaking laws or risking everything.Quick-witted and resourceful, they excel at thinking on their feet, using unconventional tactics and improvisation to turn the tide in battle or escape dangerous situations. Their impulsiveness is both a strength and a weakness—they often charge into the fray driven by gut instinct, which can lead to unexpected victories or close calls. They have a sharp, dry sense of humor that they use to lighten heavy moments or deflect attention from their own pain.Despite their outward confidence, they carry emotional hauntings—memories of loss and sacrifice that weigh heavily on their mind, fueling their drive but also occasionally clouding their judgment. Above all, they are loyal to those they care about, willing to put themselves in harm’s way without hesitation.refuses to compromise their moral code, even when it puts them at odds with authority or in danger. They trust their gut, follow their conscience, and always stand up for what's right—no matter the consequences.",
+    "race": "human",
+    "shield": "shield",
+    "skills": [
+      "athletics",
+      "intimidation",
+      "survival",
+      "animal-handling"
+    ],
+    "subrace": "standard-human",
+    "tools": [
+      "dice-set",
+      "vehicles-land"
+    ],
+    "updatedAt": 1757922470257,
+    "wealth": {
+      "bronze": 69,
+      "gold": 65,
+      "platinum": 78,
+      "silver": 61
+    },
+    "weapons": [
+      "vicious-weapon",
+      "sword-of-wounding",
+      "handaxe",
+      "dagger-of-venom",
+      "dancing-sword"
+    ],
+    "xp": 0
+  },
+  "-O_BMJcdFULZofUd94bC": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 9,
+      "constitution": 12,
+      "dexterity": 16,
+      "intelligence": 12,
+      "strength": 17,
+      "wisdom": 12
+    },
+    "alignment": "chaotic-good",
+    "appearance": "The gladiator was tall and powerfully built, with weathered skin, piercing eyes, and battle scars. He wore dented armor, a bloodstained tunic, and carried a heavy sword with confidence.",
+    "armor": "armor",
+    "background": "soldier",
+    "backstory": "Orphaned by a brutal tax raid, he was captured and sold into slavery at just fourteen. His strong frame and fiery spirit caught the attention of a wealthy lanista, who saw potential in the boy and purchased him for training in the brutal world of gladiatorial combat.Thrown into the gladiator school, Marcus faced relentless beatings, grueling drills, and constant humiliation. But he learned quickly. His pain became his fuel, and each fight became a step toward freedom. Under the harsh mentorship of a former champion, he mastered a variety of weapons and earned a reputation for his ruthless efficiency in the arena.As the years passed, Marcus rose through the ranks, earning both the cheers of the bloodthirsty crowds and the fear of his fellow fighters. Yet beneath the hardened warrior's exterior remained a man driven by vengeance and hope. He dreamed not just of survival, but of justice—for the family he lost and the life stolen from him.One day, his fate changed when he was offered a chance at freedom: win ten consecutive battles in the grand arena. With every fight, he edged closer to that promise, carving a legend in the sands of the Colosseum. But Marcus knew that freedom came with a price—and when the time came, he would fight not just for himself, but to bring down the system that created him.The gladiator had a muscular build, scarred skin, and intense eyes. He wore battered armor, a weathered helmet, and carried a bloodstained sword, exuding strength, determination, and hardened resolve.Born and bred in Rome in 1358, ruled whole of Rome having the strongest empire, Family was killed my Persians, that's when he set out his plot for revenge.",
+    "bonds": "Lost Family – The memory of his murdered parents and lost siblings fuels his inner fire and anchors him to his past.Fellow Gladiators – Though often competitors, some become brothers-in-arms, forming a bond forged in shared suffering and survival.The Arena Crowd – Though he despises their bloodlust, he understands their cheers give him power and influence.His Lanista (Trainer/Owner) – A complex relationship of resentment, dependence, and reluctant respect, as the lanista shaped the warrior he became.A Distant Love or Friend – Someone from his past or present who reminds him of his humanity and offers emotional grounding.The Roman Empire – He is both a product and a prisoner of it—bound to its systems, yet dreaming of rebellion against its injustice.His Own Legacy – He’s connected to the world by the desire to be remembered—not as a slave, but as a symbol of resistance and strength.These ties give him reasons to keep fighting—not just to survive, but to reclaim control over his life and leave a mark on a world that tried to break him.",
+    "calculatedStats": {
+      "ac": 12,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Shield bonus: +2"
+      ],
+      "hp": 94,
+      "hpBreakdown": [
+        "Fighter level 1: 10 (max) + +0 = 10",
+        "Fighter levels 2-15: 14 × (6 average + +0) = 84"
+      ],
+      "initiative": 2,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +2"
+      ]
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 15,
+        "subclass": "Battle Master"
+      }
+    ],
+    "createdAt": 1757922806445,
+    "featASIChoices": {
+      "Moderately Armored": "strength"
+    },
+    "feats": [
+      "Moderately Armored",
+      "Charger",
+      "Crossbow Expert",
+      "Defensive Duelist",
+      "Dungeon Delver"
+    ],
+    "flaws": "Haunted by the Past – The trauma of losing his family and freedom often clouds his judgment and fuels impulsive rage.Trust Issues – Betrayal and hardship have made him wary of others, making it hard to form deep alliances or accept help.Emotional Suppression – He buries pain and fear beneath a stoic exterior, which can lead to emotional breakdowns or reckless behavior.Desire for Vengeance – His thirst for revenge sometimes overrides reason, pushing him into dangerous or morally grey situations.Conflict with Identity – Torn between the killer he’s become and the man he once was, he struggles with guilt and self-worth.Reckless Courage – He often charges into battle without concern for his own life, driven by pride or a sense of destiny.Dependence on Combat – Fighting is all he knows. Peace, freedom, or a life beyond the arena terrifies him more than death itself.These weaknesses don’t diminish his strength—they make his struggle more real, his victories more earned, and his character more relatable.",
+    "hp": 0,
+    "ideals": "Honor in battle – Even in bloodsport, he fights with integrity and respects worthy opponents.Loyalty – He values loyalty to those who earn his trust, especially fellow fighters and friends.Freedom – Above all, he fights for his right to choose his own fate.Justice – He seeks to right the wrongs done to him and others like him.Strength through struggle – He believes pain and hardship forge true strength, both physical and mental.Respect through action – Words mean little; only deeds prove a person’s worth.Survival with purpose – Survival isn’t enough; every fight must bring him closer to something greater.",
+    "items": [
+      "alchemists-fire-flask",
+      "amulet-of-health"
+    ],
+    "languages": [
+      "common",
+      "celestial"
+    ],
+    "level": 1,
+    "name": "Imaad Marcus Desmius Meridious",
+    "personalityTraits": "He was loyal, deeply devoted to Rome, to his men and family. Maximus was as well honorable, he was guided by principles of justice and integrity, even when betrayed. As a Roman general, he embodies leadership, commanding with both strength and compassion, earning the respect and devotion of his soldiers. His loyalty is not only to Rome but also to his family, whose brutal loss drives much of his journey.",
+    "race": "human",
+    "shield": "brooch-of-shielding",
+    "skills": [
+      "athletics",
+      "intimidation",
+      "acrobatics",
+      "survival"
+    ],
+    "spells": [
+      "arcane-eye",
+      "banishment"
+    ],
+    "subrace": "standard-human",
+    "tools": [
+      "dice-set",
+      "vehicles-land",
+      "thieves-tools"
+    ],
+    "updatedAt": 1757922806445,
+    "wealth": {
+      "bronze": 150,
+      "gold": 50,
+      "platinum": 50,
+      "silver": 100
+    },
+    "weapons": [
+      "dagger",
+      "club",
+      "spear",
+      "crossbow-light",
+      "pike"
+    ],
+    "xp": 0
+  },
+  "-O_BMQcq2QeQaPVacFeK": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "roll",
+    "abilityScores": {
+      "charisma": 16,
+      "constitution": 7,
+      "dexterity": 10,
+      "intelligence": 16,
+      "strength": 17,
+      "wisdom": 10
+    },
+    "alignment": "chaotic-evil",
+    "appearance": "very handsome and muscular but also a evil look that kills. he wears a red kilt with nothing on his upper body and sandals.",
+    "armor": "dragon-scale-mail-gold",
+    "asiChoices": [
+      {
+        "abilities": [
+          "strength",
+          "intelligence"
+        ],
+        "choice": "double"
+      }
+    ],
+    "background": "criminal",
+    "backstory": "his mother gave birth to him in a dungeon and was raised with hate towards everyone because of how they treated his mother and growing up with no father turned him into a protector towards his mother. when his mother passed on he became worse because he had nothing to lose and just did whatever he wanted to. his mother taught him all the things he knows to survive. he got his name by destroying anything that got into his way or anyone that disrespected him. nobody could defeat him because he was too strong for anyone and thats why he could just do what he wanted to. he is very rich robbing banks and people because of his greed for money and power. spending his life without a parent messed him up as well leading him to chaos and his heart being filled with hate and pure evil.. this gut is so evil he does not care about anything he will do what he wants. he is very evil. he is so strong that no body can do anything to him he is the most feared person ever. theres is no body that is stronger than him. nobody can defeat him",
+    "bonds": "he is alone and prefer to be on his own",
+    "calculatedStats": {
+      "ac": 10,
+      "acBreakdown": [
+        "Base AC: 10"
+      ],
+      "hp": 63,
+      "hpBreakdown": [
+        "Rogue level 1: 8 (max) + -2 = 6",
+        "Rogue levels 2-20: 19 × (5 average + -2) = 57"
+      ],
+      "initiative": 0,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +0"
+      ]
+    },
+    "classes": [
+      {
+        "class": "rogue",
+        "level": 20,
+        "subclass": "Assassin"
+      }
+    ],
+    "createdAt": 1757922835133,
+    "featASIChoices": {
+      "Mounted Combatant": "strength",
+      "Observant": "intelligence"
+    },
+    "feats": [
+      "Skilled",
+      "Observant",
+      "Mounted Combatant",
+      "Savage Attacker",
+      "Mage Slayer"
+    ],
+    "flaws": "he has no flaws.",
+    "hp": 0,
+    "ideals": "he doesnt believe in anything and thinks he is god",
+    "items": [
+      "pouch",
+      "spellbook",
+      "soap",
+      "horse-draft",
+      "saddle-riding",
+      "acid-vial"
+    ],
+    "level": 1,
+    "name": "Tofas the destroyer",
+    "personalityTraits": "he is every evil and does not think about the next person. he is very selfish and only thinks about himself.",
+    "race": "human",
+    "skills": [
+      "insight",
+      "perception",
+      "acrobatics",
+      "investigation",
+      "sleight-of-hand",
+      "stealth"
+    ],
+    "subrace": "variant-human",
+    "updatedAt": 1757922835133,
+    "wealth": {
+      "bronze": 1,
+      "gold": 1e+114,
+      "platinum": 1e+132,
+      "silver": 1e+93
+    },
+    "weapons": [
+      "giant-slayer",
+      "sun-blade",
+      "dragon-slayer",
+      "dagger-of-venom",
+      "flame-tongue"
+    ],
+    "xp": 0
+  },
+  "-O_BMxBmu0_N3ZDVDZfb": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 8,
+      "constitution": 11,
+      "dexterity": 15,
+      "intelligence": 11,
+      "strength": 15,
+      "wisdom": 9
+    },
+    "alignment": "lawful-evil",
+    "appearance": "He is a 6'1, tall, dark and handsome to women. Has his whole body filled by tatts with crocked teeth.",
+    "armor": "dwarven-plate",
+    "background": "criminal",
+    "backstory": "His parents gave him up for adoption at the age of five, unable to provide for him due to severe financial hardship. Although it was a heartbreaking decision, they believed it was the only way he could have a chance at a better life. He spent the next several years in the foster care system, moving between temporary homes and facing the uncertainty that comes with growing up without a permanent family. Despite the instability, he remained hopeful and resilient, holding on to the idea that one day he would find a place where he truly belonged.That opportunity finally came when he was twelve years old. A foster family in Arizona opened their hearts and home to him, offering the stability and support he had longed for. Though adjusting to a new environment wasn’t easy at first, he gradually began to trust and form bonds with his new family. With their encouragement, he started to thrive—both academically and personally. The love and structure they provided helped him build confidence and envision a future filled with possibilities. His journey, though marked by hardship, became a testament to perseverance, the power of compassion, and the importance of second chances. At the end of the day he is a criminal.",
+    "bonds": "Money",
+    "calculatedStats": {
+      "ac": 12,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Shield bonus: +2"
+      ],
+      "hp": 118,
+      "hpBreakdown": [
+        "Fighter level 1: 10 (max) + +0 = 10",
+        "Fighter levels 2-19: 18 × (6 average + +0) = 108"
+      ],
+      "initiative": 2,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +2"
+      ]
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 19,
+        "subclass": "Battle Master"
+      }
+    ],
+    "createdAt": 1757922972603,
+    "featASIChoices": {
+      "Resilient": "intelligence"
+    },
+    "feats": [
+      "Martial Adept",
+      "Skilled",
+      "Mounted Combatant",
+      "Savage Attacker",
+      "Athlete",
+      "Crossbow Expert",
+      "Resilient"
+    ],
+    "flaws": "Lazy",
+    "hp": 0,
+    "ideals": "Everyone should be rich",
+    "items": [
+      "arrow",
+      "ram-portable",
+      "saddle-riding",
+      "small-knife",
+      "camel",
+      "arrow-of-slaying",
+      "talisman-of-the-sphere",
+      "stone-of-good-luck-luckstone"
+    ],
+    "languages": [
+      "common",
+      "deep-speech"
+    ],
+    "level": 1,
+    "name": "DScar",
+    "personalityTraits": "Greedy",
+    "race": "human",
+    "shield": "shield",
+    "skills": [
+      "sleight-of-hand",
+      "stealth",
+      "athletics",
+      "history"
+    ],
+    "subrace": "variant-human",
+    "tools": [
+      "dice-set",
+      "thieves-tools"
+    ],
+    "updatedAt": 1757922972603,
+    "wealth": {
+      "bronze": 40,
+      "gold": 37,
+      "platinum": 13,
+      "silver": 27
+    },
+    "weapons": [
+      "dagger",
+      "dagger-of-venom",
+      "dragon-slayer",
+      "sword-of-sharpness",
+      "sword-of-wounding"
+    ],
+    "xp": 0
+  },
+  "-O_HG_1MWFyTDfg-hGQq": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 10,
+      "constitution": 9,
+      "dexterity": 16,
+      "intelligence": 13,
+      "strength": 15,
+      "wisdom": 13
+    },
+    "alignment": "chaotic-neutral",
+    "appearance": "Black hair, sleek black trench coat, dual swords, piercing eyes, sharp jawline, futuristic armour, mysterious, confident, agile, relentless, vigilant, unyielding.",
+    "armor": "leather-armor",
+    "background": "haunted-one",
+    "backstory": "Trapped in a merciless world where compassion is a weakness and survival is a brutal game, he fights each day with a weary heart and calloused hands. Every breath he takes is a defiance against the harshness that surrounds him, every step forward a battle against despair. Scarred by betrayal and shaped by loss, he has watched his companions fall—one by one—each death etching itself into his soul like a wound that never truly heals. Their faces haunt his dreams; their voices echo in the silence, reminding him of the promises made and the lives that were lost too soon.He walks on, carrying their memories like armour and their hopes like a flame in the dark. Grief is his constant shadow, but it does not consume him. Instead, it fuels him—driving him to protect those who remain, to shield the innocent from the fate he could not escape. His pain has become his weapon, his resolve forged in the fire of sorrow. Though hope feels fragile, almost breakable, he refuses to let it die. It is the last light in a world gone cold, and as long as it burns within him, he will fight—not just to survive, but to make their deaths mean something.",
+    "bonds": "Hope for Change – despite despair, he believes he can build a safer world for others so they don’t suffer as he did.",
+    "calculatedStats": {
+      "ac": 13,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Leather Armor base AC: 11",
+        "Dexterity bonus: +2"
+      ],
+      "hp": 104,
+      "hpBreakdown": [
+        "Fighter level 1: 10 (max) + -1 = 9",
+        "Fighter levels 2-20: 19 × (6 average + -1) = 95"
+      ],
+      "initiative": 2,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +2"
+      ]
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 20,
+        "subclass": "Battle Master"
+      }
+    ],
+    "createdAt": 1758021951855,
+    "featASIChoices": {
+      "Athlete": "dexterity",
+      "Lightly Armored": "strength",
+      "Observant": "intelligence"
+    },
+    "feats": [
+      "Dual Wielder",
+      "Durable",
+      "Lightly Armored",
+      "Athlete",
+      "Alert",
+      "Charger",
+      "Observant"
+    ],
+    "flaws": "Trust Issues – struggles to let others get close, fearing betrayal again.Overprotective – sometimes smothers allies by trying too hard to shield them.Self-Blame – carries guilt for every loss, even when it’s beyond his control.Isolationist – pushes people away, preferring solitude even when teamwork is needed.Reckless in Sacrifice – willing to endanger himself to save others, undervaluing his own life.Emotional Suppression – hides pain behind stoicism, which can make him seem cold or detached.",
+    "hp": 0,
+    "ideals": "Freedom above all else",
+    "items": [
+      "small-knife"
+    ],
+    "level": 1,
+    "name": "Guts",
+    "personalityTraits": "Loyal – fiercely protective of those he trusts.Cautious – slow to open up due to past betrayals.Resilient – endures hardship without giving in.Strategic – analyses situations before acting, avoids reckless moves.Compassionate – secretly kind, though he hides it behind a stoic exterior.Burdened – carries guilt for failures, shaping his drive to protect others.",
+    "race": "human",
+    "skills": [
+      "choice",
+      "athletics",
+      "survival"
+    ],
+    "subrace": "variant-human",
+    "updatedAt": 1758021951855,
+    "wealth": {
+      "bronze": 25,
+      "gold": 10,
+      "platinum": 10,
+      "silver": 20
+    },
+    "weapons": [
+      "dagger",
+      "rapier",
+      "vorpal-sword",
+      "sun-blade",
+      "dragon-slayer"
+    ],
+    "xp": 0
+  },
+  "-O_NvX9LBEJB3vsC5LA8": {
+    "abilityScoreAssignmentMode": "custom",
+    "abilityScoreMethod": "manual-roll",
+    "abilityScores": {
+      "charisma": 12,
+      "constitution": 12,
+      "dexterity": 16,
+      "intelligence": 10,
+      "strength": 16,
+      "wisdom": 10
+    },
+    "alignment": "chaotic-neutral",
+    "appearance": "Male, Purple eyes, 5'7, Jet black hair, cool beige skin tone, looks like he is about 30 years old or even a bit older, has a stubbly beard and looks about 150 lbs or more",
+    "armor": "studded-leather-armor",
+    "background": "criminal",
+    "backstory": "Was a young boy who lived in a small village it was a peaceful life, until our village was seemingly out of nowhere attacked and destroyed by dark elves, I was enslaved by the dark elves doing hard labor and starved most days, I had no one to care for me until one day a girl dark elf who at the time was around my age snuck into the prisoners camp and brought me food and water to drink she also used to sneak in and teach me elvish when she could, she was the only person who cared for me, until one day she was caught by a guard, I broke my chains jumping at the guard took his gun and shot him, I told the girl I would come back for her one day and we could live peacefully together, so before I fled she gave me a hug and a picture of her with her name and what seems to be an address, that was a long few years ago I hope to see her again and hope she remembers me, I've overcome hard living for many years hoping that one day we can reunite and I can show her all the appreciation I have for her for what she done for me all that time ago",
+    "bonds": "Whom does your character care most about? To what place do they feel a special connection? What is their most treasured possession?",
+    "calculatedStats": {
+      "ac": 15,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Studded Leather Armor base AC: 12",
+        "Dexterity bonus: +3"
+      ],
+      "hp": 11,
+      "hpBreakdown": [
+        "Fighter level 1: 10 (max) + +1 = 11"
+      ],
+      "initiative": 3,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +3"
+      ]
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 1,
+        "subclass": ""
+      }
+    ],
+    "createdAt": 1758133624922,
+    "customAbilityScoreAssignments": {
+      "flexible1": "strength",
+      "flexible2": "charisma"
+    },
+    "flaws": "I have a “tell” that reveals when I’m lying.I turn tail and run when things look bad.",
+    "hp": 0,
+    "ideals": "Honor. I don’t steal from others in the trade. (Lawful)Freedom. Chains are meant to be broken, as are those who would forge them. (Chaotic)Charity. I steal from the wealthy so that I can help people in need. (Good)",
+    "items": [
+      "mess-kit",
+      "bedroll",
+      "rations-1-day",
+      "rope-hempen-50-feet",
+      "tinderbox",
+      "torch",
+      "waterskin"
+    ],
+    "languages": [
+      "common",
+      "elvish"
+    ],
+    "level": 1,
+    "name": "Raymond 'Long-Fuse' Witley",
+    "personalityTraits": "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me.I would rather make a new friend than a new enemy.",
+    "race": "human",
+    "skills": [
+      "sleight-of-hand",
+      "stealth",
+      "acrobatics",
+      "athletics"
+    ],
+    "subrace": "variant-human",
+    "tools": [
+      "dice-set",
+      "thieves-tools"
+    ],
+    "updatedAt": 1758133624922,
+    "wealth": {
+      "bronze": 0,
+      "gold": 15,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "-OauKvSKW-j4LYgWVzcP": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "manual-roll",
+    "abilityScores": {
+      "charisma": 11,
+      "constitution": 14,
+      "dexterity": 16,
+      "intelligence": 11,
+      "strength": 13,
+      "wisdom": 16
+    },
+    "alignment": "neutral-good",
+    "appearance": "High messy ponytail with short messy hair, Golden tan skin, Hazel eyes, about 5'7 so medium height, about 144 pounds, seems about 24 years old and Human Female with bandage like clothing",
+    "background": "soldier",
+    "backstory": "Before she was Irina Earthfall, she was Sergeant Irina Vale, a proud soldier of the Iron Banner a desert-born legion known for its brutal efficiency. For years, she fought on scorched plains and broken dunes, wielding steel for kings who spoke of “peace through conquest.”She believed them.Until the day she realized she had been fighting her own people.A raid gone wrong a village her unit was ordered to burn for “harboring traitors.” She watched her comrades laugh while homes turned to ash. When the screaming stopped, the wind carried the smell of charred incense from a small shrine a shrine of monks who preached peace.Irina dropped her sword and walked into the smoke, never to return to the ranks again.For weeks, she wandered the desert, delirious, until she collapsed outside an ancient monastery carved into a canyon wall. The monks found her half-dead, covered in blood and sand, clutching a rusted insignia. She stayed there for years, taking a new name Earthfall, because, as she said, “when the earth fell away from me, I had to learn how to stand again.”Through meditation and discipline, she learned to silence her rage to turn it into something that healed instead of destroyed. But she could never fully escape it. The battlefield still haunted her, the rhythm of war buried under every heartbeat.Now, she travels again not as a weapon of war, but as a woman seeking balance between the killer she was and the protector she’s trying to become. She fights only when she must, and prays with her fists when words fail.Her wraps are the same cloth she once used to bind wounds in battle reminders that her hands can harm or heal, depending on her choice.",
+    "bonds": "“My unit is gone. I carry their memory and fight to honor them.”Deep respect for healers and pacifists; she believes they fight the hardest battles of all.",
+    "calculatedStats": {
+      "ac": 12,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Dexterity bonus: +2"
+      ],
+      "hp": 27,
+      "hpBreakdown": [
+        "Fighter level 1: 10 (max) + +1 = 11",
+        "Fighter levels 2-2: 1 × (6 average + +1) = 7",
+        "Monk level 1: 8 (max) + +1 = 9"
+      ],
+      "initiative": 2,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +2"
+      ]
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 2,
+        "subclass": ""
+      },
+      {
+        "class": "monk",
+        "level": 1,
+        "subclass": ""
+      }
+    ],
+    "createdAt": 1759767934820,
+    "flaws": "When pushed to her limits, her soldier’s instincts return — ruthless, cold, unstoppable.Suffers survivor’s guilt, believing she’s unworthy of peace.",
+    "hp": 0,
+    "ideals": "Redemption: You can’t erase your sins but you can shape what comes after.Discipline: Strength without control is just another kind of chaos.",
+    "level": 1,
+    "name": "Irina Earthfall",
+    "personalityTraits": "Speaks with a soldier’s precision direct, calm, and rarely emotional.Has a habit of standing watch even when she doesn’t need to; sleeping deeply makes her uneasy.",
+    "race": "human",
+    "skills": [
+      "athletics",
+      "intimidation",
+      "acrobatics",
+      "insight"
+    ],
+    "subrace": "standard-human",
+    "updatedAt": 1759767934820,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dagger",
+      "dart",
+      "longsword"
+    ],
+    "xp": 0
+  },
+  "-OauVlbcam2ejwLXs6bS": {
+    "abilityScoreAssignmentMode": "custom",
+    "abilityScoreMethod": "manual-roll",
+    "abilityScores": {
+      "charisma": 16,
+      "constitution": 10,
+      "dexterity": 9,
+      "intelligence": 15,
+      "strength": 9,
+      "wisdom": 12
+    },
+    "alignment": "neutral-evil",
+    "appearance": "Balding short black hair, greyish green skin, bloodshot red eyes with black eyes, about 5'9 tall, about 300 pounds, seems about late 50s or 60s, Human male",
+    "background": "criminal",
+    "backstory": "Born in the filth of Manchester’s sewer-side orphan district, Soren clawed his way out of this place through blood and betrayal. The city carved him with rusted knives and broken promises. He grew up in the shadows too broad to vanish, too cunning to be caught.By twenty, he was a dagger for hire. By thirty, a name whispered in brothels, gang dens, and guard stations alike. Soren wasn’t the fastest or the most graceful but he never missed, and he never let pain slow him down.Now at 65, his back aches when it rains, and his knees groan louder than his guns but he still fights, still kills and he always gets back up because he has a reason to.Years ago, he found a young orphan girl during a smuggling run gone wrong a half-dead girl hidden in a plague cart, small and silent and bright-eyed despite the horror around her. He called her Oriana. She called him “Papa” without ever being told to.He raised her in secret, away from the blood and the smoke. She grew into laughter and warmth a single clean flame in a life of rot and ash.And then the coughing began.No priest could heal her. No doctor dared name the disease. It's slow, cruel, and unrelenting. A death sentence whispered through blood-stained handkerchiefs.But Soren refuses.To the world, Soren is a relic of a bygone era a grey skinned thick-necked brute with old weapons, older tricks, and no place in this new age of chaos and cursed miracles.They say he’s greedy a mercenary a heartless sour old man only working for coin because that's what it seems like.Soren takes jobs others won’t, he hunts the beats no one will name. He digs through the bones of broken gods and forgotten saints. Every coin he earns, every monster he slays it’s all for her. For his little girl Oriana.He keeps her alive with alchemical treatments bought in hushed deals. He listens to whispers of forbidden cures, elixirs made from blood of angels or eldritch beasts, organs of aberrations, or sins devoured in flame. He would kill a god to see her laugh again.And if the city burns along with that hope then so be it.",
+    "bonds": "Oriana. Always. He doesn't believe in gods but if one threatens her, he’ll make them bleed.Everyone is an enemy unless they can be used for something",
+    "calculatedStats": {
+      "ac": 9,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Dexterity penalty: -1"
+      ],
+      "hp": 16,
+      "hpBreakdown": [
+        "Fighter level 1: 10 (max) + +0 = 10",
+        "Fighter levels 2-2: 1 × (6 average + +0) = 6"
+      ],
+      "initiative": -1,
+      "initiativeBreakdown": [
+        "Dexterity modifier: -1"
+      ]
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 2,
+        "subclass": ""
+      }
+    ],
+    "createdAt": 1759770778103,
+    "flaws": "The older he gets, the more reckless he becomes. He fears dying before saving Oriana, so he takes impossible risks.",
+    "hp": 0,
+    "ideals": "Coin is everything, everything he does is either for something valuable or coin to save Oriana Only people with enough coin or information to buy him over",
+    "level": 1,
+    "name": "Soren Kiragaurd",
+    "personalityTraits": "A very persuasive, smart, cunning but an absolute maniac who doesn't care about anyone else but his own gains atleast that's how he appears to othersA small sketchy underground merchants guild",
+    "race": "human",
+    "skills": [
+      "sleight-of-hand",
+      "stealth",
+      "survival",
+      "intimidation"
+    ],
+    "subrace": "variant-human",
+    "updatedAt": 1759770778103,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dagger",
+      "blowgun"
+    ],
+    "xp": 0
+  },
+  "-Ob-1F8KmZdhRIUjJV4l": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "manual-roll",
+    "abilityScores": {
+      "charisma": 13,
+      "constitution": 14,
+      "dexterity": 14,
+      "intelligence": 11,
+      "strength": 17,
+      "wisdom": 14
+    },
+    "alignment": "chaotic-good",
+    "appearance": "Long black flowing hair, Humanoid looking with lizard scaly features, Amber coloured eyes, about 6'0 in height, about 180 pounds, looks like she is in her 20 or 30s, Female lizardfolk",
+    "background": "sage",
+    "backstory": "In the heart of the emerald jungle, where obsidian cliffs catch the dawn and the air hums with spirits, Xochitl Tonalli was born during a solar eclipse. Her name means Flower of the Sun, yet her birth came when the sun itself hid its face. The elders whispered that Tonalli — her soul-fire — burned too brightly for even the heavens to watch.Her tribe, the Children of the Ember Jaguar, believed every warrior carried an inner flame given by the gods. Some used it to create, others to destroy. Xochitl’s burned wild. As a child she called vines from stone, drew lightning from the soil, and when angered, the jungle itself seemed to breathe with her.When she came of age, she trained as a guardian-druid, learning to speak with the spirits of beasts and roots. But during a raid by an iron-clad empire that sought to enslave her people, she saw her magic falter — and watched her chieftain, her own mother, fall. Rage replaced prayer. She took up her mother’s macuahuitl, a blade of obsidian and sacred wood, and fought until the earth shook beneath her feet. That day she was no longer just a druid — she was the storm itself.When the battle ended, the jungle burned. In the flames she saw a vision: the spirit of a great jaguar made of fire and ash, its eyes molten gold. It told her, “Your fury is not a curse. It is the breath of the world. But burn without purpose, and you will devour all you love.”Since then, Xochitl Tonalli has walked between two paths — the healer and the destroyer, the flower and the flame. She wanders far from her homeland, guided by dreams of a red sun and a prophecy that the world’s balance will tip again. She seeks to master her spirit, to learn when to strike and when to nurture, so that next time the fires rise… she will be ready to control them.",
+    "bonds": "I protect those who cannot protect themselves.I worked the land, I love the land, and I will protect the land.",
+    "calculatedStats": {
+      "ac": 12,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Dexterity bonus: +2"
+      ],
+      "hp": 24,
+      "hpBreakdown": [
+        "Druid level 1: 8 (max) + +2 = 10",
+        "Barbarian level 1: 12 (max) + +2 = 14"
+      ],
+      "initiative": 2,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +2"
+      ]
+    },
+    "classes": [
+      {
+        "class": "druid",
+        "level": 1,
+        "subclass": ""
+      },
+      {
+        "class": "barbarian",
+        "level": 1,
+        "subclass": ""
+      }
+    ],
+    "createdAt": 1759863440171,
+    "flaws": "The tyrant who rules my land will stop at nothing to see me killed.I’m convinced of the significance of my destiny, and blind to my shortcomings and the risk of failure.",
+    "hp": 0,
+    "ideals": "Freedom. Tyrants must not be allowed to oppress the people. Respect. People deserve to be treated with dignity and respect.",
+    "items": [
+      "backpack"
+    ],
+    "languages": [
+      "common",
+      "celestial",
+      "primordial"
+    ],
+    "level": 1,
+    "name": "Xochitl Tonalli",
+    "personalityTraits": "I judge people by their actions, not their words.If someone is in trouble, I’m always ready to lend help.",
+    "race": "human",
+    "skills": [
+      "arcana",
+      "history",
+      "animal-handling",
+      "nature"
+    ],
+    "spells": [
+      "druidcraft",
+      "conjure-elemental",
+      "guidance",
+      "spare-the-dying",
+      "cure-wounds",
+      "longstrider",
+      "purify-food-and-drink"
+    ],
+    "subrace": "variant-human",
+    "tools": [
+      "woodcarvers-tools",
+      "potters-tools"
+    ],
+    "updatedAt": 1759863440171,
+    "wealth": {
+      "bronze": 0,
+      "gold": 2,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "handaxe",
+      "greatsword"
+    ],
+    "xp": 0
+  },
+  "-Ob7MLEUME-2VOAH3nCZ": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 8,
+      "constitution": 13,
+      "dexterity": 10,
+      "intelligence": 15,
+      "strength": 14,
+      "wisdom": 12
+    },
+    "alignment": "chaotic-evil",
+    "appearance": "Faithfull man but has a massive penis, and wants to use it but cant, 8 feet tall with massive slave farm",
+    "background": "criminal",
+    "backstory": "Mega dick was once a wealthy cotton plantation owner in southern Georgia. Born into privilege, he inherited the land—and the slaves—from his father, continuing the family’s “business” without question. He prided himself on being a “benevolent master,” believing he was kinder than most, though he never questioned the morality of owning human beings.During the war, Silas supported the Confederacy but never fought himself—he paid for a substitute, and instead focused on maintaining production on his land. As the war ended and Union troops swept through the South, Silas’s world began to unravel. The Emancipation Proclamation and the eventual defeat of the Confederacy shattered the foundations of his wealth and social standing.Now, in 1867, his plantation is a shell of what it once was. Most of his former slaves have left. One, however, still haunts him: Josiah, a literate and deeply intelligent man who escaped during the final year of the war. Silas tells others that he only wants to find Josiah because he believes the man holds important knowledge about a missing ledger, or that Josiah stole something.But the truth runs deeper.Silas is haunted not by theft, but by guilt—guilt he can barely name. Josiah was the only one who dared speak to him as an equal, even under the yoke of slavery. They debated, argued. Josiah once told Silas, “You only think you're a master because the law says so. But that law is dying.” That line echoes in Silas’s mind like a ghost.He claims he wants to “settle old accounts,” but what he's really seeking is a confrontation—with Josiah, with history, and with himself.",
+    "bonds": "none",
+    "calculatedStats": {
+      "ac": 10,
+      "acBreakdown": [
+        "Base AC: 10"
+      ],
+      "hp": 123,
+      "hpBreakdown": [
+        "Cleric level 1: 8 (max) + +1 = 9",
+        "Cleric levels 2-20: 19 × (5 average + +1) = 114"
+      ],
+      "initiative": 0,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +0"
+      ]
+    },
+    "classes": [
+      {
+        "class": "cleric",
+        "level": 20,
+        "subclass": ""
+      }
+    ],
+    "createdAt": 1760003187807,
+    "feats": [
+      "Skilled",
+      "Martial Adept",
+      "Mage Slayer",
+      "Savage Attacker",
+      "Alert"
+    ],
+    "flaws": "None",
+    "hp": 0,
+    "ideals": "Kill Mega Clitt",
+    "languages": [
+      "common",
+      "draconic"
+    ],
+    "level": 1,
+    "name": "Mega Dick",
+    "personalityTraits": "Ruthless",
+    "race": "human",
+    "skills": [
+      "sleight-of-hand",
+      "stealth"
+    ],
+    "subrace": "variant-human",
+    "tools": [
+      "dice-set",
+      "thieves-tools"
+    ],
+    "updatedAt": 1760003187807,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "sling",
+      "dagger",
+      "light-hammer",
+      "handaxe",
+      "staff-of-charming"
+    ],
+    "xp": 0
+  },
+  "-Ob7MbwTg9BLE3aN8RhG": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 8,
+      "constitution": 13,
+      "dexterity": 10,
+      "intelligence": 15,
+      "strength": 14,
+      "wisdom": 12
+    },
+    "alignment": "chaotic-evil",
+    "appearance": "Faithfull man but has a massive penis, and wants to use it but cant, 8 feet tall with massive slave farm",
+    "background": "criminal",
+    "backstory": "Mega dick was once a wealthy cotton plantation owner in southern Georgia. Born into privilege, he inherited the land—and the slaves—from his father, continuing the family’s “business” without question. He prided himself on being a “benevolent master,” believing he was kinder than most, though he never questioned the morality of owning human beings.During the war, Silas supported the Confederacy but never fought himself—he paid for a substitute, and instead focused on maintaining production on his land. As the war ended and Union troops swept through the South, Silas’s world began to unravel. The Emancipation Proclamation and the eventual defeat of the Confederacy shattered the foundations of his wealth and social standing.Now, in 1867, his plantation is a shell of what it once was. Most of his former slaves have left. One, however, still haunts him: Josiah, a literate and deeply intelligent man who escaped during the final year of the war. Silas tells others that he only wants to find Josiah because he believes the man holds important knowledge about a missing ledger, or that Josiah stole something.But the truth runs deeper.Silas is haunted not by theft, but by guilt—guilt he can barely name. Josiah was the only one who dared speak to him as an equal, even under the yoke of slavery. They debated, argued. Josiah once told Silas, “You only think you're a master because the law says so. But that law is dying.” That line echoes in Silas’s mind like a ghost.He claims he wants to “settle old accounts,” but what he's really seeking is a confrontation—with Josiah, with history, and with himself.",
+    "bonds": "none",
+    "calculatedStats": {
+      "ac": 10,
+      "acBreakdown": [
+        "Base AC: 10"
+      ],
+      "hp": 123,
+      "hpBreakdown": [
+        "Cleric level 1: 8 (max) + +1 = 9",
+        "Cleric levels 2-20: 19 × (5 average + +1) = 114"
+      ],
+      "initiative": 0,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +0"
+      ]
+    },
+    "classes": [
+      {
+        "class": "cleric",
+        "level": 20,
+        "subclass": ""
+      }
+    ],
+    "createdAt": 1760003260318,
+    "feats": [
+      "Skilled",
+      "Martial Adept",
+      "Mage Slayer",
+      "Savage Attacker",
+      "Alert"
+    ],
+    "flaws": "None",
+    "hp": 0,
+    "ideals": "Kill Mega Clitt",
+    "languages": [
+      "common",
+      "draconic"
+    ],
+    "level": 1,
+    "name": "Mega Dick",
+    "personalityTraits": "Ruthless",
+    "race": "human",
+    "skills": [
+      "sleight-of-hand",
+      "stealth"
+    ],
+    "subrace": "variant-human",
+    "tools": [
+      "dice-set",
+      "thieves-tools"
+    ],
+    "updatedAt": 1760003260318,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "sling",
+      "dagger",
+      "light-hammer",
+      "handaxe",
+      "staff-of-charming"
+    ],
+    "xp": 0
+  },
+  "-Ob7NzHPSPcgrQLuGv_x": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 15,
+      "constitution": 13,
+      "dexterity": 12,
+      "intelligence": 11,
+      "strength": 16,
+      "wisdom": 9
+    },
+    "alignment": "chaotic-evil",
+    "appearance": "Horny Lesbian Man who is super tall and looks like LeBron James, with a very dark skin tone who is super Waifu",
+    "armor": "half-plate-armor",
+    "background": "sage",
+    "backstory": "I was a slave and then I got tired of picking cotton and eating bananas every day, so I cut my masters wife's clit off and now she doesn't enjoy sex with her husband anymore, thus I became a horny lesbian man known as Mega Clit, now I spend my days fighting off the horny women of John Porks village, I chow, dogs, cats, horses, cows, birds, lizards, and all creatures that have a vagina or an asshole. the mystery still remains if I ever shall be free from this imprisonment of lust and horniness. I am still a slave in a world of my own creation, vast I search for family of my own and the chosen one who can resist my aura, when the time is right I will master the way of the magic mega clit. for food I sell the clits I cut off meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow",
+    "bonds": "he loves big booty latinas",
+    "calculatedStats": {
+      "ac": 15,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Half Plate Armor base AC: 15"
+      ],
+      "hp": 122,
+      "hpBreakdown": [
+        "Monk level 1: 8 (max) + +1 = 9",
+        "Monk levels 2-18: 17 × (5 average + +1) = 102",
+        "Ranger level 1: 10 (max) + +1 = 11"
+      ],
+      "initiative": 0,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +0"
+      ]
+    },
+    "classes": [
+      {
+        "class": "monk",
+        "level": 18,
+        "subclass": "Way of the Open Hand"
+      },
+      {
+        "class": "ranger",
+        "level": 1,
+        "subclass": ""
+      }
+    ],
+    "createdAt": 1760003618074,
+    "featASIChoices": {
+      "Athlete": "strength"
+    },
+    "feats": [
+      "Alert",
+      "Athlete",
+      "Charger",
+      "Actor"
+    ],
+    "flaws": "he has a veiny ahhh clihhhhh",
+    "hp": 0,
+    "ideals": "white supremecy",
+    "level": 1,
+    "name": "Mega Clit",
+    "personalityTraits": "He does everything all at once",
+    "race": "halfling",
+    "skills": [
+      "arcana",
+      "history",
+      "acrobatics",
+      "sleight-of-hand",
+      "insight"
+    ],
+    "subrace": "stout-halfling",
+    "updatedAt": 1760003618074,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "crossbow-light",
+      "javelin",
+      "handaxe",
+      "battleaxe",
+      "lance"
+    ],
+    "xp": 0
+  },
+  "-Ob7fBPWCDE2q41XwzHT": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "roll",
+    "abilityScores": {
+      "charisma": 7,
+      "constitution": 16,
+      "dexterity": 12,
+      "intelligence": 14,
+      "strength": 16,
+      "wisdom": 16
+    },
+    "alignment": "neutral-good",
+    "appearance": "Bearded, stout, average height with farm hands. Calloused and large. Bushy brows and a wide face. Almost middleaged. Big forearms and a large back from years of hard labour. Smells of straw and wet horse nad occaisionally of tobacco or ale.",
+    "armor": "leather-armor",
+    "background": "farmer",
+    "backstory": "I lived in backwater farmland all my youthful years til I was driven from my homeland. I never found a wife as choice was limited in a small farm town where there are only a few families and most of my peers were male. An unfortunate generation in that part of the world. However, as I am now a traveller seeking my fortune I am optimitic I am suree love will find it's way to me. I took my farm horse, who is stubborn and best suited for ploughing, when I saw the neighbouring farms go up in flames and rode him with the few belongings I'd packed away from my home and into the unknown. I travelled through the country til I came to a main road and travelled upon this, sleeping under the stars at night and playing bagpipes while I road my horse, who I named Plough as that's what he was suited to. I suppose now his name should be changed to Slow Travel but I can't be arsed. When I came upon towns or villages I stayed at inn stables when I could and gambled, drank and chewed tobacco when I had enough winnings. I occaisionally helped farmers during harvest or ploughing in exchange for room and board but I never lingered long in any one place. I never learned to write but I could read some when the need arose. Talking to old men in taverns and beating young idiots at cards became my best pass times. As always seeking my fortune while travelling aimlessly.",
+    "bonds": "I had a dog, he was a good boy. I would pick up animal friends quickly and frequently as a boy.",
+    "calculatedStats": {
+      "ac": 13,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Leather Armor base AC: 11",
+        "Shield bonus: +2"
+      ],
+      "hp": 12,
+      "hpBreakdown": [
+        "Fighter level 1: 10 (max) + +2 = 12"
+      ],
+      "initiative": 0,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +0"
+      ]
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 1,
+        "subclass": ""
+      }
+    ],
+    "createdAt": 1760008391225,
+    "flaws": "Goes too long unwashed, as a result of travelling has picked up chewing tobacco as well as card gambling and sleeps in stables.",
+    "hp": 0,
+    "ideals": "Evil shall be punished, fraudsters and malpracticers strung up by their ears. Innocents should be helped if it can be managed but not at too much personel cost.",
+    "items": [
+      "backpack",
+      "bagpipes",
+      "clothes-travelers",
+      "saddle-pack",
+      "bedroll",
+      "horse-riding",
+      "pot-iron"
+    ],
+    "level": 1,
+    "name": "Bob Bushwhack",
+    "personalityTraits": "Straightforward, uncomplicated and likes to solve problems the simple way. Not one for politics but enjoys some mild philisophical discussion. If it ain't broke don't fix it. Likes music and carrys a set of bagpipes to play while travelling.",
+    "race": "human",
+    "shield": "shield",
+    "skills": [
+      "animal-handling",
+      "nature",
+      "athletics",
+      "acrobatics"
+    ],
+    "subrace": "standard-human",
+    "updatedAt": 1760008391225,
+    "wealth": {
+      "bronze": 8,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 3
+    },
+    "weapons": [
+      "mace"
+    ],
+    "xp": 0
+  },
+  "-Ob7fGbKpKA0zyoUizdg": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "roll",
+    "abilityScores": {
+      "charisma": 8,
+      "constitution": 17,
+      "dexterity": 13,
+      "intelligence": 15,
+      "strength": 17,
+      "wisdom": 17
+    },
+    "alignment": "neutral-good",
+    "appearance": "Bearded, stout, average height with farm hands. Calloused and large. Bushy brows and a wide face. Almost middleaged. Big forearms and a large back from years of hard labour. Smells of straw and wet horse nad occaisionally of tobacco or ale.",
+    "armor": "leather-armor",
+    "background": "farmer",
+    "backstory": "I lived in backwater farmland all my youthful years til I was driven from my homeland. I never found a wife as choice was limited in a small farm town where there are only a few families and most of my peers were male. An unfortunate generation in that part of the world. However, as I am now a traveller seeking my fortune I am optimitic I am suree love will find it's way to me. I took my farm horse, who is stubborn and best suited for ploughing, when I saw the neighbouring farms go up in flames and rode him with the few belongings I'd packed away from my home and into the unknown. I travelled through the country til I came to a main road and travelled upon this, sleeping under the stars at night and playing bagpipes while I road my horse, who I named Plough as that's what he was suited to. I suppose now his name should be changed to Slow Travel but I can't be arsed. When I came upon towns or villages I stayed at inn stables when I could and gambled, drank and chewed tobacco when I had enough winnings. I occaisionally helped farmers during harvest or ploughing in exchange for room and board but I never lingered long in any one place. I never learned to write but I could read some when the need arose. Talking to old men in taverns and beating young idiots at cards became my best pass times. As always seeking my fortune while travelling aimlessly.",
+    "bonds": "I had a dog, he was a good boy. I would pick up animal friends quickly and frequently as a boy.",
+    "calculatedStats": {
+      "ac": 14,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Leather Armor base AC: 11",
+        "Dexterity bonus: +1",
+        "Shield bonus: +2"
+      ],
+      "hp": 13,
+      "hpBreakdown": [
+        "Fighter level 1: 10 (max) + +3 = 13"
+      ],
+      "initiative": 1,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +1"
+      ]
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 1,
+        "subclass": ""
+      }
+    ],
+    "createdAt": 1760008412524,
+    "flaws": "Goes too long unwashed, as a result of travelling has picked up chewing tobacco as well as card gambling and sleeps in stables.",
+    "hp": 0,
+    "ideals": "Evil shall be punished, fraudsters and malpracticers strung up by their ears. Innocents should be helped if it can be managed but not at too much personel cost.",
+    "items": [
+      "backpack",
+      "bagpipes",
+      "clothes-travelers",
+      "saddle-pack",
+      "bedroll",
+      "horse-riding",
+      "pot-iron"
+    ],
+    "level": 1,
+    "name": "Bob Bushwhack",
+    "personalityTraits": "Straightforward, uncomplicated and likes to solve problems the simple way. Not one for politics but enjoys some mild philisophical discussion. If it ain't broke don't fix it. Likes music and carrys a set of bagpipes to play while travelling.",
+    "race": "human",
+    "shield": "shield",
+    "skills": [
+      "animal-handling",
+      "nature",
+      "athletics",
+      "acrobatics"
+    ],
+    "subrace": "standard-human",
+    "updatedAt": 1760008412524,
+    "wealth": {
+      "bronze": 8,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 3
+    },
+    "weapons": [
+      "mace"
+    ],
+    "xp": 0
+  },
+  "-ObSh0nQPLPaiORoU4mX": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "manual-roll",
+    "abilityScores": {
+      "charisma": 17,
+      "constitution": 14,
+      "dexterity": 10,
+      "intelligence": 11,
+      "strength": 18,
+      "wisdom": 13
+    },
+    "alignment": "chaotic-good",
+    "appearance": "Dark Green skin, very small about 3'2, about 66 lbs, dark brown eyes, short vibrant ginger wolf cut, wears oversized heavy armor",
+    "armor": "chain-mail",
+    "background": "soldier",
+    "backstory": "2 young adventurers found lil ol me in a cave abandoned and alone, they took me in raised me as their own in a small lost and forgotten human village called Gelmir, but I was different to the rest of the people in my little ol village of Gelmir, I was shorter than the rest, I was more hyper than everyone else and the biggest difference was I was green and majority of people in my village were not, I grew up and got bullied but I never let it affect me I knew they only made fun of me for being different but I was okay with being different I knew I was my own unique person and I'm capable of doing anything I want so I knew I wanted to grow up and protect those who are to weak to protect themselves and stand up for those who were unique so I knew I had to be come some sort protect so why not a protector against evil so I trained hard and joined the ranks of the paladins now I'm off to find my fill of adventure and justice. I never forget my parents and make sure to send them letters atleast twice a week",
+    "bonds": "protect those who cannot protect themselves.",
+    "calculatedStats": {
+      "ac": 18,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Chain Mail base AC: 16",
+        "No dexterity bonus (heavy armor)",
+        "Shield bonus: +2"
+      ],
+      "hp": 34,
+      "hpBreakdown": [
+        "Paladin level 1: 10 (max) + +2 = 12",
+        "Paladin levels 2-2: 1 × (6 average + +2) = 8",
+        "Barbarian level 1: 12 (max) + +2 = 14"
+      ],
+      "initiative": -1,
+      "initiativeBreakdown": [
+        "Dexterity modifier: -1"
+      ]
+    },
+    "classes": [
+      {
+        "class": "paladin",
+        "level": 2,
+        "subclass": ""
+      },
+      {
+        "class": "barbarian",
+        "level": 1,
+        "subclass": ""
+      }
+    ],
+    "createdAt": 1760361194241,
+    "flaws": "I have a weakness for the vices of the city, especially hard drink.",
+    "hp": 0,
+    "ideals": "Freedom. Tyrants must not be allowed to oppress the people.",
+    "items": [
+      "backpack",
+      "pot-iron",
+      "smiths-tools",
+      "shovel",
+      "emblem",
+      "bedroll"
+    ],
+    "level": 1,
+    "name": "La'retta Nydiel",
+    "personalityTraits": "If someone is in trouble, I’m always ready to lend help. I’m confident in my own abilities and do what I can to instill",
+    "race": "halfling",
+    "shield": "shield",
+    "skills": [
+      "athletics",
+      "intimidation",
+      "insight",
+      "persuasion"
+    ],
+    "subrace": "lightfoot-halfling",
+    "updatedAt": 1760361194241,
+    "wealth": {
+      "bronze": 0,
+      "gold": 14,
+      "platinum": 0,
+      "silver": 3
+    },
+    "weapons": [
+      "javelin",
+      "warhammer",
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "-ObSvDT23_kJ3guziobF": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "manual-roll",
+    "abilityScores": {
+      "charisma": 16,
+      "constitution": 15,
+      "dexterity": 16,
+      "intelligence": 8,
+      "strength": 10,
+      "wisdom": 15
+    },
+    "alignment": "chaotic-neutral",
+    "appearance": "Around his neck hangs a silver bell, wears a tattered monk’s gi reinforced with leather armor, high cheekbones, pale skin with faint veins visible near the temples, eyes are amber and slit like a dragon’s ,his hair is a deep crimson, braided down his back and tied with a strip of black cloth from his monastery robes, he is at 6'2, about 130 lbs in weight.",
+    "armor": "leather-armor",
+    "background": "haunted-one",
+    "backstory": "Vincent Redmane was once a monk of the Crimson Lantern Monastery, a secluded order that sought enlightenment through the balance of violence and peace. They believed that through combat one could burn away the impurities of the soul until the monastery was consumed by plague and silence.Desperate to save his dying brothers, Vincent made a pact beneath the red moon with a voice whispering from the plague pits a forgotten god who offered life without decay. But what was restored was not pure. The monastery stands still, its monks preserved as statues of breathing flesh, their hearts still beating centuries later.Now, Vincent wanders, seeking redemption through discipline and punishment. The ki that once flowed calmly through him now burns red with eldritch fire. He wraps his hands before meditating, afraid that his own pulse might whisper back to him.2 young adventurers found lil ol me in a cave abandoned and alone, they took me in raised me as their own in a small lost and forgotten human village called Gelmir, but I was different to the rest of the people in my little ol village of Gelmir, I was shorter than the rest, I was more hyper than everyone else and the biggest difference was I was green and majority of people in my village were not, I grew up and got bullied but I never let it affect me I knew they only made fun of me for being different but I was okay with being different I knew I was my own unique person and I'm capable of doing anything I want so I knew I wanted to grow up and protect those who are to weak to protect themselves and stand up for those who were unique so I knew I had to be come some sort protect so why not a protector against evil so I trained hard and joined the ranks of the paladins now I'm off to find my fill of adventure and justice. I never forget my parents and make sure to send them letters atleast twice a week",
+    "bonds": "The Crimson Lantern Monastery he still dreams of it, whole and alive.His Patron a being he despises but can’t silence, whose whispers guide him to “purify the living.”",
+    "calculatedStats": {
+      "ac": 14,
+      "acBreakdown": [
+        "Base AC: 10",
+        "Leather Armor base AC: 11",
+        "Dexterity bonus: +3"
+      ],
+      "hp": 41,
+      "hpBreakdown": [
+        "Warlock level 1: 8 (max) + +2 = 10",
+        "Warlock levels 2-3: 2 × (5 average + +2) = 14",
+        "Monk level 1: 8 (max) + +2 = 10",
+        "Monk levels 2-2: 1 × (5 average + +2) = 7"
+      ],
+      "initiative": 3,
+      "initiativeBreakdown": [
+        "Dexterity modifier: +3"
+      ]
+    },
+    "classes": [
+      {
+        "class": "warlock",
+        "level": 3,
+        "subclass": "The Fiend"
+      },
+      {
+        "class": "monk",
+        "level": 2,
+        "subclass": ""
+      }
+    ],
+    "createdAt": 1760364916137,
+    "flaws": "Believes pain is the only path to truth his or anyone else’s.Distrusts kindness, seeing it as weakness or deceit.",
+    "hp": 0,
+    "ideals": "Speaks softly, like every word is a prayer he’s afraid to finish.Tends to count his breaths in moments of stress or anger.",
+    "items": [
+      "backpack",
+      "calligraphers-supplies"
+    ],
+    "languages": [
+      "common",
+      "elvish",
+      "infernal"
+    ],
+    "level": 1,
+    "name": "Vincent Redmane",
+    "personalityTraits": "Balance. “Every light casts a shadow; to deny the darkness is to lie to the light.”Redemption. “If I cannot undo my sin, I will at least master it.”",
+    "race": "half-elf",
+    "shield": "",
+    "skills": [
+      "choice",
+      "acrobatics",
+      "religion",
+      "arcana",
+      "persuasion"
+    ],
+    "spells": [
+      "mage-hand",
+      "eldritch-blast",
+      "spare-the-dying",
+      "guidance",
+      "command",
+      "burning-hands",
+      "misty-step",
+      "darkness",
+      "spider-climb",
+      "scorching-ray"
+    ],
+    "subrace": "standard-half-elf",
+    "updatedAt": 1760364916137,
+    "wealth": {
+      "bronze": 0,
+      "gold": 23,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dagger",
+      "sickle",
+      "scimitar"
+    ],
+    "xp": 0
+  },
+  "tsv-adoringkhayyam": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 18,
+      "dexterity": 14,
+      "intelligence": 11,
+      "strength": 10,
+      "wisdom": 13
+    },
+    "alignment": "chaotic-neutral",
+    "appearance": "",
+    "armor": "",
+    "background": "House Agent /Harpers",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 19,
+      "hp": 216
+    },
+    "classes": [
+      {
+        "class": "warlock",
+        "level": 18,
+        "subclass": "The Hexblade"
+      }
+    ],
+    "createdAt": 1597543294000,
+    "feats": [
+      "Elven Accuracy",
+      "War Caster",
+      "Mage Slayer",
+      "Shield Master"
+    ],
+    "flaws": "",
+    "hp": 216,
+    "ideals": "",
+    "level": 18,
+    "name": "adoring_khayyam",
+    "personalityTraits": "",
+    "race": "half-elf",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "investigation",
+      "religion",
+      "medicine",
+      "perception",
+      "survival",
+      "deception",
+      "persuasion"
+    ],
+    "updatedAt": 1597543294000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "longsword",
+      "spear",
+      "whip"
+    ],
+    "xp": 0
+  },
+  "tsv-adoringmendeleev": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 12,
+      "constitution": 20,
+      "dexterity": 14,
+      "intelligence": 11,
+      "strength": 30,
+      "wisdom": 8
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Far Traveler",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 17,
+      "hp": 245
+    },
+    "classes": [
+      {
+        "class": "barbarian",
+        "level": 20,
+        "subclass": "Path of the Berserker"
+      }
+    ],
+    "createdAt": 1543249830000,
+    "feats": [
+      "Alert",
+      "Mobile",
+      "Great Weapon Master",
+      "Observant",
+      "Resilient"
+    ],
+    "flaws": "",
+    "hp": 245,
+    "ideals": "",
+    "level": 20,
+    "name": "adoring_mendeleev",
+    "personalityTraits": "",
+    "race": "goliath",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "insight",
+      "perception",
+      "survival",
+      "intimidation"
+    ],
+    "updatedAt": 1543249830000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "greataxe",
+      "handaxe",
+      "javelin"
+    ],
+    "xp": 0
+  },
+  "tsv-agitatedmcclintock": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 14,
+      "dexterity": 12,
+      "intelligence": 12,
+      "strength": 20,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Noble",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 20,
+      "hp": 280
+    },
+    "classes": [
+      {
+        "class": "paladin",
+        "level": 20,
+        "subclass": "Oath of Ancients"
+      }
+    ],
+    "createdAt": 1526598832000,
+    "feats": [
+      "Tough",
+      "Lucky"
+    ],
+    "flaws": "",
+    "hp": 280,
+    "ideals": "",
+    "level": 20,
+    "name": "agitated_mcclintock",
+    "personalityTraits": "",
+    "race": "tiefling",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "history",
+      "intimidation",
+      "persuasion"
+    ],
+    "updatedAt": 1526598832000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "javelin",
+      "greataxe",
+      "longsword"
+    ],
+    "xp": 0
+  },
+  "tsv-awesomekepler": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 12,
+      "constitution": 11,
+      "dexterity": 11,
+      "intelligence": 14,
+      "strength": 8,
+      "wisdom": 14
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Sage",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 10,
+      "hp": 92
+    },
+    "classes": [
+      {
+        "class": "wizard",
+        "level": 20,
+        "subclass": "School of Necromancy"
+      }
+    ],
+    "createdAt": 1550178337000,
+    "feats": [
+      "Lucky",
+      "Elven Accuracy",
+      "Magic Initiate"
+    ],
+    "flaws": "",
+    "hp": 92,
+    "ideals": "",
+    "level": 20,
+    "name": "awesome_kepler",
+    "personalityTraits": "",
+    "race": "elf",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "history",
+      "investigation",
+      "religion",
+      "perception"
+    ],
+    "subrace": "high-elf",
+    "updatedAt": 1550178337000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "quarterstaff"
+    ],
+    "xp": 0
+  },
+  "tsv-awesomeminsky": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 10,
+      "constitution": 20,
+      "dexterity": 12,
+      "intelligence": 8,
+      "strength": 20,
+      "wisdom": 14
+    },
+    "alignment": "chaotic-good",
+    "appearance": "",
+    "armor": "",
+    "background": "Folk Hero",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 22,
+      "hp": 264
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 20,
+        "subclass": "Champion"
+      }
+    ],
+    "createdAt": 1552153470000,
+    "feats": [
+      "Great Weapon Master",
+      "Tough",
+      "Mobile"
+    ],
+    "flaws": "",
+    "hp": 264,
+    "ideals": "",
+    "level": 20,
+    "name": "awesome_minsky",
+    "personalityTraits": "",
+    "race": "goliath",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "animal-handling",
+      "perception",
+      "survival"
+    ],
+    "updatedAt": 1552153470000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "xp": 0
+  },
+  "tsv-awesometesla": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 10,
+      "dexterity": 18,
+      "intelligence": 14,
+      "strength": 8,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Acolyte",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 14,
+      "hp": 81
+    },
+    "classes": [
+      {
+        "class": "sorcerer",
+        "level": 20,
+        "subclass": "Wild Magic"
+      }
+    ],
+    "createdAt": 1553378518000,
+    "feats": [
+      "Magic Initiate",
+      "Elven Accuracy"
+    ],
+    "flaws": "",
+    "hp": 81,
+    "ideals": "",
+    "level": 20,
+    "name": "awesome_tesla",
+    "personalityTraits": "",
+    "race": "eladrin",
+    "shield": "",
+    "skills": [
+      "religion",
+      "insight",
+      "perception",
+      "deception",
+      "persuasion"
+    ],
+    "subrace": "eladrin-tof",
+    "updatedAt": 1553378518000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "quarterstaff",
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "tsv-boldperlman": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 18,
+      "constitution": 10,
+      "dexterity": 19,
+      "intelligence": 18,
+      "strength": 8,
+      "wisdom": 8
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Urban Bounty Hunter",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 14,
+      "hp": 123
+    },
+    "classes": [
+      {
+        "class": "rogue",
+        "level": 17,
+        "subclass": "Arcane Trickster"
+      }
+    ],
+    "createdAt": 1623558141000,
+    "feats": [
+      "War Caster"
+    ],
+    "flaws": "",
+    "hp": 123,
+    "ideals": "",
+    "level": 17,
+    "name": "bold_perlman",
+    "personalityTraits": "",
+    "race": "tiefling",
+    "shield": "",
+    "skills": [
+      "acrobatics",
+      "sleight-of-hand",
+      "stealth",
+      "perception",
+      "deception",
+      "persuasion"
+    ],
+    "subrace": "lineage---glas",
+    "updatedAt": 1623558141000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "rapier",
+      "shortsword",
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "tsv-boringkepler": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 12,
+      "constitution": 14,
+      "dexterity": 17,
+      "intelligence": 20,
+      "strength": 19,
+      "wisdom": 14
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Guild Artisan",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 27,
+      "hp": 137
+    },
+    "classes": [
+      {
+        "class": "artificer",
+        "level": 18,
+        "subclass": "Artillerist"
+      }
+    ],
+    "createdAt": 1647028823000,
+    "feats": [
+      "woodwise",
+      "Sharpshooter",
+      "Alert",
+      "Gunner"
+    ],
+    "flaws": "",
+    "hp": 137,
+    "ideals": "",
+    "level": 18,
+    "name": "boring_kepler",
+    "personalityTraits": "",
+    "race": "grove-cervan",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "investigation",
+      "nature",
+      "insight",
+      "medicine",
+      "perception",
+      "survival",
+      "persuasion"
+    ],
+    "updatedAt": 1647028823000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "longsword"
+    ],
+    "xp": 0
+  },
+  "tsv-charminghugle": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 18,
+      "dexterity": 20,
+      "intelligence": 19,
+      "strength": 14,
+      "wisdom": 16
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Entertainer",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 23,
+      "hp": 178
+    },
+    "classes": [
+      {
+        "class": "bard",
+        "level": 17,
+        "subclass": "College of Swords"
+      }
+    ],
+    "createdAt": 1600033667000,
+    "flaws": "",
+    "hp": 178,
+    "ideals": "",
+    "level": 17,
+    "name": "charming_hugle",
+    "personalityTraits": "",
+    "race": "halfling",
+    "shield": "",
+    "skills": [
+      "acrobatics",
+      "sleight-of-hand",
+      "deception",
+      "performance",
+      "persuasion"
+    ],
+    "subrace": "lightfoot-halfling",
+    "updatedAt": 1600033667000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dagger",
+      "rapier",
+      "longsword",
+      "shortsword",
+      "scimitar",
+      "crossbow-hand"
+    ],
+    "xp": 0
+  },
+  "tsv-charminglehmann": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 14,
+      "constitution": 13,
+      "dexterity": 20,
+      "intelligence": 12,
+      "strength": 15,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Criminal",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 15,
+      "hp": 130
+    },
+    "classes": [
+      {
+        "class": "ranger",
+        "level": 18,
+        "subclass": "Gloom Stalker"
+      }
+    ],
+    "createdAt": 1632760334000,
+    "flaws": "",
+    "hp": 130,
+    "ideals": "",
+    "level": 18,
+    "name": "charming_lehmann",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "stealth",
+      "investigation",
+      "insight",
+      "perception",
+      "deception"
+    ],
+    "updatedAt": 1632760334000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "shortsword",
+      "longbow"
+    ],
+    "xp": 0
+  },
+  "tsv-compassionatenoyce": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 12,
+      "constitution": 24,
+      "dexterity": 16,
+      "intelligence": 12,
+      "strength": 24,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Hermit",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 20,
+      "hp": 285
+    },
+    "classes": [
+      {
+        "class": "barbarian",
+        "level": 20,
+        "subclass": "Path of the Totem Warrior"
+      }
+    ],
+    "createdAt": 1525036291000,
+    "flaws": "",
+    "hp": 285,
+    "ideals": "",
+    "level": 20,
+    "name": "compassionate_noyce",
+    "personalityTraits": "",
+    "race": "dragonborn",
+    "shield": "",
+    "skills": [
+      "religion",
+      "medicine",
+      "survival",
+      "intimidation"
+    ],
+    "updatedAt": 1525036291000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "greataxe",
+      "handaxe",
+      "javelin"
+    ],
+    "xp": 0
+  },
+  "tsv-condescendinggould": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 19,
+      "constitution": 21,
+      "dexterity": 13,
+      "intelligence": 11,
+      "strength": 21,
+      "wisdom": 15
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Knight",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 19,
+      "hp": 248
+    },
+    "classes": [
+      {
+        "class": "paladin",
+        "level": 20,
+        "subclass": "Oath of Devotion"
+      }
+    ],
+    "createdAt": 1544149240000,
+    "feats": [
+      "Martial Adept",
+      "Mage Slayer",
+      "War Caster",
+      "Savage Attacker",
+      "Sentinel"
+    ],
+    "flaws": "",
+    "hp": 248,
+    "ideals": "",
+    "level": 20,
+    "name": "condescending_gould",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "religion",
+      "intimidation",
+      "persuasion"
+    ],
+    "updatedAt": 1544149240000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "whip",
+      "javelin"
+    ],
+    "xp": 0
+  },
+  "tsv-crazywozniak": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 15,
+      "constitution": 11,
+      "dexterity": 8,
+      "intelligence": 10,
+      "strength": 3,
+      "wisdom": 10
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Baby",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 10,
+      "hp": 71
+    },
+    "classes": [
+      {
+        "class": "sorcerer",
+        "level": 18,
+        "subclass": "Wild Magic"
+      }
+    ],
+    "createdAt": 1601209756000,
+    "feats": [
+      "Healer",
+      "Inspiring Leader",
+      "Mounted Combatant",
+      "Lucky"
+    ],
+    "flaws": "",
+    "hp": 71,
+    "ideals": "",
+    "level": 18,
+    "name": "crazy_wozniak",
+    "personalityTraits": "",
+    "race": "elf",
+    "shield": "",
+    "skills": [
+      "insight",
+      "deception",
+      "intimidation",
+      "persuasion"
+    ],
+    "subrace": "half-dark-elf",
+    "updatedAt": 1601209756000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "unarmed-strike"
+    ],
+    "xp": 0
+  },
+  "tsv-determinedneumann": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 8,
+      "constitution": 24,
+      "dexterity": 14,
+      "intelligence": 10,
+      "strength": 24,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Hermit",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 19,
+      "hp": 285
+    },
+    "classes": [
+      {
+        "class": "barbarian",
+        "level": 20,
+        "subclass": "Path of the Berserker"
+      }
+    ],
+    "createdAt": 1544391669000,
+    "feats": [
+      "Resilient"
+    ],
+    "flaws": "",
+    "hp": 285,
+    "ideals": "",
+    "level": 20,
+    "name": "determined_neumann",
+    "personalityTraits": "",
+    "race": "half-orc",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "religion",
+      "medicine",
+      "perception",
+      "intimidation"
+    ],
+    "updatedAt": 1544391669000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "greataxe",
+      "handaxe",
+      "javelin"
+    ],
+    "xp": 0
+  },
+  "tsv-distractedmcnulty": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 8,
+      "constitution": 18,
+      "dexterity": 18,
+      "intelligence": 12,
+      "strength": 8,
+      "wisdom": 20
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "City Watch",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 17,
+      "hp": 195
+    },
+    "classes": [
+      {
+        "class": "druid",
+        "level": 20,
+        "subclass": "Circle of Spores"
+      }
+    ],
+    "createdAt": 1553924241000,
+    "feats": [
+      "Elemental Adept"
+    ],
+    "flaws": "",
+    "hp": 195,
+    "ideals": "",
+    "level": 20,
+    "name": "distracted_mcnulty",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "nature",
+      "animal-handling",
+      "insight",
+      "perception"
+    ],
+    "updatedAt": 1553924241000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "scimitar"
+    ],
+    "xp": 0
+  },
+  "tsv-eloquentramanujan": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 18,
+      "constitution": 19,
+      "dexterity": 14,
+      "intelligence": 8,
+      "strength": 20,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Acolyte",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 21,
+      "hp": 266
+    },
+    "classes": [
+      {
+        "class": "paladin",
+        "level": 19,
+        "subclass": "Oath of Ancients"
+      }
+    ],
+    "createdAt": 1530911010000,
+    "feats": [
+      "War Caster",
+      "Skilled",
+      "Resilient"
+    ],
+    "flaws": "",
+    "hp": 266,
+    "ideals": "",
+    "level": 19,
+    "name": "eloquent_ramanujan",
+    "personalityTraits": "",
+    "race": "dwarf",
+    "shield": "",
+    "skills": [
+      "religion",
+      "insight",
+      "medicine",
+      "perception",
+      "deception",
+      "intimidation",
+      "persuasion"
+    ],
+    "subrace": "gray-dwarf",
+    "updatedAt": 1530911010000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "longsword"
+    ],
+    "xp": 0
+  },
+  "tsv-ferventaryabhata": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 24,
+      "constitution": 18,
+      "dexterity": 18,
+      "intelligence": 15,
+      "strength": 14,
+      "wisdom": 18
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Faction Agent",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 17,
+      "hp": 182
+    },
+    "classes": [
+      {
+        "class": "sorcerer",
+        "level": 20,
+        "subclass": "Draconic Bloodline"
+      }
+    ],
+    "createdAt": 1524319722000,
+    "feats": [
+      "Actor",
+      "Alert",
+      "Spell Sniper",
+      "Elven Accuracy",
+      "Elemental Adept"
+    ],
+    "flaws": "",
+    "hp": 182,
+    "ideals": "",
+    "level": 20,
+    "name": "fervent_aryabhata",
+    "personalityTraits": "",
+    "race": "half-elf",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "insight",
+      "perception",
+      "deception",
+      "intimidation",
+      "persuasion"
+    ],
+    "updatedAt": 1524319722000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "crossbow-light",
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "tsv-focusedwing": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 11,
+      "constitution": 15,
+      "dexterity": 18,
+      "intelligence": 20,
+      "strength": 8,
+      "wisdom": 11
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Urchin",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 17,
+      "hp": 114
+    },
+    "classes": [
+      {
+        "class": "wizard",
+        "level": 18,
+        "subclass": "School of Illusion"
+      }
+    ],
+    "createdAt": 1555805616000,
+    "feats": [
+      "Resilient",
+      "War Caster"
+    ],
+    "flaws": "",
+    "hp": 114,
+    "ideals": "",
+    "level": 18,
+    "name": "focused_wing",
+    "personalityTraits": "",
+    "race": "gnome",
+    "shield": "",
+    "skills": [
+      "sleight-of-hand",
+      "stealth",
+      "arcana",
+      "insight"
+    ],
+    "subrace": "forest-gnome",
+    "updatedAt": 1555805616000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "quarterstaff"
+    ],
+    "xp": 0
+  },
+  "tsv-frostylewin": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 14,
+      "dexterity": 10,
+      "intelligence": 19,
+      "strength": 8,
+      "wisdom": 20
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Sage",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 11,
+      "hp": 129
+    },
+    "classes": [
+      {
+        "class": "mystic",
+        "level": 18,
+        "subclass": "Order of the Awakened"
+      }
+    ],
+    "createdAt": 1553187585000,
+    "feats": [
+      "Prodigy"
+    ],
+    "flaws": "",
+    "hp": 129,
+    "ideals": "",
+    "level": 18,
+    "name": "frosty_lewin",
+    "personalityTraits": "",
+    "race": "half-elf",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "history",
+      "investigation",
+      "nature",
+      "insight",
+      "perception",
+      "deception",
+      "performance",
+      "persuasion"
+    ],
+    "subrace": "variant",
+    "updatedAt": 1553187585000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "spear",
+      "crossbow-light"
+    ],
+    "xp": 0
+  },
+  "tsv-graciousknuth": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 16,
+      "constitution": 10,
+      "dexterity": 18,
+      "intelligence": 12,
+      "strength": 13,
+      "wisdom": 14
+    },
+    "alignment": "chaotic-good",
+    "appearance": "",
+    "armor": "",
+    "background": "Far Traveler",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 16,
+      "hp": 20
+    },
+    "classes": [
+      {
+        "class": "ranger",
+        "level": 18,
+        "subclass": "Hunter"
+      }
+    ],
+    "createdAt": 1564457779000,
+    "flaws": "",
+    "hp": 20,
+    "ideals": "",
+    "level": 18,
+    "name": "gracious_knuth",
+    "personalityTraits": "",
+    "race": "eladrin",
+    "shield": "",
+    "skills": [
+      "nature",
+      "religion",
+      "animal-handling",
+      "perception",
+      "survival"
+    ],
+    "subrace": "eladrin-tof",
+    "updatedAt": 1564457779000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "shortsword",
+      "longbow",
+      "longbow"
+    ],
+    "xp": 0
+  },
+  "tsv-graciousvolhard": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 6,
+      "constitution": 20,
+      "dexterity": 20,
+      "intelligence": 10,
+      "strength": 20,
+      "wisdom": 10
+    },
+    "alignment": "chaotic-good",
+    "appearance": "",
+    "armor": "",
+    "background": "Mercenary Veteran",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 23,
+      "hp": 284
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 20,
+        "subclass": "Battle Master"
+      }
+    ],
+    "createdAt": 1553336551000,
+    "flaws": "",
+    "hp": 284,
+    "ideals": "",
+    "level": 20,
+    "name": "gracious_volhard",
+    "personalityTraits": "",
+    "race": "dwarf",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "insight",
+      "perception",
+      "persuasion"
+    ],
+    "subrace": "mountain-dwarf",
+    "updatedAt": 1553336551000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "greatsword",
+      "dagger",
+      "warhammer",
+      "spear"
+    ],
+    "xp": 0
+  },
+  "tsv-happyleavitt": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 17,
+      "constitution": 20,
+      "dexterity": 10,
+      "intelligence": 8,
+      "strength": 25,
+      "wisdom": 10
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Custom",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 19,
+      "hp": 225
+    },
+    "classes": [
+      {
+        "class": "paladin",
+        "level": 17,
+        "subclass": "OathBreaker"
+      }
+    ],
+    "createdAt": 1584573951000,
+    "feats": [
+      "Tough"
+    ],
+    "flaws": "",
+    "hp": 225,
+    "ideals": "",
+    "level": 17,
+    "name": "happy_leavitt",
+    "personalityTraits": "",
+    "race": "aasimar",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "religion",
+      "insight",
+      "intimidation"
+    ],
+    "subrace": "fallen-aasimar",
+    "updatedAt": 1584573951000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "javelin"
+    ],
+    "xp": 0
+  },
+  "tsv-hardcorebartik": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 10,
+      "constitution": 14,
+      "dexterity": 20,
+      "intelligence": 10,
+      "strength": 10,
+      "wisdom": 16
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Smuggler",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 17,
+      "hp": 140
+    },
+    "classes": [
+      {
+        "class": "ranger",
+        "level": 17,
+        "subclass": "Hunter"
+      }
+    ],
+    "createdAt": 1627513352000,
+    "feats": [
+      "Sharpshooter",
+      "Observant"
+    ],
+    "flaws": "",
+    "hp": 140,
+    "ideals": "",
+    "level": 17,
+    "name": "hardcore_bartik",
+    "personalityTraits": "",
+    "race": "aarakocra",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "nature",
+      "perception",
+      "survival",
+      "deception"
+    ],
+    "subrace": "birdfolk",
+    "updatedAt": 1627513352000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "shortsword",
+      "longbow"
+    ],
+    "xp": 0
+  },
+  "tsv-hardcoremoser": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 12,
+      "constitution": 20,
+      "dexterity": 17,
+      "intelligence": 9,
+      "strength": 19,
+      "wisdom": 10
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Sailor",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 19,
+      "hp": 213
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 19,
+        "subclass": "Champion"
+      }
+    ],
+    "createdAt": 1558906541000,
+    "flaws": "",
+    "hp": 213,
+    "ideals": "",
+    "level": 19,
+    "name": "hardcore_moser",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "acrobatics",
+      "perception",
+      "intimidation"
+    ],
+    "updatedAt": 1558906541000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "longsword",
+      "handaxe",
+      "greatsword"
+    ],
+    "xp": 0
+  },
+  "tsv-hardcoreyalow": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 14,
+      "constitution": 20,
+      "dexterity": 14,
+      "intelligence": 18,
+      "strength": 22,
+      "wisdom": 16
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Knight",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 22,
+      "hp": 232
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 18,
+        "subclass": "Eldritch Knight"
+      }
+    ],
+    "createdAt": 1571967213000,
+    "feats": [
+      "Resilient",
+      "Linguist",
+      "War Caster",
+      "Mage Slayer"
+    ],
+    "flaws": "",
+    "hp": 232,
+    "ideals": "",
+    "level": 18,
+    "name": "hardcore_yalow",
+    "personalityTraits": "",
+    "race": "gith",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "history",
+      "perception",
+      "intimidation",
+      "persuasion"
+    ],
+    "subrace": "geth---yan",
+    "updatedAt": 1571967213000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "greatsword",
+      "longbow"
+    ],
+    "xp": 0
+  },
+  "tsv-heuristiccannon": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 10,
+      "constitution": 16,
+      "dexterity": 12,
+      "intelligence": 9,
+      "strength": 18,
+      "wisdom": 12
+    },
+    "alignment": "chaotic-good",
+    "appearance": "",
+    "armor": "",
+    "background": "Urchin",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 16,
+      "hp": 222
+    },
+    "classes": [
+      {
+        "class": "barbarian",
+        "level": 18,
+        "subclass": "Path of the Zealot"
+      }
+    ],
+    "createdAt": 1656892538000,
+    "feats": [
+      "Tough",
+      "Polearm Master",
+      "Magic Initiate"
+    ],
+    "flaws": "",
+    "hp": 222,
+    "ideals": "",
+    "level": 18,
+    "name": "heuristic_cannon",
+    "personalityTraits": "",
+    "race": "tiefling",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "sleight-of-hand",
+      "stealth",
+      "intimidation"
+    ],
+    "updatedAt": 1656892538000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "greatsword",
+      "greatsword"
+    ],
+    "xp": 0
+  },
+  "tsv-hopefulchebyshev": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 13,
+      "constitution": 20,
+      "dexterity": 14,
+      "intelligence": 20,
+      "strength": 14,
+      "wisdom": 14
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Cloistered Scholar",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 12,
+      "hp": 182
+    },
+    "classes": [
+      {
+        "class": "wizard",
+        "level": 20,
+        "subclass": "School of Evocation"
+      }
+    ],
+    "createdAt": 1554948415000,
+    "feats": [
+      "War Caster"
+    ],
+    "flaws": "",
+    "hp": 182,
+    "ideals": "",
+    "level": 20,
+    "name": "hopeful_chebyshev",
+    "personalityTraits": "",
+    "race": "minotaur",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "history",
+      "investigation",
+      "medicine",
+      "persuasion"
+    ],
+    "updatedAt": 1554948415000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "quarterstaff"
+    ],
+    "xp": 0
+  },
+  "tsv-hopefultorvalds": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 10,
+      "constitution": 20,
+      "dexterity": 10,
+      "intelligence": 10,
+      "strength": 20,
+      "wisdom": 14
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "City Watch",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 20,
+      "hp": 202
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 18,
+        "subclass": "Champion"
+      }
+    ],
+    "createdAt": 1627508321000,
+    "feats": [
+      "Great Weapon Master",
+      "Chef"
+    ],
+    "flaws": "",
+    "hp": 202,
+    "ideals": "",
+    "level": 18,
+    "name": "hopeful_torvalds",
+    "personalityTraits": "",
+    "race": "dwarf",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "acrobatics",
+      "insight",
+      "intimidation"
+    ],
+    "subrace": "mountain-dwarf",
+    "updatedAt": 1627508321000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "xp": 0
+  },
+  "tsv-hungryjohnson": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 10,
+      "constitution": 20,
+      "dexterity": 15,
+      "intelligence": 6,
+      "strength": 20,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Soldier",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 19,
+      "hp": 228
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 20,
+        "subclass": "Champion"
+      }
+    ],
+    "createdAt": 1560039669000,
+    "feats": [
+      "Polearm Master",
+      "Sentinel"
+    ],
+    "flaws": "",
+    "hp": 228,
+    "ideals": "",
+    "level": 20,
+    "name": "hungry_johnson",
+    "personalityTraits": "",
+    "race": "orc",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "insight",
+      "perception",
+      "intimidation"
+    ],
+    "updatedAt": 1560039669000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "glaive"
+    ],
+    "xp": 0
+  },
+  "tsv-infalliblecori": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 14,
+      "constitution": 20,
+      "dexterity": 13,
+      "intelligence": 10,
+      "strength": 20,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Noble",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 20,
+      "hp": 224
+    },
+    "classes": [
+      {
+        "class": "paladin",
+        "level": 20,
+        "subclass": "Oath of Conquest"
+      }
+    ],
+    "createdAt": 1555947313000,
+    "feats": [
+      "Great Weapon Master",
+      "Sentinel"
+    ],
+    "flaws": "",
+    "hp": 224,
+    "ideals": "",
+    "level": 20,
+    "name": "infallible_cori",
+    "personalityTraits": "",
+    "race": "orc",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "history",
+      "insight",
+      "intimidation",
+      "persuasion"
+    ],
+    "updatedAt": 1555947313000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "javelin",
+      "greatsword"
+    ],
+    "xp": 0
+  },
+  "tsv-infalliblerobinson": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 12,
+      "constitution": 18,
+      "dexterity": 16,
+      "intelligence": 13,
+      "strength": 20,
+      "wisdom": 13
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Barbarian Tribe Member",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 16,
+      "hp": 217
+    },
+    "classes": [
+      {
+        "class": "barbarian",
+        "level": 18,
+        "subclass": "Path of the Storm Herald"
+      }
+    ],
+    "createdAt": 1563662305000,
+    "flaws": "",
+    "hp": 217,
+    "ideals": "",
+    "level": 18,
+    "name": "infallible_robinson",
+    "personalityTraits": "",
+    "race": "centaur",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "nature",
+      "survival",
+      "intimidation"
+    ],
+    "updatedAt": 1563662305000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "greataxe",
+      "handaxe",
+      "javelin"
+    ],
+    "xp": 0
+  },
+  "tsv-inspiringjennings": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 11,
+      "constitution": 16,
+      "dexterity": 15,
+      "intelligence": 13,
+      "strength": 16,
+      "wisdom": 11
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Soldier",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 12,
+      "hp": 189
+    },
+    "classes": [
+      {
+        "class": "monk",
+        "level": 20,
+        "subclass": "Way of the Open Hand"
+      }
+    ],
+    "createdAt": 1550178230000,
+    "feats": [
+      "Mobile",
+      "Lucky",
+      "Defensive Duelist"
+    ],
+    "flaws": "",
+    "hp": 189,
+    "ideals": "",
+    "level": 20,
+    "name": "inspiring_jennings",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "acrobatics",
+      "religion",
+      "intimidation"
+    ],
+    "updatedAt": 1550178230000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dart",
+      "unarmed-strike"
+    ],
+    "xp": 0
+  },
+  "tsv-keengoodall": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 16,
+      "constitution": 15,
+      "dexterity": 9,
+      "intelligence": 11,
+      "strength": 13,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Hermit",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 13,
+      "hp": 156
+    },
+    "classes": [
+      {
+        "class": "sorcerer",
+        "level": 20,
+        "subclass": "Draconic Bloodline"
+      }
+    ],
+    "createdAt": 1550177335000,
+    "feats": [
+      "Magic Initiate",
+      "Mage Slayer",
+      "Lucky"
+    ],
+    "flaws": "",
+    "hp": 156,
+    "ideals": "",
+    "level": 20,
+    "name": "keen_goodall",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "religion",
+      "medicine",
+      "persuasion"
+    ],
+    "updatedAt": 1550177335000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "crossbow-light",
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "tsv-kindbhabha": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 16,
+      "dexterity": 18,
+      "intelligence": 12,
+      "strength": 11,
+      "wisdom": 10
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Entertainer",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 15,
+      "hp": 170
+    },
+    "classes": [
+      {
+        "class": "bard",
+        "level": 18,
+        "subclass": "College of Glamour"
+      }
+    ],
+    "createdAt": 1554260805000,
+    "flaws": "",
+    "hp": 170,
+    "ideals": "",
+    "level": 18,
+    "name": "kind_bhabha",
+    "personalityTraits": "",
+    "race": "yaun-ti",
+    "shield": "",
+    "skills": [
+      "acrobatics",
+      "history",
+      "insight",
+      "deception",
+      "performance"
+    ],
+    "subrace": "serpentblood",
+    "updatedAt": 1554260805000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "longsword",
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "tsv-kinddijkstra": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 15,
+      "constitution": 16,
+      "dexterity": 8,
+      "intelligence": 12,
+      "strength": 5,
+      "wisdom": 15
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Acolyte",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 16,
+      "hp": 166
+    },
+    "classes": [
+      {
+        "class": "cleric",
+        "level": 20,
+        "subclass": "Knowledge Domain"
+      }
+    ],
+    "createdAt": 1550178129000,
+    "feats": [
+      "Lucky",
+      "Second Chance",
+      "Magic Initiate",
+      "Observant"
+    ],
+    "flaws": "",
+    "hp": 166,
+    "ideals": "",
+    "level": 20,
+    "name": "kind_dijkstra",
+    "personalityTraits": "",
+    "race": "halfling",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "history",
+      "nature",
+      "religion",
+      "insight",
+      "persuasion"
+    ],
+    "subrace": "ghastly-halfling",
+    "updatedAt": 1550178129000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "mace",
+      "crossbow-light"
+    ],
+    "xp": 0
+  },
+  "tsv-kindgates": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 14,
+      "constitution": 10,
+      "dexterity": 17,
+      "intelligence": 12,
+      "strength": 8,
+      "wisdom": 16
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Urchin",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 18,
+      "hp": 160
+    },
+    "classes": [
+      {
+        "class": "monk",
+        "level": 20,
+        "subclass": "Way of the Long Death"
+      }
+    ],
+    "createdAt": 1544860684000,
+    "feats": [
+      "Observant",
+      "Magic Initiate",
+      "Prodigy",
+      "Ritual Caster",
+      "Alert"
+    ],
+    "flaws": "",
+    "hp": 160,
+    "ideals": "",
+    "level": 20,
+    "name": "kind_gates",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "acrobatics",
+      "sleight-of-hand",
+      "stealth",
+      "insight",
+      "perception",
+      "persuasion"
+    ],
+    "updatedAt": 1544860684000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dagger",
+      "dart",
+      "unarmed-strike"
+    ],
+    "xp": 0
+  },
+  "tsv-lovingmatsumoto": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 10,
+      "constitution": 17,
+      "dexterity": 10,
+      "intelligence": 13,
+      "strength": 18,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Soldier",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 16,
+      "hp": 220
+    },
+    "classes": [
+      {
+        "class": "paladin",
+        "level": 20,
+        "subclass": "Oath of Vengeance"
+      }
+    ],
+    "createdAt": 1550178086000,
+    "feats": [
+      "Lucky",
+      "Dwarven Fortitude",
+      "Sentinel"
+    ],
+    "flaws": "",
+    "hp": 220,
+    "ideals": "",
+    "level": 20,
+    "name": "loving_matsumoto",
+    "personalityTraits": "",
+    "race": "dwarf",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "religion",
+      "medicine",
+      "intimidation"
+    ],
+    "subrace": "gray-dwarf",
+    "updatedAt": 1550178086000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "javelin"
+    ],
+    "xp": 0
+  },
+  "tsv-lucidedison": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 19,
+      "dexterity": 19,
+      "intelligence": 21,
+      "strength": 13,
+      "wisdom": 15
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Noble",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 14,
+      "hp": 200
+    },
+    "classes": [
+      {
+        "class": "wizard",
+        "level": 20,
+        "subclass": "School of Enchantment"
+      }
+    ],
+    "createdAt": 1553741520000,
+    "feats": [
+      "War Caster",
+      "Spell Sniper",
+      "Resilient"
+    ],
+    "flaws": "",
+    "hp": 200,
+    "ideals": "",
+    "level": 20,
+    "name": "lucid_edison",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "history",
+      "insight",
+      "persuasion"
+    ],
+    "updatedAt": 1553741520000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "quarterstaff"
+    ],
+    "xp": 0
+  },
+  "tsv-magicallumiere": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 16,
+      "dexterity": 8,
+      "intelligence": 8,
+      "strength": 20,
+      "wisdom": 8
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Soldier",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 18,
+      "hp": 224
+    },
+    "classes": [
+      {
+        "class": "paladin",
+        "level": 20,
+        "subclass": "Oath of Conquest"
+      }
+    ],
+    "createdAt": 1555888133000,
+    "feats": [
+      "Tough"
+    ],
+    "flaws": "",
+    "hp": 224,
+    "ideals": "",
+    "level": 20,
+    "name": "magical_lumiere",
+    "personalityTraits": "",
+    "race": "dragonborn",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "religion",
+      "intimidation",
+      "persuasion"
+    ],
+    "updatedAt": 1555888133000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "battleaxe",
+      "javelin"
+    ],
+    "xp": 0
+  },
+  "tsv-modestyonath": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 14,
+      "constitution": 16,
+      "dexterity": 20,
+      "intelligence": 10,
+      "strength": 10,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Charlatan",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 16,
+      "hp": 139
+    },
+    "classes": [
+      {
+        "class": "rogue",
+        "level": 17,
+        "subclass": "Thief"
+      }
+    ],
+    "createdAt": 1598392701000,
+    "feats": [
+      "Sentinel",
+      "Skilled"
+    ],
+    "flaws": "",
+    "hp": 139,
+    "ideals": "",
+    "level": 17,
+    "name": "modest_yonath",
+    "personalityTraits": "",
+    "race": "halfling",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "acrobatics",
+      "sleight-of-hand",
+      "stealth",
+      "investigation",
+      "animal-handling",
+      "perception",
+      "deception",
+      "persuasion"
+    ],
+    "subrace": "lightfoot-halfling",
+    "updatedAt": 1598392701000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "rapier",
+      "shortbow",
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "tsv-musingstonebraker": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 11,
+      "constitution": 14,
+      "dexterity": 18,
+      "intelligence": 10,
+      "strength": 16,
+      "wisdom": 20
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Acolyte",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 19,
+      "hp": 122
+    },
+    "classes": [
+      {
+        "class": "monk",
+        "level": 17,
+        "subclass": "Way of the Four Elements"
+      }
+    ],
+    "createdAt": 1637291160000,
+    "feats": [
+      "Alert"
+    ],
+    "flaws": "",
+    "hp": 122,
+    "ideals": "",
+    "level": 17,
+    "name": "musing_stonebraker",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "acrobatics",
+      "stealth",
+      "religion",
+      "insight",
+      "perception"
+    ],
+    "updatedAt": 1637291160000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "quarterstaff",
+      "dart",
+      "unarmed-strike"
+    ],
+    "xp": 0
+  },
+  "tsv-mystifyingmestorf": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 12,
+      "constitution": 24,
+      "dexterity": 20,
+      "intelligence": 8,
+      "strength": 24,
+      "wisdom": 16
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Urchin",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 22,
+      "hp": 285
+    },
+    "classes": [
+      {
+        "class": "barbarian",
+        "level": 20,
+        "subclass": "Path of the Storm Herald"
+      }
+    ],
+    "createdAt": 1554871769000,
+    "flaws": "",
+    "hp": 285,
+    "ideals": "",
+    "level": 20,
+    "name": "mystifying_mestorf",
+    "personalityTraits": "",
+    "race": "orc",
+    "shield": "",
+    "skills": [
+      "sleight-of-hand",
+      "stealth",
+      "intimidation"
+    ],
+    "updatedAt": 1554871769000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "greataxe",
+      "handaxe",
+      "javelin"
+    ],
+    "xp": 0
+  },
+  "tsv-naughtyjoliot": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 14,
+      "dexterity": 12,
+      "intelligence": 22,
+      "strength": 8,
+      "wisdom": 17
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Clan Crafter",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 15,
+      "hp": 129
+    },
+    "classes": [
+      {
+        "class": "artificer",
+        "level": 18,
+        "subclass": "Gunsmith"
+      }
+    ],
+    "createdAt": 1553187291000,
+    "feats": [
+      "Linguist",
+      "Keen Mind",
+      "Sharpshooter"
+    ],
+    "flaws": "",
+    "hp": 129,
+    "ideals": "",
+    "level": 18,
+    "name": "naughty_joliot",
+    "personalityTraits": "",
+    "race": "half-elf",
+    "shield": "",
+    "skills": [
+      "sleight-of-hand",
+      "arcana",
+      "history",
+      "investigation",
+      "insight"
+    ],
+    "subrace": "variant",
+    "updatedAt": 1553187291000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "handaxe",
+      "crossbow-light"
+    ],
+    "xp": 0
+  },
+  "tsv-niftyhypatia": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 14,
+      "dexterity": 14,
+      "intelligence": 16,
+      "strength": 14,
+      "wisdom": 10
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Criminal",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 15,
+      "hp": 129
+    },
+    "classes": [
+      {
+        "class": "warlock",
+        "level": 18,
+        "subclass": "The Hexblade"
+      }
+    ],
+    "createdAt": 1554246869000,
+    "feats": [
+      "War Caster",
+      "Ritual Caster"
+    ],
+    "flaws": "",
+    "hp": 129,
+    "ideals": "",
+    "level": 18,
+    "name": "nifty_hypatia",
+    "personalityTraits": "",
+    "race": "yaun-ti",
+    "shield": "",
+    "skills": [
+      "stealth",
+      "arcana",
+      "deception",
+      "intimidation",
+      "persuasion"
+    ],
+    "subrace": "serpentblood",
+    "updatedAt": 1554246869000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "hex"
+    ],
+    "xp": 0
+  },
+  "tsv-objectivemclaren": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 11,
+      "constitution": 15,
+      "dexterity": 20,
+      "intelligence": 12,
+      "strength": 13,
+      "wisdom": 21
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Hermit",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 20,
+      "hp": 200
+    },
+    "classes": [
+      {
+        "class": "monk",
+        "level": 20,
+        "subclass": "Way of the Four Elements"
+      }
+    ],
+    "createdAt": 1533086729000,
+    "feats": [
+      "Mobile",
+      "Observant"
+    ],
+    "flaws": "",
+    "hp": 200,
+    "ideals": "",
+    "level": 20,
+    "name": "objective_mclaren",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "acrobatics",
+      "history",
+      "religion",
+      "insight",
+      "medicine"
+    ],
+    "updatedAt": 1533086729000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dagger",
+      "dart",
+      "unarmed-strike"
+    ],
+    "xp": 0
+  },
+  "tsv-optimisticgolick": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 20,
+      "dexterity": 10,
+      "intelligence": 12,
+      "strength": 8,
+      "wisdom": 14
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Charlatan",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 18,
+      "hp": 260
+    },
+    "classes": [
+      {
+        "class": "warlock",
+        "level": 20,
+        "subclass": "The Hexblade"
+      }
+    ],
+    "createdAt": 1526598726000,
+    "feats": [
+      "Heavily Armored"
+    ],
+    "flaws": "",
+    "hp": 260,
+    "ideals": "",
+    "level": 20,
+    "name": "optimistic_golick",
+    "personalityTraits": "",
+    "race": "tiefling",
+    "shield": "",
+    "skills": [
+      "sleight-of-hand",
+      "investigation",
+      "deception",
+      "intimidation"
+    ],
+    "updatedAt": 1526598726000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dagger",
+      "greataxe"
+    ],
+    "xp": 0
+  },
+  "tsv-peacefulmatsumoto": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 12,
+      "constitution": 16,
+      "dexterity": 18,
+      "intelligence": 11,
+      "strength": 12,
+      "wisdom": 20
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Charlatan",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 17,
+      "hp": 195
+    },
+    "classes": [
+      {
+        "class": "druid",
+        "level": 18,
+        "subclass": "Circle of the Moon"
+      }
+    ],
+    "createdAt": 1587689316000,
+    "flaws": "",
+    "hp": 195,
+    "ideals": "",
+    "level": 18,
+    "name": "peaceful_matsumoto",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "sleight-of-hand",
+      "nature",
+      "animal-handling",
+      "deception"
+    ],
+    "updatedAt": 1587689316000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "scimitar"
+    ],
+    "xp": 0
+  },
+  "tsv-pricelessfeynman": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 15,
+      "constitution": 13,
+      "dexterity": 17,
+      "intelligence": 11,
+      "strength": 14,
+      "wisdom": 10
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Criminal",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 15,
+      "hp": 139
+    },
+    "classes": [
+      {
+        "class": "rogue",
+        "level": 20,
+        "subclass": "Assassin"
+      }
+    ],
+    "createdAt": 1550178388000,
+    "feats": [
+      "Crossbow Expert",
+      "Dual Wielder",
+      "Sharpshooter",
+      "Flames of Phlegethos"
+    ],
+    "flaws": "",
+    "hp": 139,
+    "ideals": "",
+    "level": 20,
+    "name": "priceless_feynman",
+    "personalityTraits": "",
+    "race": "tiefling",
+    "shield": "",
+    "skills": [
+      "acrobatics",
+      "sleight-of-hand",
+      "stealth",
+      "investigation",
+      "perception",
+      "deception"
+    ],
+    "updatedAt": 1550178388000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "rapier",
+      "dagger",
+      "crossbow-light"
+    ],
+    "xp": 0
+  },
+  "tsv-pricelessswirles": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 99,
+      "constitution": 103,
+      "dexterity": 101,
+      "intelligence": 99,
+      "strength": 103,
+      "wisdom": 100
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Acolyte",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 66,
+      "hp": 1105
+    },
+    "classes": [
+      {
+        "class": "barbarian",
+        "level": 20,
+        "subclass": "Path of the Battlerager"
+      }
+    ],
+    "createdAt": 1554951774000,
+    "feats": [
+      "Tough",
+      "Grappler",
+      "Polearm Master",
+      "Sentinel"
+    ],
+    "flaws": "",
+    "hp": 1105,
+    "ideals": "",
+    "level": 20,
+    "name": "priceless_swirles",
+    "personalityTraits": "",
+    "race": "aarakocra",
+    "shield": "",
+    "skills": [
+      "nature",
+      "religion",
+      "insight",
+      "intimidation"
+    ],
+    "updatedAt": 1554951774000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "greataxe",
+      "handaxe",
+      "javelin"
+    ],
+    "xp": 0
+  },
+  "tsv-quirkychatelet": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 13,
+      "dexterity": 18,
+      "intelligence": 12,
+      "strength": 13,
+      "wisdom": 8
+    },
+    "alignment": "chaotic-good",
+    "appearance": "",
+    "armor": "",
+    "background": "Sailor",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 18,
+      "hp": 117
+    },
+    "classes": [
+      {
+        "class": "sorcerer",
+        "level": 17,
+        "subclass": "Shadow Magic"
+      }
+    ],
+    "createdAt": 1601240963000,
+    "feats": [
+      "Dragon Hide",
+      "Elemental Adept"
+    ],
+    "flaws": "",
+    "hp": 117,
+    "ideals": "",
+    "level": 17,
+    "name": "quirky_chatelet",
+    "personalityTraits": "",
+    "race": "dragonborn",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "arcana",
+      "religion",
+      "perception"
+    ],
+    "updatedAt": 1601240963000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "crossbow-light",
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "tsv-reverentbabbage": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 19,
+      "constitution": 18,
+      "dexterity": 16,
+      "intelligence": 16,
+      "strength": 12,
+      "wisdom": 20
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Noble",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 13,
+      "hp": 146
+    },
+    "classes": [
+      {
+        "class": "wizard",
+        "level": 18,
+        "subclass": "School of Necromancy"
+      }
+    ],
+    "createdAt": 1578366567000,
+    "feats": [
+      "War Caster"
+    ],
+    "flaws": "",
+    "hp": 146,
+    "ideals": "",
+    "level": 18,
+    "name": "reverent_babbage",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "history",
+      "persuasion"
+    ],
+    "updatedAt": 1578366567000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "quarterstaff"
+    ],
+    "xp": 0
+  },
+  "tsv-reverentcray": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 16,
+      "constitution": 14,
+      "dexterity": 20,
+      "intelligence": 14,
+      "strength": 14,
+      "wisdom": 20
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Faction Agent",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 20,
+      "hp": 190
+    },
+    "classes": [
+      {
+        "class": "monk",
+        "level": 19,
+        "subclass": "Way of the Sun Soul"
+      }
+    ],
+    "createdAt": 1537328044000,
+    "flaws": "",
+    "hp": 190,
+    "ideals": "",
+    "level": 19,
+    "name": "reverent_cray",
+    "personalityTraits": "",
+    "race": "dragonborn",
+    "shield": "",
+    "skills": [
+      "acrobatics",
+      "stealth",
+      "insight",
+      "perception"
+    ],
+    "updatedAt": 1537328044000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "shortsword",
+      "dart",
+      "unarmed-strike"
+    ],
+    "xp": 0
+  },
+  "tsv-romanticbanzai": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 20,
+      "dexterity": 18,
+      "intelligence": 22,
+      "strength": 18,
+      "wisdom": 24
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Acolyte",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 15,
+      "hp": 260
+    },
+    "classes": [
+      {
+        "class": "warlock",
+        "level": 20,
+        "subclass": "The Celestial"
+      }
+    ],
+    "createdAt": 1532471858000,
+    "flaws": "",
+    "hp": 260,
+    "ideals": "",
+    "level": 20,
+    "name": "romantic_banzai",
+    "personalityTraits": "",
+    "race": "gnome",
+    "shield": "",
+    "skills": [
+      "sleight-of-hand",
+      "stealth",
+      "history",
+      "religion",
+      "insight",
+      "perception",
+      "deception",
+      "performance",
+      "persuasion"
+    ],
+    "subrace": "deep-gnome",
+    "updatedAt": 1532471858000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dagger",
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "tsv-romantichaibt": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 20,
+      "dexterity": 12,
+      "intelligence": 8,
+      "strength": 29,
+      "wisdom": 10
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Hermit",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 22,
+      "hp": 235
+    },
+    "classes": [
+      {
+        "class": "paladin",
+        "level": 18,
+        "subclass": "Oath of Conquest"
+      }
+    ],
+    "createdAt": 1645370069000,
+    "feats": [
+      "Sentinel"
+    ],
+    "flaws": "",
+    "hp": 235,
+    "ideals": "",
+    "level": 18,
+    "name": "romantic_haibt",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "religion",
+      "insight",
+      "perception",
+      "intimidation"
+    ],
+    "updatedAt": 1645370069000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "longsword"
+    ],
+    "xp": 0
+  },
+  "tsv-romanticptolemy": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 13,
+      "constitution": 18,
+      "dexterity": 20,
+      "intelligence": 10,
+      "strength": 20,
+      "wisdom": 8
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Noble",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 16,
+      "hp": 189
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 20,
+        "subclass": "Battle Master"
+      }
+    ],
+    "createdAt": 1553376279000,
+    "flaws": "",
+    "hp": 189,
+    "ideals": "",
+    "level": 20,
+    "name": "romantic_ptolemy",
+    "personalityTraits": "",
+    "race": "eladrin",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "acrobatics",
+      "history",
+      "perception",
+      "persuasion"
+    ],
+    "subrace": "eladrin-tof",
+    "updatedAt": 1553376279000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "longbow",
+      "longsword",
+      "handaxe"
+    ],
+    "xp": 0
+  },
+  "tsv-sharpagnesi": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 14,
+      "constitution": 19,
+      "dexterity": 15,
+      "intelligence": 16,
+      "strength": 20,
+      "wisdom": 12
+    },
+    "alignment": "lawful-evil",
+    "appearance": "",
+    "armor": "",
+    "background": "Knight",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 19,
+      "hp": 208
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 17,
+        "subclass": "Eldritch Knight"
+      }
+    ],
+    "createdAt": 1605884241000,
+    "feats": [
+      "War Caster",
+      "Tough",
+      "Great Weapon Master",
+      "Heavy Armor Master",
+      "Sentinel"
+    ],
+    "flaws": "",
+    "hp": 208,
+    "ideals": "",
+    "level": 17,
+    "name": "sharp_agnesi",
+    "personalityTraits": "",
+    "race": "minotaur",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "arcana",
+      "perception",
+      "intimidation",
+      "persuasion"
+    ],
+    "subrace": "minotaur-death-knight",
+    "updatedAt": 1605884241000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "greatsword"
+    ],
+    "xp": 0
+  },
+  "tsv-sillybanzai": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 10,
+      "constitution": 20,
+      "dexterity": 12,
+      "intelligence": 10,
+      "strength": 20,
+      "wisdom": 10
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Barbarian Tribe Member",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 16,
+      "hp": 221
+    },
+    "classes": [
+      {
+        "class": "barbarian",
+        "level": 18,
+        "subclass": "Path of the Totem Warrior"
+      }
+    ],
+    "createdAt": 1634574125000,
+    "flaws": "",
+    "hp": 221,
+    "ideals": "",
+    "level": 18,
+    "name": "silly_banzai",
+    "personalityTraits": "",
+    "race": "goliath",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "acrobatics",
+      "stealth",
+      "nature",
+      "animal-handling",
+      "perception",
+      "survival",
+      "intimidation"
+    ],
+    "updatedAt": 1634574125000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "greataxe",
+      "handaxe",
+      "javelin"
+    ],
+    "xp": 0
+  },
+  "tsv-sillymccarthy": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 10,
+      "constitution": 18,
+      "dexterity": 14,
+      "intelligence": 10,
+      "strength": 20,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Soldier",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 16,
+      "hp": 186
+    },
+    "classes": [
+      {
+        "class": "fighter",
+        "level": 18,
+        "subclass": "Champion"
+      }
+    ],
+    "createdAt": 1609982688000,
+    "feats": [
+      "Crossbow Expert",
+      "Alert",
+      "Resilient",
+      "Sharpshooter"
+    ],
+    "flaws": "",
+    "hp": 186,
+    "ideals": "",
+    "level": 18,
+    "name": "silly_mccarthy",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "acrobatics",
+      "insight",
+      "perception",
+      "intimidation"
+    ],
+    "updatedAt": 1609982688000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "crossbow-heavy",
+      "longsword",
+      "crossbow-light"
+    ],
+    "xp": 0
+  },
+  "tsv-sleepyzhukovsky": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 17,
+      "dexterity": 14,
+      "intelligence": 12,
+      "strength": 9,
+      "wisdom": 12
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Sage",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 12,
+      "hp": 125
+    },
+    "classes": [
+      {
+        "class": "sorcerer",
+        "level": 17,
+        "subclass": "Wild Magic"
+      }
+    ],
+    "createdAt": 1575807437000,
+    "feats": [
+      "Spell Sniper",
+      "War Caster"
+    ],
+    "flaws": "",
+    "hp": 125,
+    "ideals": "",
+    "level": 17,
+    "name": "sleepy_zhukovsky",
+    "personalityTraits": "",
+    "race": "tiefling",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "history",
+      "deception",
+      "intimidation"
+    ],
+    "updatedAt": 1575807437000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "tsv-stupefieddarwin": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 14,
+      "constitution": 20,
+      "dexterity": 16,
+      "intelligence": 14,
+      "strength": 22,
+      "wisdom": 14
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Outlander",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 18,
+      "hp": 359
+    },
+    "classes": [
+      {
+        "class": "barbarian",
+        "level": 20,
+        "subclass": "Path of the Berserker"
+      }
+    ],
+    "createdAt": 1550286064000,
+    "flaws": "",
+    "hp": 359,
+    "ideals": "",
+    "level": 20,
+    "name": "stupefied_darwin",
+    "personalityTraits": "",
+    "race": "goliath",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "nature",
+      "survival",
+      "intimidation"
+    ],
+    "updatedAt": 1550286064000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "greataxe",
+      "handaxe",
+      "javelin",
+      "unarmed-strike"
+    ],
+    "xp": 0
+  },
+  "tsv-suspiciousnoether": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 0,
+      "constitution": 15,
+      "dexterity": 14,
+      "intelligence": 21,
+      "strength": 9,
+      "wisdom": 21
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Overlord",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 18,
+      "hp": 92
+    },
+    "classes": [
+      {
+        "class": "wizard",
+        "level": 20,
+        "subclass": "School of Necromancy"
+      }
+    ],
+    "createdAt": 1544391529000,
+    "flaws": "",
+    "hp": 92,
+    "ideals": "",
+    "level": 20,
+    "name": "suspicious_noether",
+    "personalityTraits": "",
+    "race": "undead",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "arcana",
+      "investigation",
+      "perception",
+      "survival"
+    ],
+    "updatedAt": 1544391529000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "cajado-classe-mundial"
+    ],
+    "xp": 0
+  },
+  "tsv-tenderagnesi": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 15,
+      "constitution": 20,
+      "dexterity": 16,
+      "intelligence": 12,
+      "strength": 20,
+      "wisdom": 20
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Folk Hero",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 24,
+      "hp": 203
+    },
+    "classes": [
+      {
+        "class": "cleric",
+        "level": 20,
+        "subclass": "War Domain"
+      }
+    ],
+    "createdAt": 1536435767000,
+    "flaws": "",
+    "hp": 203,
+    "ideals": "",
+    "level": 20,
+    "name": "tender_agnesi",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "religion",
+      "animal-handling",
+      "insight",
+      "survival"
+    ],
+    "updatedAt": 1536435767000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "spear"
+    ],
+    "xp": 0
+  },
+  "tsv-tendertereshkova": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 10,
+      "constitution": 14,
+      "dexterity": 14,
+      "intelligence": 18,
+      "strength": 10,
+      "wisdom": 20
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Hermit",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 15,
+      "hp": 143
+    },
+    "classes": [
+      {
+        "class": "druid",
+        "level": 20,
+        "subclass": "Circle of the Land"
+      }
+    ],
+    "createdAt": 1543802052000,
+    "feats": [
+      "Elven Accuracy"
+    ],
+    "flaws": "",
+    "hp": 143,
+    "ideals": "",
+    "level": 20,
+    "name": "tender_tereshkova",
+    "personalityTraits": "",
+    "race": "elf",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "religion",
+      "animal-handling",
+      "medicine",
+      "perception"
+    ],
+    "subrace": "wood-elf",
+    "updatedAt": 1543802052000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "xp": 0
+  },
+  "tsv-thirstyarchimedes": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 12,
+      "constitution": 19,
+      "dexterity": 14,
+      "intelligence": 12,
+      "strength": 11,
+      "wisdom": 20
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Soldier",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 20,
+      "hp": 156
+    },
+    "classes": [
+      {
+        "class": "cleric",
+        "level": 17,
+        "subclass": "Arcana Domain"
+      }
+    ],
+    "createdAt": 1626215297000,
+    "feats": [
+      "Magic Initiate",
+      "War Caster",
+      "Resilient"
+    ],
+    "flaws": "",
+    "hp": 156,
+    "ideals": "",
+    "level": 17,
+    "name": "thirsty_archimedes",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "arcana",
+      "religion",
+      "insight",
+      "perception",
+      "intimidation"
+    ],
+    "updatedAt": 1626215297000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "mace",
+      "crossbow-light"
+    ],
+    "xp": 0
+  },
+  "tsv-upbeatfermi": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 20,
+      "dexterity": 18,
+      "intelligence": 18,
+      "strength": 18,
+      "wisdom": 18
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Inheritor",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 17,
+      "hp": 285
+    },
+    "classes": [
+      {
+        "class": "warlock",
+        "level": 19,
+        "subclass": "The Undying"
+      }
+    ],
+    "createdAt": 1558211469000,
+    "feats": [
+      "Inspiring Leader",
+      "War Caster",
+      "Lucky",
+      "Tough",
+      "Defensive Duelist"
+    ],
+    "flaws": "",
+    "hp": 285,
+    "ideals": "",
+    "level": 19,
+    "name": "upbeat_fermi",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "investigation",
+      "survival",
+      "deception",
+      "intimidation"
+    ],
+    "updatedAt": 1558211469000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "tsv-upbeatgoldberg": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 20,
+      "constitution": 14,
+      "dexterity": 13,
+      "intelligence": 22,
+      "strength": 12,
+      "wisdom": 20
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Sage",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 11,
+      "hp": 115
+    },
+    "classes": [
+      {
+        "class": "wizard",
+        "level": 20,
+        "subclass": "School of Necromancy"
+      }
+    ],
+    "createdAt": 1553348755000,
+    "flaws": "",
+    "hp": 115,
+    "ideals": "",
+    "level": 20,
+    "name": "upbeat_goldberg",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "history",
+      "investigation",
+      "medicine"
+    ],
+    "updatedAt": 1553348755000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "quarterstaff"
+    ],
+    "xp": 0
+  },
+  "tsv-upbeatishizaka": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 14,
+      "constitution": 10,
+      "dexterity": 12,
+      "intelligence": 14,
+      "strength": 8,
+      "wisdom": 20
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Hermit",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 14,
+      "hp": 103
+    },
+    "classes": [
+      {
+        "class": "druid",
+        "level": 20,
+        "subclass": "Circle of the Moon"
+      }
+    ],
+    "createdAt": 1540066940000,
+    "feats": [
+      "War Caster",
+      "Sentinel",
+      "Alert"
+    ],
+    "flaws": "",
+    "hp": 103,
+    "ideals": "",
+    "level": 20,
+    "name": "upbeat_ishizaka",
+    "personalityTraits": "",
+    "race": "elf",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "nature",
+      "religion",
+      "medicine",
+      "perception"
+    ],
+    "subrace": "wood-elf",
+    "updatedAt": 1540066940000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "scimitar"
+    ],
+    "xp": 0
+  },
+  "tsv-vibrantwescoff": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 10,
+      "constitution": 14,
+      "dexterity": 16,
+      "intelligence": 8,
+      "strength": 14,
+      "wisdom": 20
+    },
+    "alignment": "lawful-neutral",
+    "appearance": "",
+    "armor": "",
+    "background": "Acolyte",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 24,
+      "hp": 224
+    },
+    "classes": [
+      {
+        "class": "cleric",
+        "level": 19,
+        "subclass": "Death Domain"
+      }
+    ],
+    "createdAt": 1603564768000,
+    "feats": [
+      "War Caster",
+      "Spell Sniper",
+      "Ritual Caster",
+      "Sentinel",
+      "Mounted Combatant"
+    ],
+    "flaws": "",
+    "hp": 224,
+    "ideals": "",
+    "level": 19,
+    "name": "vibrant_wescoff",
+    "personalityTraits": "",
+    "race": "duergar",
+    "shield": "",
+    "skills": [
+      "insight",
+      "medicine",
+      "survival",
+      "persuasion"
+    ],
+    "updatedAt": 1603564768000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "scimitar",
+      "rapier",
+      "crossbow-light",
+      "crossbow-heavy",
+      "crossbow-heavy"
+    ],
+    "xp": 0
+  },
+  "tsv-vigilantaustin": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 16,
+      "constitution": 16,
+      "dexterity": 15,
+      "intelligence": 13,
+      "strength": 22,
+      "wisdom": 13
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Mercenary Veteran",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 20,
+      "hp": 206
+    },
+    "classes": [
+      {
+        "class": "paladin",
+        "level": 17,
+        "subclass": "OathBreaker"
+      }
+    ],
+    "createdAt": 1584531335000,
+    "feats": [
+      "Tough",
+      "Charger"
+    ],
+    "flaws": "",
+    "hp": 206,
+    "ideals": "",
+    "level": 17,
+    "name": "vigilant_austin",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "athletics",
+      "insight",
+      "intimidation",
+      "persuasion"
+    ],
+    "updatedAt": 1584531335000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "glaive",
+      "javelin"
+    ],
+    "xp": 0
+  },
+  "tsv-vigorousstonebraker": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 8,
+      "constitution": 14,
+      "dexterity": 17,
+      "intelligence": 20,
+      "strength": 19,
+      "wisdom": 8
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Acolyte",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 15,
+      "hp": 163
+    },
+    "classes": [
+      {
+        "class": "mystic",
+        "level": 20,
+        "subclass": "Order of the Immortal"
+      }
+    ],
+    "createdAt": 1538009017000,
+    "flaws": "",
+    "hp": 163,
+    "ideals": "",
+    "level": 20,
+    "name": "vigorous_stonebraker",
+    "personalityTraits": "",
+    "race": "naga",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "religion",
+      "insight",
+      "perception"
+    ],
+    "updatedAt": 1538009017000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "mace",
+      "crossbow-light"
+    ],
+    "xp": 0
+  },
+  "tsv-xenodochialbardeen": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 22,
+      "constitution": 21,
+      "dexterity": 17,
+      "intelligence": 26,
+      "strength": 14,
+      "wisdom": 22
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Sage",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 13,
+      "hp": 174
+    },
+    "classes": [
+      {
+        "class": "wizard",
+        "level": 20,
+        "subclass": "School of Necromancy"
+      }
+    ],
+    "createdAt": 1553702976000,
+    "feats": [
+      "Keen Mind",
+      "War Caster",
+      "Spell Sniper",
+      "Actor",
+      "Magic Initiate"
+    ],
+    "flaws": "",
+    "hp": 174,
+    "ideals": "",
+    "level": 20,
+    "name": "xenodochial_bardeen",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "history",
+      "investigation",
+      "insight"
+    ],
+    "updatedAt": 1553702976000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "quarterstaff"
+    ],
+    "xp": 0
+  },
+  "tsv-zealousdarwin": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 8,
+      "constitution": 19,
+      "dexterity": 18,
+      "intelligence": 20,
+      "strength": 8,
+      "wisdom": 18
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Sage",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 14,
+      "hp": 154
+    },
+    "classes": [
+      {
+        "class": "wizard",
+        "level": 20,
+        "subclass": "School of Necromancy"
+      }
+    ],
+    "createdAt": 1542491306000,
+    "flaws": "",
+    "hp": 154,
+    "ideals": "",
+    "level": 20,
+    "name": "zealous_darwin",
+    "personalityTraits": "",
+    "race": "gnome",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "history",
+      "religion",
+      "medicine"
+    ],
+    "subrace": "forest-gnome",
+    "updatedAt": 1542491306000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "dagger"
+    ],
+    "xp": 0
+  },
+  "tsv-zenleakey": {
+    "abilityScoreAssignmentMode": "standard",
+    "abilityScoreMethod": "point-buy",
+    "abilityScores": {
+      "charisma": 10,
+      "constitution": 20,
+      "dexterity": 12,
+      "intelligence": 20,
+      "strength": 8,
+      "wisdom": 14
+    },
+    "alignment": "",
+    "appearance": "",
+    "armor": "",
+    "background": "Sage",
+    "backstory": "",
+    "bonds": "",
+    "calculatedStats": {
+      "ac": 11,
+      "hp": 182
+    },
+    "classes": [
+      {
+        "class": "wizard",
+        "level": 20,
+        "subclass": "School of Divination"
+      }
+    ],
+    "createdAt": 1560354909000,
+    "feats": [
+      "War Caster"
+    ],
+    "flaws": "",
+    "hp": 182,
+    "ideals": "",
+    "level": 20,
+    "name": "zen_leakey",
+    "personalityTraits": "",
+    "race": "human",
+    "shield": "",
+    "skills": [
+      "arcana",
+      "history",
+      "investigation",
+      "religion",
+      "perception"
+    ],
+    "updatedAt": 1560354909000,
+    "wealth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "silver": 0
+    },
+    "weapons": [
+      "quarterstaff"
+    ],
+    "xp": 0
+  }
+}
